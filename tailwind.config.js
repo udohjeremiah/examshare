@@ -6,7 +6,11 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        monoton: ["var(--font-monoton)", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };
