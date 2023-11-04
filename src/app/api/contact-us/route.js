@@ -6,7 +6,10 @@ export async function POST(request) {
     await request.json();
 
   if (!firstName || !lastName || !email || !subject || !message) {
-    return NextResponse.json({ message: "Bad request" }, { status: 400 });
+    return NextResponse.json(
+      { success: false, message: "Bad request" },
+      { status: 400 },
+    );
   }
 
   const transport = nodemailer.createTransport({
