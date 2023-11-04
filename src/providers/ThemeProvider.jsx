@@ -9,19 +9,18 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "os");
+  const [theme, setTheme] = useState(null);
 
   useEffect(() => {
-    if (theme === "os") {
-      localStorage.removeItem("theme");
-    } else if (theme === "light" || theme === "dark") {
-      localStorage.setItem("theme", theme);
-    } else {
-      throw new Error("Invalid theme");
+    if (!localStorage.getItem("theme")) {
+      localStorage.setItem("theme", "os");
     }
+    setTheme(localStorage.getItem("theme"));
+  }, []);
 
+  useEffect(() => {
     const updateThemeFromOS = (e) => {
-      if (!localStorage.getItem("theme")) {
+      if (localStorage.getItem("theme") === "os") {
         e.matches
           ? document.documentElement.classList.add("dark")
           : document.documentElement.classList.remove("dark");
@@ -33,7 +32,7 @@ export function ThemeProvider({ children }) {
 
     if (
       theme === "dark" ||
-      (!("theme" in localStorage) &&
+      (localStorage.getItem("theme") === "os" &&
         window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
       document.documentElement.classList.add("dark");
