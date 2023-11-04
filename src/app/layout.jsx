@@ -1,9 +1,13 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Monoton } from "next/font/google";
+import { ThemeProvider } from "@/providers/ThemeProvider";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "",
-  description: "",
+  title: "Elevate Your Exams | ExamShare",
+  description:
+    "An open-source project for sharing past examination questions in higher education",
 };
 
 const inter = Inter({
@@ -11,8 +15,25 @@ const inter = Inter({
   display: "swap",
 });
 
+const monoton = Monoton({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+  variable: "--font-monoton",
+});
+
 export default function RootLayout({ children }) {
-  <html lang="en">
-    <body className={inter.className}>{children}</body>
-  </html>;
+  return (
+    <html lang="en">
+      <body
+        className={`${inter.className} ${monoton.variable} flex min-h-screen max-w-[100vw] flex-col bg-white text-slate-600 antialiased dark:bg-slate-800 dark:text-slate-300`}
+      >
+        <ThemeProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
 }
