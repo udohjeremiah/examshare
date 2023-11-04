@@ -126,7 +126,7 @@ export default function Home() {
         />
         <div className="flex flex-col gap-6">
           <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">
-            Most FAQs
+            Frequently Asked Questions
           </h2>
           <div className="flex flex-col gap-4">
             <div>
