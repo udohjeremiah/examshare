@@ -10,6 +10,16 @@ module.exports = {
       fontFamily: {
         monoton: ["var(--font-monoton)", "sans-serif"],
       },
+      keyframes: {
+        blink: {
+          "0%": { opacity: 0.2 },
+          "20%": { opacity: 1 },
+          "100%": { opacity: 0.2 },
+        },
+      },
+      animation: {
+        blink: "blink 1.5s infinite both",
+      },
     },
   },
   darkMode: "class",
