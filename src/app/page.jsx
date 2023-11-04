@@ -114,7 +114,7 @@ export default function Home() {
       </section>
 
       <section
-        id="most-faqs"
+        id="faqs"
         className="flex flex-col items-center gap-7 px-4 py-14 shadow-[inset_0_-1px_0_0] shadow-sky-100 dark:shadow-sky-800 md:px-10 lg:flex-row"
       >
         <Image
@@ -136,7 +136,7 @@ export default function Home() {
               <p className="max-w-prose text-sm">
                 To access past exam questions for your school, go to the{" "}
                 <Link
-                  href="/#most-faqs"
+                  href="/past-questions-archive"
                   className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
                 >
                   past questions archive page
