@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { IoClose } from "react-icons/io5";
 
 export default function ContactUsForm() {
   const [form, setForm] = useState({
@@ -11,9 +12,6 @@ export default function ContactUsForm() {
     subject: "",
     message: "",
   });
-
-  const [formError, setFormError] = useState({});
-
   const formRef = {
     firstName: useRef(null),
     lastName: useRef(null),
@@ -22,6 +20,7 @@ export default function ContactUsForm() {
     subject: useRef(null),
     message: useRef(null),
   };
+  const [formError, setFormError] = useState({});
 
   const [isFormSubmitting, setIsFormSubmitting] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -30,26 +29,16 @@ export default function ContactUsForm() {
   useEffect(() => {
     // Find the first input field with an error and focus on it
     for (const fieldName in formError) {
-      if (formError[fieldName] && formRef[fieldName].current) {
+      if (
+        formError[fieldName] &&
+        formRef[fieldName] &&
+        formRef[fieldName].current
+      ) {
         formRef[fieldName].current.focus();
         break; // Focus the first input with an error and exit the loop
       }
     }
   }, [formError]);
-
-  const showSuccessMessageWithTimeout = () => {
-    setShowSuccessMessage(true);
-    setTimeout(() => {
-      setShowSuccessMessage(false);
-    }, 5000);
-  };
-
-  const showFailureMessageWithTimeout = () => {
-    setShowFailureMessage(true);
-    setTimeout(() => {
-      setShowFailureMessage(false);
-    }, 5000);
-  };
 
   const handleValidation = () => {
     let tempErrors = {};
@@ -88,15 +77,18 @@ export default function ContactUsForm() {
   };
 
   const handleFormSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      const isValidForm = handleValidation();
+    e.preventDefault();
 
+    try {
+      setShowFailureMessage(false);
+      setShowSuccessMessage(false);
+      setFormError({});
+
+      const isValidForm = handleValidation();
       if (!isValidForm) {
         return;
       }
 
-      setFormError({});
       setIsFormSubmitting(true);
 
       const response = await fetch("/api/contact-us", {
@@ -110,7 +102,7 @@ export default function ContactUsForm() {
 
       if (!response.ok) {
         setIsFormSubmitting(false);
-        showFailureMessageWithTimeout();
+        setShowFailureMessage(true);
         return;
       }
 
@@ -123,9 +115,9 @@ export default function ContactUsForm() {
         message: "",
       });
       setIsFormSubmitting(false);
-      showSuccessMessageWithTimeout();
-    } catch (err) {
-      console.error(err);
+      setShowSuccessMessage(true);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -303,13 +295,23 @@ export default function ContactUsForm() {
         )}
       </div>
       {showFailureMessage && (
-        <div className="text-red-500">
-          There was an error submitting the form. Please try again later.
+        <div className="flex items-start justify-between gap-2 rounded-lg border border-red-400 bg-red-50 p-5 dark:border-red-600 dark:bg-red-950">
+          <p>
+            Oops! An error occurred while processing your request. This could be
+            due to an invalid request or our servers encountering an issue. We
+            apologize for the inconvenience. Please try again.
+          </p>
+          <button onClick={() => setShowFailureMessage(false)}>
+            <IoClose size={25} className="text-red-400 dark:text-red-600" />
+          </button>
         </div>
       )}
       {showSuccessMessage && (
-        <div className="text-green-500">
-          Your message has been sent successfully.
+        <div className="flex items-start justify-between gap-2 rounded-lg border border-green-400 bg-green-50 p-5 dark:border-green-600 dark:bg-green-950">
+          <p>Your information has been submitted successfully.</p>
+          <button onClick={() => setShowSuccessMessage(false)}>
+            <IoClose size={25} className="text-green-400 dark:text-green-600" />
+          </button>
         </div>
       )}
     </form>

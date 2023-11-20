@@ -37,9 +37,29 @@ export default function Footer() {
             </Link>
           </li>
         </ul>
-        <p className="text-xs md:text-base lg:text-base">
-          © 2023 ExamShare. All rights reserved.
+        <p className="text-xs md:text-base">
+          &copy; 2023 ExamShare. All rights reserved.
         </p>
+        <div className="flex w-full items-center justify-center gap-5 text-xs">
+          <Link
+            href="/privacy-policy"
+            className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href="/terms-and-conditions"
+            className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          >
+            Terms of Use
+          </Link>
+          <Link
+            href="/legal-disclaimer"
+            className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          >
+            Disclaimer
+          </Link>
+        </div>
       </div>
     </footer>
   );

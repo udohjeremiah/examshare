@@ -4,7 +4,12 @@ import { LiaUsersSolid } from "react-icons/lia";
 import { BsGlobe } from "react-icons/bs";
 import Image from "next/image";
 
-export default function Home() {
+import { options } from "./api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth";
+
+export default async function Home() {
+  const session = await getServerSession(options);
+
   return (
     <>
       <section className="flex flex-col items-center gap-6 bg-sky-50 px-4 py-20 shadow-[inset_0_-1px_0_0] shadow-sky-100 dark:bg-sky-900 dark:shadow-sky-800 md:px-10 lg:flex-row">
@@ -191,6 +196,39 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {!session && (
+        <section
+          id="join-now"
+          className="flex flex-col items-center gap-6 bg-gradient-to-br from-sky-50 via-sky-200 to-sky-500 px-4 py-14 shadow-[inset_0_-1px_0_0] shadow-sky-100 dark:from-sky-500 dark:via-sky-700 dark:to-sky-900 dark:shadow-sky-800 md:px-10"
+        >
+          <div className="flex flex-col gap-6">
+            <h2 className="text-center text-3xl font-extrabold text-slate-900 dark:text-white">
+              Join Now
+            </h2>
+            <p className="max-w-prose text-center">
+              Ready to explore a vast ocean of past exam questions from higher
+              institutions to ace your exams and contribute your own for future
+              generations? Don&apos;t wait any longer. Sign up and start
+              learning like never before!
+            </p>
+            <div className="flex flex-col gap-4">
+              <Link
+                href="/signup"
+                className="rounded-xl bg-sky-500 p-3 text-center font-semibold text-white hover:bg-sky-600 active:bg-sky-700 dark:bg-sky-400 dark:text-sky-50 dark:hover:bg-sky-500 dark:active:bg-sky-600"
+              >
+                Sign Up Now
+              </Link>
+              <Link
+                href="/signin"
+                className="rounded-xl border border-sky-700 p-3 text-center font-semibold text-sky-700 hover:bg-sky-100 active:bg-sky-200 dark:border-sky-200 dark:text-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-900"
+              >
+                Already have an account? Log In
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }
