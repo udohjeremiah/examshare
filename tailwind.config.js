@@ -1,3 +1,5 @@
+const { fontFamily } = require("tailwindcss/defaultTheme");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -8,7 +10,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        monoton: ["var(--font-monoton)", "sans-serif"],
+        inter: ["var(--font-inter)", ...fontFamily.sans],
+        monoton: ["var(--font-monoton)", ...fontFamily.sans],
       },
       keyframes: {
         blink: {

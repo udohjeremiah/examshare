@@ -5,13 +5,14 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { WiMoonAltThirdQuarter } from "react-icons/wi";
 import { FiSun } from "react-icons/fi";
 import { PiMoonStarsBold, PiChatsBold } from "react-icons/pi";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdLogin } from "react-icons/md";
 import { BiBookAlt, BiAddToQueue } from "react-icons/bi";
 import { TbBuildingBank } from "react-icons/tb";
 import { useState, useRef } from "react";
 import { useTheme } from "@/providers/ThemeProvider";
 import useClickOutside from "@/hooks/useClickOutside";
-import { BsGithub } from "react-icons/bs";
+import { useSession } from "next-auth/react";
+import ProfileMenu from "./ProfileMenu";
 
 export default function Header() {
   const [showMobileNav, setShowMobileNav] = useState(false);
@@ -27,6 +28,8 @@ export default function Header() {
     setShowMobileNav(false),
   );
   useClickOutside(themeNavRef, showThemeNavRef, () => setShowThemeNav(false));
+
+  const { data: session } = useSession();
 
   return (
     <header className="sticky top-0 z-40 flex items-center justify-between bg-white/80 px-4 py-2 text-slate-900 shadow-[inset_0_-1px_0_0] shadow-sky-100 backdrop-blur-sm dark:bg-slate-800/80 dark:text-slate-50 dark:shadow-sky-800 md:px-10">
@@ -101,6 +104,18 @@ export default function Header() {
                     <span>Submit Past Question</span>
                   </Link>
                 </li>
+                {!session && (
+                  <li className="max-w-max">
+                    <Link
+                      href="/signin"
+                      className="flex items-center gap-2"
+                      onClick={() => setShowMobileNav(false)}
+                    >
+                      <MdLogin size={25} />
+                      <span>Log In</span>
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </nav>
@@ -122,6 +137,11 @@ export default function Header() {
               <li className="hover:text-sky-500 dark:hover:text-sky-600">
                 <Link href="/submit-past-question">Submit Past Question</Link>
               </li>
+              {!session && (
+                <li className="hover:text-sky-500 dark:hover:text-sky-600">
+                  <Link href="/signin">Log In</Link>
+                </li>
+              )}
             </ul>
           </nav>
         </div>
@@ -189,9 +209,7 @@ export default function Header() {
               </li>
             </ul>
           )}
-          <Link href="https://github.com/udohjeremiah/examshare">
-            <BsGithub size={20} />
-          </Link>
+          <ProfileMenu />
         </div>
       </div>
     </header>
