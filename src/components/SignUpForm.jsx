@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 
-import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 import { FcGoogle } from "react-icons/fc";
@@ -27,8 +26,6 @@ export default function SignUpForm() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showFailureMessage, setShowFailureMessage] = useState(false);
 
-  const router = useRouter();
-
   useEffect(() => {
     // Find the first input field with an error and focus on it
     for (const fieldName in formError) {
@@ -42,14 +39,6 @@ export default function SignUpForm() {
       }
     }
   }, [formError]);
-
-  const showSuccessMessageWithTimeout = () => {
-    setShowSuccessMessage(true);
-    setTimeout(() => {
-      setShowSuccessMessage(false);
-      router.push("/signin");
-    }, 5000);
-  };
 
   const handleValidation = () => {
     let tempErrors = {};
@@ -118,7 +107,7 @@ export default function SignUpForm() {
         password: "",
       });
       setIsFormSubmitting(false);
-      showSuccessMessageWithTimeout();
+      setShowSuccessMessage(false);
     } catch (error) {
       console.error(error);
     }
@@ -303,8 +292,7 @@ export default function SignUpForm() {
         <div className="flex items-start justify-between gap-2 rounded-lg border border-green-400 bg-green-50 p-5 dark:border-green-600 dark:bg-green-950">
           <p>
             Your account has been successfully created! A confirmation email has
-            been sent to you. You will be redirected to the sign-in page
-            automatically.
+            been sent to you for verification.
           </p>
           <button onClick={() => setShowSuccessMessage(false)}>
             <IoClose size={25} className="text-green-400 dark:text-green-600" />
