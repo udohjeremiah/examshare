@@ -107,7 +107,7 @@ export default function SignUpForm() {
         password: "",
       });
       setIsFormSubmitting(false);
-      setShowSuccessMessage(false);
+      setShowSuccessMessage(true);
     } catch (error) {
       console.error(error);
     }
