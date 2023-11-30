@@ -17,7 +17,7 @@ export default function SubmitPastQuestion() {
         You are just one step away from becoming one of the early pioneers of{" "}
         <Link
           href="https://opensource.com/resources/what-open-education"
-          className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
         >
           open-source education
         </Link>{" "}

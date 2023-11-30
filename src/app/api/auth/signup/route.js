@@ -5,6 +5,7 @@ import * as bcrypt from "bcrypt";
 import { render } from "@react-email/components";
 import WelcomeEmail from "@/emails/welcome-email";
 import nodemailer from "nodemailer";
+import generateAvatar from "@/utils/generateAvatar";
 
 export async function POST(request) {
   try {
@@ -39,9 +40,11 @@ export async function POST(request) {
 
     await collection.insertOne({
       name: fullName,
+      userName: email.split("@")[0],
       email: email,
       emailVerified: false,
       password: await bcrypt.hash(password, 10),
+      image: generateAvatar(fullName),
       verifyEmailToken: encryptedToken,
       verifyEmailTokenExpiry: Date.now() + 3600000,
     });

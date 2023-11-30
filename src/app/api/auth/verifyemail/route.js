@@ -43,7 +43,6 @@ export async function POST(request) {
           emailVerified: true,
           providedAnswers: 0,
           totalUpvotesReceived: 0,
-          totalDownvotesReceived: 0,
         },
         $unset: {
           verifyEmailToken: "",

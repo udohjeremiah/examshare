@@ -161,7 +161,7 @@ export default function SignInForm() {
           />
           <Link
             href="/forgot-password"
-            className="mt-2 w-max self-end text-sm font-semibold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+            className="mt-2 w-max self-end text-sm font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
           >
             Forgot password?
           </Link>

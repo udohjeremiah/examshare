@@ -125,7 +125,7 @@ export default function ForgotPasswordForm() {
       <div className="flex items-center justify-center">
         <Link
           href="/signin"
-          className="flex items-center gap-1 text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          className="flex items-center gap-1 font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
         >
           <CiLogout />
           <span>Back to Login</span>
