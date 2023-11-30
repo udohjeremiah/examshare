@@ -36,12 +36,13 @@ export default function Header() {
       <Link href="/">
         <h1 className="font-monoton text-lg">EXAMSHARE</h1>
       </Link>
-      <div className="flex gap-2 lg:grow lg:gap-0">
+      <div className="flex items-center gap-2 lg:grow lg:gap-0">
         <div className="flex items-center lg:hidden">
           <button
             ref={showMobileNavRef}
             type="button"
             onClick={() => setShowMobileNav(true)}
+            aria-label="Menu"
           >
             <HiMenuAlt3 size={25} />
           </button>
@@ -150,6 +151,7 @@ export default function Header() {
             ref={showThemeNavRef}
             type="button"
             onClick={() => setShowThemeNav((t) => !t)}
+            aria-label="Theme"
           >
             {theme === "os" && <WiMoonAltThirdQuarter size={25} />}
             {theme === "light" && <FiSun size={25} />}

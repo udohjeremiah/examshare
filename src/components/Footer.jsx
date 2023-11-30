@@ -19,21 +19,25 @@ export default function Footer() {
           <li>
             <Link href="https://github.com/udohjeremiah/examshare">
               <BsGithub size={25} />
+              <span className="sr-only">ExamShare on GitHub</span>
             </Link>
           </li>
           <li>
             <Link href="">
               <BsTwitter size={25} />
+              <span className="sr-only">ExamShare on Twitter</span>
             </Link>
           </li>
           <li>
             <Link href="">
               <BsFacebook size={25} />
+              <span className="sr-only">ExamShare on Facebook</span>
             </Link>
           </li>
           <li>
             <Link href="">
               <BsInstagram size={25} />
+              <span className="sr-only">ExamShare on Instagram</span>
             </Link>
           </li>
         </ul>

@@ -99,7 +99,7 @@ export default function TermsAndConditions() {
                 href="https://examshare.vercel.app"
                 rel="external nofollow noopener"
                 target="_blank"
-                className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+                className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
               >
                 https://examshare.vercel.app
               </Link>
@@ -183,7 +183,7 @@ export default function TermsAndConditions() {
           please address your request to:{" "}
           <Link
             href="mailto:examshare.vercel.app@gmail.com"
-            className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+            className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
           >
             examshare.vercel.app@gmail.com
           </Link>
@@ -888,7 +888,7 @@ export default function TermsAndConditions() {
               By email:{" "}
               <Link
                 href="mailto:examshare.vercel.app@gmail.com"
-                className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+                className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
               >
                 examshare.vercel.app@gmail.com
               </Link>
@@ -901,7 +901,7 @@ export default function TermsAndConditions() {
                 href="https://examshare.vercel.app/contact-us"
                 rel="external nofollow noopener"
                 target="_blank"
-                className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+                className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
               >
                 https://examshare.vercel.app/contact-us
               </Link>

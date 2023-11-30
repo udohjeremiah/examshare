@@ -6,6 +6,7 @@ import * as bcrypt from "bcrypt";
 import { render } from "@react-email/components";
 import VerifyEmailSuccessfulEmail from "@/emails/verify-email-successful-email";
 import nodemailer from "nodemailer";
+import generateAvatar from "@/utils/generateAvatar";
 
 async function sendWelcomeEmail(account, name, email) {
   const verifyEmailSuccessfulEmailHtml = render(
@@ -94,6 +95,7 @@ export const options = {
             $set: {
               email: user.email,
               name: user.name,
+              userName: user.email.split("@")[0],
               image: user.image,
             },
           },
@@ -102,17 +104,33 @@ export const options = {
         await collection.insertOne({
           email: user.email,
           name: user.name,
-          image: user.image,
+          userName: user.email.split("@")[0],
+          image: user.image || generateAvatar(user.name),
           emailVerified: true,
           providedAnswers: 0,
           totalUpvotesReceived: 0,
-          totalDownvotesReceived: 0,
         });
 
         await sendWelcomeEmail(account, user.name, user.email);
       }
 
       return true;
+    },
+
+    async session({ session, token, user }) {
+      const client = await connectClient();
+      const database = client.db(process.env.MONGODB_DATABSE);
+      const collection = database.collection(
+        process.env.MONGODB_COLLECTION_USERS,
+      );
+
+      const existingUser = await collection.findOne({ email: token.email });
+      if (existingUser) {
+        session.user.id = existingUser._id;
+        session.user.userName = existingUser.userName;
+      }
+
+      return session;
     },
   },
   pages: {

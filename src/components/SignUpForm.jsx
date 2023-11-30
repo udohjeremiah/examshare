@@ -222,14 +222,14 @@ export default function SignUpForm() {
         By creating an account, you accept our{" "}
         <Link
           href="/terms-and-conditions"
-          className="whitespace-nowrap text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          className="whitespace-nowrap font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
         >
           Terms & Conditions
         </Link>{" "}
         and{" "}
         <Link
           href="/privacy-policy"
-          className="whitespace-nowrap text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          className="whitespace-nowrap font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
         >
           Privacy Policy
         </Link>

@@ -19,7 +19,7 @@ export default function ContactUs() {
         touch with you. If you have a simple question, check out our{" "}
         <Link
           href="/#faqs"
-          className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
         >
           FAQ section
         </Link>

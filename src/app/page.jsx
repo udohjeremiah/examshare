@@ -104,15 +104,15 @@ export default async function Home() {
       </section>
 
       <section className="flex flex-col gap-6 bg-sky-50 px-4 py-14 shadow-[inset_0_-1px_0_0] shadow-sky-100 dark:bg-sky-900 dark:shadow-sky-800 md:px-10">
-        <div className="flex flex-col items-center justify-center gap-2 rounded-lg bg-sky-600 p-12 text-white dark:bg-sky-400 dark:text-sky-50">
+        <div className="flex flex-col items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-sky-400 to-sky-600 p-12 text-white dark:from-sky-300 dark:to-sky-500 dark:text-sky-950">
           <h3 className="text-4xl font-extrabold">500+</h3>
           <p className="text-3xl font-medium">Institutions</p>
         </div>
-        <div className="flex flex-col items-center justify-center gap-2 rounded-lg bg-sky-600 p-12 text-white dark:bg-sky-400 dark:text-sky-50">
+        <div className="flex flex-col items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-sky-400 to-sky-600 p-12 text-white dark:from-sky-300 dark:to-sky-500 dark:text-sky-950">
           <h3 className="text-4xl font-extrabold">20,000+</h3>
           <p className="text-3xl font-medium">Questions</p>
         </div>
-        <div className="flex flex-col items-center justify-center gap-2 rounded-lg bg-sky-600 p-12 text-white dark:bg-sky-400 dark:text-sky-50">
+        <div className="flex flex-col items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-sky-400 to-sky-600 p-12 text-white dark:from-sky-300 dark:to-sky-500 dark:text-sky-950">
           <h3 className="text-4xl font-extrabold">10,000+</h3>
           <p className="text-3xl font-medium">Users</p>
         </div>
@@ -142,7 +142,7 @@ export default async function Home() {
                 To access past exam questions for your school, go to the{" "}
                 <Link
                   href="/past-questions-archive"
-                  className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+                  className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
                 >
                   past questions archive page
                 </Link>{" "}
@@ -153,6 +153,31 @@ export default async function Home() {
                 session, level, semester, and course to view the past questions.
                 If there are no past questions available for your school, you
                 will be redirected to a 404 error page.
+              </p>
+            </div>
+            <div>
+              <h3 className="mb-2 max-w-prose font-medium text-slate-900 dark:text-white">
+                How can I view and add my own answers to these past exam
+                questions?
+              </h3>
+              <p className="max-w-prose text-sm">
+                To access and contribute answers to past exam questions, you
+                need an account with us. If you don&apos;t have one, please{" "}
+                <Link
+                  href="/signup"
+                  className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+                >
+                  create an account
+                </Link>
+                . If you already have an account, simply{" "}
+                <Link
+                  href="/signin"
+                  className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+                >
+                  log in
+                </Link>
+                . Remember, sharing wisdom and knowledge is valuable;
+                there&apos;s no benefit in keeping it to yourself.
               </p>
             </div>
             <div>
@@ -215,13 +240,13 @@ export default async function Home() {
             <div className="flex flex-col gap-4">
               <Link
                 href="/signup"
-                className="rounded-xl bg-sky-500 p-3 text-center font-semibold text-white hover:bg-sky-600 active:bg-sky-700 dark:bg-sky-400 dark:text-sky-50 dark:hover:bg-sky-500 dark:active:bg-sky-600"
+                className="rounded-xl bg-sky-500 p-3 text-center font-semibold text-white hover:bg-sky-600 active:bg-sky-700 dark:bg-sky-400 dark:text-sky-950 dark:hover:bg-sky-500 dark:active:bg-sky-600"
               >
                 Sign Up Now
               </Link>
               <Link
                 href="/signin"
-                className="rounded-xl border border-sky-700 p-3 text-center font-semibold text-sky-700 hover:bg-sky-100 active:bg-sky-200 dark:border-sky-200 dark:text-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-900"
+                className="rounded-xl border border-sky-700 p-3 text-center font-semibold text-sky-700 hover:bg-sky-100 active:bg-sky-200 dark:border-sky-200 dark:text-sky-300 dark:hover:bg-sky-950 dark:active:bg-sky-900"
               >
                 Already have an account? Log In
               </Link>

@@ -19,7 +19,18 @@
   },
   "dependencies": {
     "@react-email/components": "^0.0.11",
+    "@tiptap/extension-link": "^2.1.12",
+    "@tiptap/extension-list-item": "^2.1.12",
+    "@tiptap/extension-placeholder": "^2.1.12",
+    "@tiptap/extension-subscript": "^2.1.12",
+    "@tiptap/extension-superscript": "^2.1.12",
+    "@tiptap/extension-text-style": "^2.1.12",
+    "@tiptap/extension-underline": "^2.1.12",
+    "@tiptap/pm": "^2.1.12",
+    "@tiptap/react": "^2.1.12",
+    "@tiptap/starter-kit": "^2.1.12",
     "bcrypt": "^5.1.1",
+    "html-react-parser": "^5.0.6",
     "mongodb": "^6.3.0",
     "next": "14.0.1",
     "next-auth": "^4.24.5",
@@ -27,9 +38,12 @@
     "react": "^18",
     "react-dom": "^18",
     "react-email": "^1.9.5",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "react-inlinesvg": "^4.1.0",
+    "swr": "^2.2.4"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.1",
