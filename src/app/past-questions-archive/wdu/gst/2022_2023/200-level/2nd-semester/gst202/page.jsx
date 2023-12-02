@@ -12,7 +12,7 @@ export default function GST202() {
       courseCode="GST202"
       courseTitle="peace studies and conflict resolution"
       allowedTime="1hr"
-      instruction="answer question 1 and any other THREE questions"
+      instruction="answer ALL questions"
     >
       <li>
         <h4 className="mb-2 font-bold">Question 1</h4>
