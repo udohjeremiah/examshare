@@ -41,26 +41,26 @@ export default function CSC203() {
             that follows: <br />
             <pre className="mb-2 mt-2 block">
               <code>
-                &#47;&#47; This program computes the area of a circle
+                &#47; This program computes the area of a circle
                 <br />
                 #include &lt;iosteam&gt;
                 <br />
                 #include &lt;cmath&gt;
                 <br />
-                using namespace std;
+                using namespace std
                 <br />
-                int main () &#123;
+                int main ()
                 <br />
                 {"  "}const float pi = 3.142;
                 <br />
-                {"  "}double radius, result, area, exponent = 2.0;
+                {"  "}double radius, result, area, exponent = 2.0;;
                 <br />
                 {"  "}cout &gt;&gt; &quot;Enter the value of radius&quot;
                 &gt;&gt; endl;
                 <br />
                 {"  "}cin &lt;&lt; radius;
                 <br />
-                {"  "}result = power (radius, exponent);
+                {"  "}Result = power(radius, exponent);
                 <br />
                 {"  "}cout &gt;&gt; &quot;The area of the circie is &quot;
                 &gt;&gt; area;
@@ -273,7 +273,7 @@ export default function CSC203() {
               </li>
               <li>
                 Give the syntax of enumeration and write an enumeration whose
-                values are months the year{" "}
+                values are months of the year{" "}
                 <strong className="whitespace-nowrap">(5 marks)</strong>
                 <Answers questionNumber="5cii" />
               </li>

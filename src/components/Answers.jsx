@@ -117,7 +117,7 @@ export default function Answers({ questionNumber }) {
           {error && <div>failed to load</div>}
           {isLoading && <div>loading...</div>}
           <div className="space-y-2">
-            {answers.length > 0 && (
+            {answers?.length > 0 && (
               <ol>
                 {answers.map((answer) => (
                   <li key={answer._id} className="mb-4 flex gap-2 py-2">
