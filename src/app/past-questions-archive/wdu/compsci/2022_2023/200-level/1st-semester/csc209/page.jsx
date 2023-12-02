@@ -60,7 +60,7 @@ export default function CSC209() {
                 <strong className="whitespace-nowrap">(2.5 marks)</strong>
               </li>
               <li>
-                Repitition{" "}
+                Repetition{" "}
                 <strong className="whitespace-nowrap">(2.5 marks)</strong>
               </li>
               <Answers questionNumber="2a" />

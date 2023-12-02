@@ -203,7 +203,7 @@ export default function MTH211() {
                 <span className="absolute bottom-0 w-max">O, otherwise</span>
               </div>
             </div>
-            Find the E(X) items{" "}
+            Find the E(X){" "}
             <strong className="whitespace-nowrap">(9.5 marks)</strong>
             <Answers questionNumber="5a" />
           </li>
