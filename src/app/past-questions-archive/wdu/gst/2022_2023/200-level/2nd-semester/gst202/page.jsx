@@ -5,8 +5,8 @@ export default function GST202() {
   return (
     <Questions
       school="western delta university"
-      college="computing"
-      department="computer science"
+      college="general studies"
+      department="general studies"
       session="2022/2023"
       semester="second semester"
       courseCode="GST202"
