@@ -9,6 +9,7 @@ const departments = {
     { name: "Management Sciences", route: "wdu/mgmsci" },
     { name: "Mathematics (Pure and Applied)", route: "wdu/mth" },
   ],
+  p: [{ name: "Physics With Electronics", route: "wdu/phywithelect" }],
 };
 
 export default function WesternDeltaUniversity() {
