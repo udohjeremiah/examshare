@@ -11,7 +11,7 @@ export default function MTH202() {
       semester="second semester"
       courseCode="mth202"
       courseTitle="linear algebra II"
-      allowedTime="2hr: 30mins"
+      allowedTime="2hrs: 30mins"
       instruction="answer any other THREE (3) questions only"
     >
       <li>

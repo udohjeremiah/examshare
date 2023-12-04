@@ -6,6 +6,10 @@ const courses = {
       name: "MTH 202 - Linear Algebra II",
       route: "2nd-semester/mth202",
     },
+    {
+      name: "MTH 206 - Mathematical Method I",
+      route: "2nd-semester/mth206",
+    },
   ],
 };
 
