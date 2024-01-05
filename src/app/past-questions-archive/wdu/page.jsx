@@ -4,6 +4,7 @@ import LinkList from "@/components/LinkList";
 const departments = {
   b: [{ name: "Basic And Industrial Chemistry", route: "wdu/basicinduschem" }],
   c: [{ name: "Computer Science", route: "wdu/compsci" }],
+  c: [{ name: "Environmental Management And Toxicology", route: "wdu/emt" }],
   g: [{ name: "General Studies", route: "wdu/gst" }],
   m: [
     { name: "Management Sciences", route: "wdu/mgmsci" },
