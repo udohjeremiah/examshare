@@ -55,3 +55,5 @@ jobs:
 
       - name: Build with Next.js
         run: npm run build
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
