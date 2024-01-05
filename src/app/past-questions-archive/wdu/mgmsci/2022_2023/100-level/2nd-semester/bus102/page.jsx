@@ -1,7 +1,7 @@
 import Questions from "@/components/Questions";
 import Answers from "@/components/Answers";
 
-export default function GST202() {
+export default function BUS102() {
   return (
     <Questions
       school="western delta university"
