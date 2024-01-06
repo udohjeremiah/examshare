@@ -10,6 +10,10 @@ const courses = {
       name: "GST 104 - Nigerian Peoples and Culture",
       route: "2nd-semester/gst104",
     },
+    {
+      name: "GST 106 - History and Philosophy of Science",
+      route: "2nd-semester/gst106",
+    },
   ],
 };
 
