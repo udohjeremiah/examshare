@@ -1,17 +1,17 @@
 import Questions from "@/components/Questions";
 import Answers from "@/components/Answers";
 
-export default function GST104() {
+export default function GST106() {
   return (
     <Questions
       school="western delta university"
       college="general studies"
       department="general studies"
       session="2022/2023"
-      semester="first semester"
-      courseCode="GST104"
-      courseTitle="nigerian peoples and culture"
-      allowedTime="1hr"
+      semester="second semester"
+      courseCode="GST106"
+      courseTitle="history and philosophy of science"
+      allowedTime="50mins"
       instruction="answer ALL questions"
     >
       <li>
