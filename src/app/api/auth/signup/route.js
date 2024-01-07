@@ -25,7 +25,7 @@ export async function POST(request) {
     );
 
     const user = await collection.findOne({ email: email });
-    if (user) {
+    if (user && user.emailVerified) {
       return NextResponse.json(
         {
           success: false,
@@ -38,16 +38,21 @@ export async function POST(request) {
     const randomToken = crypto.randomBytes(32).toString("hex");
     const encryptedToken = await bcrypt.hash(randomToken, 10);
 
-    await collection.insertOne({
-      name: fullName,
-      userName: email.split("@")[0],
-      email: email,
-      emailVerified: false,
-      password: await bcrypt.hash(password, 10),
-      image: generateAvatar(fullName),
-      verifyEmailToken: encryptedToken,
-      verifyEmailTokenExpiry: Date.now() + 3600000,
-    });
+    await collection.updateOne(
+      { email: email },
+      {
+        $set: {
+          name: fullName,
+          userName: email.split("@")[0],
+          emailVerified: false,
+          password: await bcrypt.hash(password, 10),
+          image: generateAvatar(fullName),
+          verifyEmailToken: encryptedToken,
+          verifyEmailTokenExpiry: Date.now() + 3600000, // 1hr
+        },
+      },
+      { upsert: true },
+    );
 
     const welcomeEmailHtml = render(
       <WelcomeEmail
