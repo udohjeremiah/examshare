@@ -1,7 +1,7 @@
 import Questions from "@/components/Questions";
 import Answers from "@/components/Answers";
 
-export default function CHM303() {
+export default function CHM101() {
   return (
     <Questions
       school="western delta university"
