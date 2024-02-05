@@ -338,8 +338,6 @@ export default function SubmitPastQuestionForm() {
                 ref={formRef.statusAtInstitution}
                 id="status-at-institution"
                 name="status-at-institution"
-                type="tel"
-                autoComplete="tel"
                 placeholder="e.g., Student"
                 value={form.statusAtInstitution}
                 onChange={(e) =>
@@ -480,7 +478,7 @@ export default function SubmitPastQuestionForm() {
                 name="past-question"
                 type="file"
                 capture="environment"
-                accept="image/*"
+                accept=".pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx, image/*"
                 required
                 onChange={(e) =>
                   setForm({
