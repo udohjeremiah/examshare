@@ -48,21 +48,26 @@ export const options = {
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        const client = await connectClient();
-        const database = client.db(process.env.MONGODB_DATABSE);
-        const collection = database.collection(
-          process.env.MONGODB_COLLECTION_USERS,
-        );
+        try {
+          const client = await connectClient();
+          const database = client.db(process.env.MONGODB_DATABSE);
+          const collection = database.collection(
+            process.env.MONGODB_COLLECTION_USERS,
+          );
 
-        const user = await collection.findOne({ email: credentials.email });
+          const user = await collection.findOne({ email: credentials.email });
 
-        if (
-          user &&
-          user.emailVerified &&
-          (await bcrypt.compare(credentials.password, user.password))
-        ) {
-          return user;
-        } else {
+          if (
+            user &&
+            user.emailVerified &&
+            (await bcrypt.compare(credentials.password, user.password))
+          ) {
+            return user;
+          } else {
+            return null;
+          }
+        } catch (error) {
+          console.log(error);
           return null;
         }
       },
@@ -78,59 +83,69 @@ export const options = {
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      const client = await connectClient();
-      const database = client.db(process.env.MONGODB_DATABSE);
-      const collection = database.collection(
-        process.env.MONGODB_COLLECTION_USERS,
-      );
-
-      const existingUser = await collection.findOne({ email: user.email });
-
-      if (existingUser) {
-        await collection.updateOne(
-          {
-            email: user.email,
-          },
-          {
-            $set: {
-              email: user.email,
-              name: user.name,
-              userName: user.email.split("@")[0],
-              image: user.image,
-            },
-          },
+      try {
+        const client = await connectClient();
+        const database = client.db(process.env.MONGODB_DATABSE);
+        const collection = database.collection(
+          process.env.MONGODB_COLLECTION_USERS,
         );
-      } else {
-        await collection.insertOne({
-          email: user.email,
-          name: user.name,
-          userName: user.email.split("@")[0],
-          image: user.image || generateAvatar(user.name),
-          emailVerified: true,
-          providedAnswers: 0,
-          totalUpvotesReceived: 0,
-        });
 
-        await sendWelcomeEmail(account, user.name, user.email);
+        const existingUser = await collection.findOne({ email: user.email });
+
+        if (existingUser) {
+          await collection.updateOne(
+            {
+              email: user.email,
+            },
+            {
+              $set: {
+                email: user.email,
+                name: user.name,
+                userName: user.email.split("@")[0],
+                image: user.image,
+              },
+            },
+          );
+        } else {
+          await collection.insertOne({
+            email: user.email,
+            name: user.name,
+            userName: user.email.split("@")[0],
+            image: user.image || generateAvatar(user.name),
+            emailVerified: true,
+            providedAnswers: 0,
+            totalUpvotesReceived: 0,
+          });
+
+          await sendWelcomeEmail(account, user.name, user.email);
+        }
+
+        return true;
+      } catch (error) {
+        console.log(error);
+        return false;
       }
-
-      return true;
     },
 
     async session({ session, token, user }) {
-      const client = await connectClient();
-      const database = client.db(process.env.MONGODB_DATABSE);
-      const collection = database.collection(
-        process.env.MONGODB_COLLECTION_USERS,
-      );
+      try {
+        const client = await connectClient();
+        const database = client.db(process.env.MONGODB_DATABSE);
+        const collection = database.collection(
+          process.env.MONGODB_COLLECTION_USERS,
+        );
 
-      const existingUser = await collection.findOne({ email: token.email });
-      if (existingUser) {
-        session.user.id = existingUser._id;
-        session.user.userName = existingUser.userName;
+        const existingUser = await collection.findOne({ email: token.email });
+        if (existingUser) {
+          session.user.id = existingUser._id;
+          session.user.userName = existingUser.userName;
+        }
+
+        return session;
+      } catch (error) {
+        console.log(error);
+        return session;
       }
-
-      return session;
     },
   },
   pages: {
