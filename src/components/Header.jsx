@@ -47,7 +47,7 @@ export default function Header() {
             <HiMenuAlt3 size={25} />
           </button>
           <nav
-            aria-hidden={`${showMobileNav ? false : true}`}
+            aria-hidden={showMobileNav}
             className={`fixed right-0 top-0 z-50 flex min-h-screen w-screen bg-slate-900/70 transition-opacity duration-1000 ease-in-out dark:bg-slate-700/70 ${
               showMobileNav ? "visible opacity-100" : "invisible opacity-0"
             }`}
@@ -166,7 +166,7 @@ export default function Header() {
             >
               <li
                 role="option"
-                aria-selected={`${theme === "light" ? true : false}`}
+                aria-selected={theme === "light" ? true : false}
                 onClick={() => {
                   localStorage.setItem("theme", "light");
                   setTheme("light");
@@ -181,7 +181,7 @@ export default function Header() {
               </li>
               <li
                 role="option"
-                aria-selected={`${theme === "dark" ? true : false}`}
+                aria-selected={theme === "dark" ? true : false}
                 onClick={() => {
                   localStorage.setItem("theme", "dark");
                   setTheme("dark");
@@ -196,7 +196,7 @@ export default function Header() {
               </li>
               <li
                 role="option"
-                aria-selected={`${theme === "os" ? true : false}`}
+                aria-selected={theme === "os" ? true : false}
                 onClick={() => {
                   localStorage.setItem("theme", "os");
                   setTheme("os");
