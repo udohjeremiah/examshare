@@ -24,13 +24,10 @@ export default function WelcomeEmail({ fullName, verificationLink }) {
       </Head>
       <Preview>{previewText}</Preview>
       <Tailwind>
-        <Body className="m-auto bg-white font-inter text-slate-600">
+        <Body className="m-auto bg-white text-slate-600">
           <Container className="mx-auto my-10 w-1/2 rounded border border-solid border-slate-200">
             <Section className="bg-sky-50 p-10">
-              <Heading
-                as="h1"
-                className="m-0 font-monoton text-7xl text-sky-900"
-              >
+              <Heading as="h1" className="m-0 text-7xl text-sky-900">
                 ExamShare
               </Heading>
               <Text className="m-0 mt-2 text-lg">
