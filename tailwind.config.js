@@ -10,8 +10,24 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["var(--font-inter)", ...fontFamily.sans],
-        monoton: ["var(--font-monoton)", ...fontFamily.sans],
+        system: [
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Oxygen-Sans",
+          "Ubuntu",
+          "Cantarell",
+          "Helvetica Neue",
+          "sans-serif",
+          "Apple Color Emoji",
+          "Twemoji Mozilla",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji",
+          "EmojiOne Color",
+          "Android Emoji",
+        ],
       },
       keyframes: {
         blink: {

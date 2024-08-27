@@ -6,7 +6,10 @@ export default function LinkList({ items, isOrdered }) {
       {Object.keys(items).map((header) => (
         <div key={header}>
           {header && (
-            <h3 className="inline-block text-xl text-slate-900 dark:text-white">
+            <h3
+              id={header}
+              className="inline-block text-xl text-slate-900 dark:text-white"
+            >
               {header.toUpperCase()}
             </h3>
           )}
