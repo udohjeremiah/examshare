@@ -33,8 +33,8 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 flex items-center justify-between bg-white/80 px-4 py-2 text-slate-900 shadow-[inset_0_-1px_0_0] shadow-sky-100 backdrop-blur-sm dark:bg-slate-800/80 dark:text-slate-50 dark:shadow-sky-800 md:px-10">
-      <Link href="/">
-        <h1 className="text-lg">EXAMSHARE</h1>
+      <Link href="/" className="hover:text-sky-500 dark:hover:text-sky-600">
+        <h1 className="text-lg font-bold">EXAMSHARE</h1>
       </Link>
       <div className="flex items-center gap-2 lg:grow lg:gap-0">
         <div className="flex items-center lg:hidden">
