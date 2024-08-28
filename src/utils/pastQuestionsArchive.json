@@ -1,0 +1,482 @@
+{
+  "wdu": {
+    "name": "Western Delta University, Oghara Delta State",
+    "departments": {
+      "acc": {
+        "name": "Accounting and Finance",
+        "sessions": {
+          "2022_2023": {
+            "name": "2022/2023",
+            "levels": {
+              "100-level": {
+                "name": "100 Level",
+                "semesters": {
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "acc102",
+                        "name": "ACC 102 - Introduction to Financial Accounting II",
+                        "question": "wdu-acc-22_23-1lvl-2nd-acc102"
+                      },
+                      {
+                        "href": "bfn102",
+                        "name": "BFN 102 - Element of Banking II",
+                        "question": "wdu-acc-22_23-1lvl-2nd-bfn102"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "basicinduschem": {
+        "name": "Basic and Industrial Chemistry",
+        "sessions": {
+          "2022_2023": {
+            "name": "2022/2023",
+            "levels": {
+              "100-level": {
+                "name": "100 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "chm101",
+                        "name": "CHM 101 - General Chemistry I",
+                        "question": "wdu-basicinduschem-22_23-1lvl-1st-chm101"
+                      }
+                    ]
+                  },
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "chm102",
+                        "name": "CHM 102 - General Chemistry II",
+                        "question": "wdu-basicinduschem-22_23-1lvl-2nd-chm102"
+                      }
+                    ]
+                  }
+                }
+              },
+              "300-level": {
+                "name": "300 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "chm303",
+                        "name": "CHM 303 - Inorganic Chemistry",
+                        "question": "wdu-basicinduschem-22_23-3lvl-1st-chm303"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "compsci": {
+        "name": "Computer Science",
+        "sessions": {
+          "2022_2023": {
+            "name": "2022/2023",
+            "levels": {
+              "100-level": {
+                "name": "100 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "csc101-law-mgmsci",
+                        "name": "CSC 101 - Introduction to Computers and Spreadsheet Analysis (FOR LAW AND MANAGEMENT SCIENCES)",
+                        "question": "wdu-compsci-22_23-1lvl-1st-csc101-law-mgmsci"
+                      },
+                      {
+                        "href": "csc101-sci",
+                        "name": "CSC 101 - Introduction to Computers and Spreadsheet Analysis (FOR SCIENCES)",
+                        "question": "wdu-compsci-22_23-1lvl-1st-csc101-sci"
+                      }
+                    ]
+                  }
+                }
+              },
+              "200-level": {
+                "name": "200 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "csc201",
+                        "name": "CSC 201 - Computer Programming I (Java)",
+                        "question": "wdu-compsci-22_23-2lvl-1st-csc201"
+                      },
+                      {
+                        "href": "csc203",
+                        "name": "CSC 203 - Computer Programming II",
+                        "question": "wdu-compsci-22_23-2lvl-1st-csc203"
+                      },
+                      {
+                        "href": "csc209",
+                        "name": "CSC 209 - Foundations of Sequential Programming",
+                        "question": "wdu-compsci-22_23-2lvl-1st-csc209"
+                      }
+                    ]
+                  },
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "csc202",
+                        "name": "CSC 202 - Assembly Language Processing",
+                        "question": "wdu-compsci-22_23-2lvl-2nd-csc202"
+                      },
+                      {
+                        "href": "csc204",
+                        "name": "CSC 204 - File Processing",
+                        "question": "wdu-compsci-22_23-2lvl-2nd-csc204"
+                      },
+                      {
+                        "href": "csc206",
+                        "name": "CSC 206 - Computer Hardware",
+                        "question": "wdu-compsci-22_23-2lvl-2nd-csc206"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "eco": {
+        "name": "Economics",
+        "sessions": {
+          "2022_2023": {
+            "name": "2022/2023",
+            "levels": {
+              "100-level": {
+                "name": "100 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "eco101",
+                        "name": "ECO 101 - Principles of Economics I",
+                        "question": "wdu-eco-22_23-1lvl-1st-eco101"
+                      }
+                    ]
+                  },
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "eco102",
+                        "name": "ECO 102 - Principles of Economics II",
+                        "question": "wdu-eco-22_23-1lvl-2nd-eco102"
+                      }
+                    ]
+                  }
+                }
+              },
+              "200-level": {
+                "name": "200 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "eco201",
+                        "name": "ECO 201 - Introductory Microeconomics I",
+                        "question": "wdu-eco-22_23-2lvl-1st-eco201"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "emt": {
+        "name": "Environmental Management and Toxicology",
+        "sessions": {
+          "2022_2023": {
+            "name": "2022/2023",
+            "levels": {
+              "100-level": {
+                "name": "100 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "emt101",
+                        "name": "EMT 101 - General Biology I",
+                        "question": "wdu-emt-22_23-1lvl-1st-emt101"
+                      },
+                      {
+                        "href": "emt103",
+                        "name": "EMT 103 - Practical Biology I",
+                        "question": "wdu-emt-22_23-1lvl-1st-emt103"
+                      }
+                    ]
+                  },
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "emt104",
+                        "name": "EMT 104 - Practical Biology II",
+                        "question": "wdu-emt-22_23-1lvl-2nd-emt104"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "gst": {
+        "name": "General Studies",
+        "sessions": {
+          "2022_2023": {
+            "name": "2022/2023",
+            "levels": {
+              "100-level": {
+                "name": "100 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "gst101",
+                        "name": "GST 101 - Use of English and Library",
+                        "question": "wdu-gst-22_23-1lvl-1st-gst101"
+                      },
+                      {
+                        "href": "gst103",
+                        "name": "GST 103 - Philosophy and Logic",
+                        "question": "wdu-gst-22_23-1lvl-1st-gst103"
+                      }
+                    ]
+                  },
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "gst102",
+                        "name": "GST 102 - Use of English",
+                        "question": "wdu-gst-22_23-1lvl-2nd-gst102"
+                      },
+                      {
+                        "href": "gst104",
+                        "name": "GST 104 - Nigerian Peoples and Culture",
+                        "question": "wdu-gst-22_23-1lvl-2nd-gst104"
+                      },
+                      {
+                        "href": "gst106",
+                        "name": "GST 106 - History and Philosophy of Science",
+                        "question": "wdu-gst-22_23-1lvl-2nd-gst106"
+                      }
+                    ]
+                  }
+                }
+              },
+              "200-level": {
+                "name": "200 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "gst201",
+                        "name": "GST 201 - Communication in French",
+                        "question": "wdu-gst-22_23-2lvl-1st-gst201"
+                      }
+                    ]
+                  },
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "gst202",
+                        "name": "GST 202 - Communication in French",
+                        "question": "wdu-gst-22_23-2lvl-2nd1st-gst202"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "mgmsci": {
+        "name": "Management Sciences",
+        "sessions": {
+          "2022_2023": {
+            "name": "2022/2023",
+            "levels": {
+              "100-level": {
+                "name": "100 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "bus101",
+                        "name": "BUS 101 - Introduction to Business",
+                        "question": "wdu-mgmsci-22_23-1lvl-1st-bus101"
+                      }
+                    ]
+                  },
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "bus102",
+                        "name": "BUS 102 - Introduction to Business II",
+                        "question": "wdu-mgmsci-22_23-1lvl-2nd-bus102"
+                      }
+                    ]
+                  }
+                }
+              },
+              "200-level": {
+                "name": "200 Level",
+                "semesters": {
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "bus202",
+                        "name": "BUS 202 - Principles of Management II",
+                        "question": "wdu-mgmsci-22_23-2lvl-2nd-bus202"
+                      },
+                      {
+                        "href": "mkt202",
+                        "name": "MKT 202 - Principles of Marketing",
+                        "question": "wdu-mgmsci-22_23-2lvl-2nd-mkt202"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "mth": {
+        "name": "Mathematics (Pure and Applied)",
+        "sessions": {
+          "2022_2023": {
+            "name": "2022/2023",
+            "levels": {
+              "200-level": {
+                "name": "200 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "mth203",
+                        "name": "MTH 203 - Linear Algebra I",
+                        "question": "wdu-mth-22_23-2lvl-1st-mth203"
+                      },
+                      {
+                        "href": "mth211",
+                        "name": "MTH 211 - Statistics",
+                        "question": "wdu-mth-22_23-2lvl-1st-mth211"
+                      }
+                    ]
+                  },
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "mth202",
+                        "name": "MTH 202 - Linear Algebra II",
+                        "question": "wdu-mth-22_23-2lvl-2nd-mth202"
+                      },
+                      {
+                        "href": "mth206",
+                        "name": "MTH 206 - Mathematical Method I",
+                        "question": "wdu-mth-22_23-2lvl-2nd-mth206"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "phywithelect": {
+        "name": "Physics With Electronics",
+        "sessions": {
+          "2022_2023": {
+            "name": "2022/2023",
+            "levels": {
+              "100-level": {
+                "name": "100 Level",
+                "semesters": {
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "phy102",
+                        "name": "PHY 102 - Waves and Thermal Physics",
+                        "question": "wdu-phywithelect-22_23-1lvl-2nd-phy102"
+                      },
+                      {
+                        "href": "phy104",
+                        "name": "PHY 104 - General Modern Physics",
+                        "question": "wdu-phywithelect-22_23-1lvl-2nd-phy104"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "pol": {
+        "name": "Political Science",
+        "sessions": {
+          "2022_2023": {
+            "name": "2022/2023",
+            "levels": {
+              "100-level": {
+                "name": "100 Level",
+                "semesters": {
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "pol102",
+                        "name": "POL 102 - Forms and Organs of Government",
+                        "question": "wdu-pol-22_23-1lvl-2nd-pol102"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -5,9 +5,9 @@ import { BsGithub, BsTwitter, BsFacebook, BsInstagram } from "react-icons/bs";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-center gap-11 py-20 md:gap-14">
+    <footer className="flex flex-col items-center justify-center gap-11 py-16 shadow-[inset_0_1px_0_0] shadow-sky-100 dark:shadow-sky-800 md:gap-14">
       <div className="flex flex-col items-center justify-center gap-3">
-        <h2 className="text-4xl text-sky-900 dark:text-sky-50 md:text-5xl">
+        <h2 className="text-4xl font-bold text-sky-900 dark:text-sky-50 md:text-5xl">
           ExamShare
         </h2>
         <p className="text-xs md:text-base lg:text-base">

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function TermsAndConditions() {
   return (
-    <div className="flex flex-col items-center gap-6 px-4 py-14 shadow-[inset_0_-1px_0_0] shadow-sky-100 dark:shadow-sky-800 md:px-10">
+    <div className="flex flex-col items-center gap-6 px-4 py-14 md:px-10">
       <BreadCrumb />
       <h2 className="text-center text-3xl font-extrabold text-slate-900 dark:text-white">
         Terms and Conditions

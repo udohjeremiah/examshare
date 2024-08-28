@@ -12,7 +12,7 @@ export default async function Home() {
 
   return (
     <>
-      <section className="flex flex-col items-center gap-6 bg-sky-50 px-4 py-20 shadow-[inset_0_-1px_0_0] shadow-sky-100 dark:bg-sky-900 dark:shadow-sky-800 md:px-10 lg:flex-row">
+      <section className="flex flex-col items-center gap-6 bg-sky-50 px-4 py-20 dark:bg-sky-900 md:px-10 lg:flex-row">
         <div className="flex flex-col gap-6">
           <h2 className="text-center text-4xl font-extrabold text-slate-900 dark:text-white md:text-5xl lg:text-left lg:text-7xl">
             ELEVATE YOUR EXAMS
@@ -49,7 +49,7 @@ export default async function Home() {
 
       <section
         id="discover-examshare"
-        className="flex flex-col items-center gap-7 px-4 py-14 shadow-[inset_0_-1px_0_0] shadow-sky-100 dark:shadow-sky-800 md:px-10 lg:flex-row"
+        className="flex flex-col items-center gap-7 px-4 py-14 md:px-10 lg:flex-row"
       >
         <div className="flex flex-col gap-6">
           <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">
@@ -103,7 +103,7 @@ export default async function Home() {
         />
       </section>
 
-      <section className="flex flex-col gap-6 bg-sky-50 px-4 py-14 shadow-[inset_0_-1px_0_0] shadow-sky-100 dark:bg-sky-900 dark:shadow-sky-800 md:px-10">
+      <section className="flex flex-col gap-6 bg-sky-50 px-4 py-14 dark:bg-sky-900 md:px-10">
         <div className="flex flex-col items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-sky-400 to-sky-600 p-12 text-white dark:from-sky-300 dark:to-sky-500 dark:text-sky-950">
           <h3 className="text-4xl font-extrabold">500+</h3>
           <p className="text-3xl font-medium">Institutions</p>
@@ -120,7 +120,7 @@ export default async function Home() {
 
       <section
         id="faqs"
-        className="flex flex-col items-center gap-7 px-4 py-14 shadow-[inset_0_-1px_0_0] shadow-sky-100 dark:shadow-sky-800 md:px-10 lg:flex-row"
+        className="flex flex-col items-center gap-7 px-4 py-14 md:px-10 lg:flex-row"
       >
         <Image
           src="/faq.svg"
@@ -225,7 +225,7 @@ export default async function Home() {
       {!session && (
         <section
           id="join-now"
-          className="flex flex-col items-center gap-6 bg-gradient-to-br from-sky-50 via-sky-200 to-sky-500 px-4 py-14 shadow-[inset_0_-1px_0_0] shadow-sky-100 dark:from-sky-500 dark:via-sky-700 dark:to-sky-900 dark:shadow-sky-800 md:px-10"
+          className="flex flex-col items-center gap-6 bg-gradient-to-br from-sky-50 via-sky-200 to-sky-500 px-4 py-14 dark:from-sky-500 dark:via-sky-700 dark:to-sky-900 md:px-10"
         >
           <div className="flex flex-col gap-6">
             <h2 className="text-center text-3xl font-extrabold text-slate-900 dark:text-white">
