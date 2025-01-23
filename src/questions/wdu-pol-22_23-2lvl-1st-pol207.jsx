@@ -1,7 +1,7 @@
 import Questions from "@/components/Questions";
 import Answers from "@/components/Answers";
 
-export default function POL201() {
+export default function POL207() {
   return (
     <Questions
       school="western delta university"

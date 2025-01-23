@@ -1,7 +1,7 @@
 import Questions from "@/components/Questions";
 import Answers from "@/components/Answers";
 
-export default function MTH202() {
+export default function MTH203() {
   return (
     <Questions
       school="western delta university"
