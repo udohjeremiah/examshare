@@ -472,6 +472,61 @@
                     ]
                   }
                 }
+              },
+              "200-level": {
+                "name": "200 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "pol201",
+                        "name": "POL 201 - Nigerian Politics and Government",
+                        "question": "wdu-pol-22_23-2lvl-1st-pol201"
+                      },
+                      {
+                        "href": "pol207",
+                        "name": "POL 207 - Introduction to Public Administration",
+                        "question": "wdu-pol-22_23-2lvl-1st-pol207"
+                      }
+                    ]
+                  },
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "pol205",
+                        "name": "POL 205 - Introduction to International Relations",
+                        "question": "wdu-pol-22_23-2lvl-2nd-pol205"
+                      },
+                      {
+                        "href": "pol206",
+                        "name": "POL 206 - Theories and Practice of Administration",
+                        "question": "wdu-pol-22_23-2lvl-2nd-pol206"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "2023_2024": {
+            "name": "2023/2024",
+            "levels": {
+              "300-level": {
+                "name": "300 Level",
+                "semesters": {
+                  "2nd-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "pol307",
+                        "name": "POL 307 - Public Administration in Nigeria",
+                        "question": "wdu-pol-23_24-3lvl-1st-pol307"
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
