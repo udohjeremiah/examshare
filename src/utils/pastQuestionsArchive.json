@@ -513,16 +513,61 @@
           "2023_2024": {
             "name": "2023/2024",
             "levels": {
+              "200-level": {
+                "name": "200 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "pol213",
+                        "name": "POL 213 - Introduction of Local Government Administration",
+                        "question": "wdu-pol-23_24-2lvl-1st-pol213"
+                      }
+                    ]
+                  },
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "pol205",
+                        "name": "POL 205 - Introduction to International Relations",
+                        "question": "wdu-pol-23_24-2lvl-2nd-pol205"
+                      }
+                    ]
+                  }
+                }
+              },
               "300-level": {
                 "name": "300 Level",
                 "semesters": {
-                  "2nd-semester": {
+                  "1st-semester": {
                     "name": "1st Semester",
                     "courses": [
+                      {
+                        "href": "pol305",
+                        "name": "POL 305 - Public Policy Analysis",
+                        "question": "wdu-pol-23_24-3lvl-1st-pol305"
+                      },
                       {
                         "href": "pol307",
                         "name": "POL 307 - Public Administration in Nigeria",
                         "question": "wdu-pol-23_24-3lvl-1st-pol307"
+                      }
+                    ]
+                  },
+                  "2nd-semester": {
+                    "name": "2nd Semester",
+                    "courses": [
+                      {
+                        "href": "pol311",
+                        "name": "POL 311 - Theories of International Relations",
+                        "question": "wdu-pol-23_24-3lvl-2nd-pol311"
+                      },
+                      {
+                        "href": "pol313",
+                        "name": "POL 313 - Rural and Community Development",
+                        "question": "wdu-pol-23_24-3lvl-2nd-pol313"
                       }
                     ]
                   }
