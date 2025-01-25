@@ -540,6 +540,11 @@
                         "question": "wdu-pol-23_24-2lvl-1st-pol203"
                       },
                       {
+                        "href": "pol209",
+                        "name": "POL 209 - Comparative Political Science",
+                        "question": "wdu-pol-23_24-2lvl-1st-pol209"
+                      },
+                      {
                         "href": "pol213",
                         "name": "POL 213 - Introduction of Local Government Administration",
                         "question": "wdu-pol-23_24-2lvl-1st-pol213"
@@ -586,8 +591,13 @@
                       },
                       {
                         "href": "pol309",
-                        "name": "POL 309 - Theory and Practice of Administration",
+                        "name": "POL 309 - Politics of Development and Underdevelopment",
                         "question": "wdu-pol-23_24-3lvl-1st-pol309"
+                      },
+                      {
+                        "href": "pol311",
+                        "name": "POL 311 - Theory and Practice of Administration",
+                        "question": "wdu-pol-23_24-3lvl-1st-pol311"
                       }
                     ]
                   },
