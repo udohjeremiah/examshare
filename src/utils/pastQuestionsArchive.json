@@ -82,6 +82,46 @@
           }
         }
       },
+      "biochem": {
+        "name": "Biochemistry",
+        "sessions": {
+          "2022_2023": {
+            "name": "2023/2024",
+            "levels": {
+              "200-level": {
+                "name": "200 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "bch203",
+                        "name": "BCH 203 - Analytical Biochemistry",
+                        "question": "wdu-biochem-23_24-2lvl-1st-bch203"
+                      },
+                      {
+                        "href": "bch205",
+                        "name": "BCH 205 - Introduction to Enzymology",
+                        "question": "wdu-biochem-23_24-2lvl-1st-bch205"
+                      },
+                      {
+                        "href": "bch207",
+                        "name": "BCH 207 - Mineral Metabolism",
+                        "question": "wdu-biochem-23_24-2lvl-1st-bch207"
+                      },
+                      {
+                        "href": "bch209",
+                        "name": "BCH 209 - Practical Biochemistry",
+                        "question": "wdu-biochem-23_24-2lvl-1st-bch209"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "compsci": {
         "name": "Computer Science",
         "sessions": {
@@ -368,6 +408,56 @@
                         "href": "mkt202",
                         "name": "MKT 202 - Principles of Marketing",
                         "question": "wdu-mgmsci-22_23-2lvl-2nd-mkt202"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "2023_2024": {
+            "name": "2023/2024",
+            "levels": {
+              "100-level": {
+                "name": "100 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "ams101",
+                        "name": "AMS 101 - Principles of Management",
+                        "question": "wdu-mgmsci-23_24-1lvl-1st-ams101"
+                      }
+                    ]
+                  }
+                }
+              },
+              "200-level": {
+                "name": "200 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "bus201",
+                        "name": "BUS 201 - Principles of Management",
+                        "question": "wdu-mgmsci-23_24-2lvl-1st-bus201"
+                      }
+                    ]
+                  }
+                }
+              },
+              "400-level": {
+                "name": "400 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "bus409",
+                        "name": "BUS 409 - Business Ethics and Corporate Social Responsibility",
+                        "question": "wdu-mgmsci-23_24-4lvl-1st-bus409"
                       }
                     ]
                   }
