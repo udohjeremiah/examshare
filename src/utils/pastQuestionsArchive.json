@@ -194,6 +194,51 @@
                 }
               }
             }
+          },
+          "2023_2024": {
+            "name": "2023/2024",
+            "levels": {
+              "300-level": {
+                "name": "300 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "csc301",
+                        "name": "CSC 301 - Digitial Design",
+                        "question": "wdu-compsci-23_24-3lvl-1st-csc301"
+                      },
+                      {
+                        "href": "csc303",
+                        "name": "CSC 303 - Operating Systems",
+                        "question": "wdu-compsci-23_24-3lvl-1st-csc303"
+                      },
+                      {
+                        "href": "csc305",
+                        "name": "CSC 305 - Computer Architecture",
+                        "question": "wdu-compsci-23_24-3lvl-1st-csc305"
+                      },
+                      {
+                        "href": "csc307",
+                        "name": "CSC 307 - Formal Language & Automata Theory",
+                        "question": "wdu-compsci-23_24-3lvl-1st-csc307"
+                      },
+                      {
+                        "href": "csc309",
+                        "name": "CSC 309 - Advanced Computer Programming (Java)",
+                        "question": "wdu-compsci-23_24-3lvl-1st-csc309"
+                      },
+                      {
+                        "href": "csc311",
+                        "name": "CSC 311 - Database Design and Management",
+                        "question": "wdu-compsci-23_24-3lvl-1st-csc311"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -238,6 +283,31 @@
                         "href": "eco201",
                         "name": "ECO 201 - Introductory Microeconomics I",
                         "question": "wdu-eco-22_23-2lvl-1st-eco201"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "2023_2024": {
+            "name": "2023/2024",
+            "levels": {
+              "200-level": {
+                "name": "200 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "eco201",
+                        "name": "ECO 201 - Introduction to Microeconomics I",
+                        "question": "wdu-eco-23_24-2lvl-1st-eco201"
+                      },
+                      {
+                        "href": "eco205",
+                        "name": "ECO 205 - Statistics I",
+                        "question": "wdu-eco-23_24-2lvl-1st-eco205"
                       }
                     ]
                   }
