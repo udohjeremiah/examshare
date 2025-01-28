@@ -198,6 +198,21 @@
           "2023_2024": {
             "name": "2023/2024",
             "levels": {
+              "200-level": {
+                "name": "200 Level",
+                "semesters": {
+                  "1st-semester": {
+                    "name": "1st Semester",
+                    "courses": [
+                      {
+                        "href": "csc201",
+                        "name": "CSC 201 - Computer Programming I (Java)",
+                        "question": "wdu-compsci-23_24-2lvl-1st-csc201"
+                      }
+                    ]
+                  }
+                }
+              },
               "300-level": {
                 "name": "300 Level",
                 "semesters": {
