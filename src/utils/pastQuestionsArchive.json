@@ -208,6 +208,21 @@
                         "href": "csc201",
                         "name": "CSC 201 - Computer Programming I (Java)",
                         "question": "wdu-compsci-23_24-2lvl-1st-csc201"
+                      },
+                      {
+                        "href": "csc203",
+                        "name": "CSC 203 - Computer Programming II (C++)",
+                        "question": "wdu-compsci-23_24-2lvl-1st-csc203"
+                      },
+                      {
+                        "href": "csc205",
+                        "name": "CSC 205 - Discrete Structures",
+                        "question": "wdu-compsci-23_24-2lvl-1st-csc205"
+                      },
+                      {
+                        "href": "csc209",
+                        "name": "CSC 209 - Foundations of Sequential Programming",
+                        "question": "wdu-compsci-23_24-2lvl-1st-csc209"
                       }
                     ]
                   }
