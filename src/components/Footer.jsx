@@ -42,7 +42,7 @@ export default function Footer() {
           </li>
         </ul>
         <p className="text-xs md:text-base">
-          &copy; 2024 ExamShare. All rights reserved.
+          &copy; {new Date().getFullYear()} ExamShare. All rights reserved.
         </p>
         <div className="flex w-full items-center justify-center gap-5 text-xs">
           <Link
