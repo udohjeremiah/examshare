@@ -176,7 +176,7 @@ export async function PATCH(request, { params }) {
       if (existingVote) {
         // user has upvoted or downvoted before
         updateFields.upvotes =
-          upvotesDirection === "up" ? upvotes + 2 : upvotes - 2;
+          upvotesDirection === "up" ? upvotes - 1 : upvotes + 1;
 
         updateFields.upvotesHistory = upvotesHistory.map((item) =>
           item.id === userId
