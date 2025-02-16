@@ -96,12 +96,12 @@ export default function CSC301() {
           <li>
             What is a multiplexer? Explain the functionality of a multiplexer
             circuit? <strong className="whitespace-nowrap">(5 marks)</strong>
-            <Answers questionNumber="4b" />
+            <Answers questionNumber="5b" />
           </li>
           <li>
             Logic design{" "}
             <strong className="whitespace-nowrap">(4 marks)</strong>
-            <Answers questionNumber="4c" />
+            <Answers questionNumber="5c" />
           </li>
         </ol>
       </li>
@@ -118,12 +118,12 @@ export default function CSC301() {
             Explain parallel data transmission and differentiate it from serial
             data transmission.{" "}
             <strong className="whitespace-nowrap">(7 marks)</strong>
-            <Answers questionNumber="4b" />
+            <Answers questionNumber="6b" />
           </li>
           <li>
             Write short notes on Circuit design{" "}
             <strong className="whitespace-nowrap">(4 marks)</strong>
-            <Answers questionNumber="4c" />
+            <Answers questionNumber="6c" />
           </li>
         </ol>
       </li>
