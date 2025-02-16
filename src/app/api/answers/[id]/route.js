@@ -172,19 +172,31 @@ export async function PATCH(request, { params }) {
         );
       }
 
+      // Check if the user has voted before
       const existingVote = upvotesHistory.find((item) => item.id === userId);
-      if (existingVote) {
-        // user has upvoted or downvoted before
-        updateFields.upvotes =
-          upvotesDirection === "up" ? upvotes - 1 : upvotes + 1;
 
-        updateFields.upvotesHistory = upvotesHistory.map((item) =>
-          item.id === userId
-            ? { id: userId, direction: upvotesDirection }
-            : item,
-        );
+      if (existingVote) {
+        if (existingVote.direction === upvotesDirection) {
+          // If the vote direction is the same as the current, remove it (toggle)
+          updateFields.upvotes =
+            upvotesDirection === "up" ? upvotes - 1 : upvotes + 1;
+
+          updateFields.upvotesHistory = upvotesHistory.filter(
+            (item) => item.id !== userId,
+          );
+        } else {
+          // If the vote direction is different, toggle it (upvote -> downvote or vice versa)
+          updateFields.upvotes =
+            upvotesDirection === "up" ? upvotes + 1 : upvotes - 1;
+
+          updateFields.upvotesHistory = upvotesHistory.map((item) =>
+            item.id === userId
+              ? { id: userId, direction: upvotesDirection }
+              : item,
+          );
+        }
       } else {
-        // user has not upvoted or downvoted before
+        // If the user has not voted before, add their vote
         updateFields.upvotes =
           upvotesDirection === "up" ? upvotes + 1 : upvotes - 1;
 
