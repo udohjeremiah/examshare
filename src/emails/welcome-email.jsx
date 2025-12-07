@@ -75,8 +75,8 @@ export default function WelcomeEmail({ fullName, verificationLink }) {
               <Text>
                 Should you encounter any challenges or have questions, our
                 dedicated support team is here to assist. Reach out to us at{" "}
-                <Link href="mailto:examshare.vercel.app@gmail.com">
-                  examshare.vercel.app@gmail.com
+                <Link href={`mailto:${process.env.NEXT_PUBLIC_PROJECT_EMAIL}`}>
+                  {process.env.NEXT_PUBLIC_PROJECT_EMAIL}
                 </Link>
                 .
               </Text>

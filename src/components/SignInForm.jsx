@@ -5,8 +5,6 @@ import { useState, useRef, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 
-import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
 
 export default function SignInForm() {
@@ -91,27 +89,6 @@ export default function SignInForm() {
       className="flex flex-col gap-6 rounded-md border px-5 py-10 shadow-md sm:px-10"
     >
       <h3 className="mb-2 text-2xl font-medium">Sign In</h3>
-      <div className="flex flex-col gap-4">
-        <button
-          type="button"
-          onClick={() => signIn("google", { callbackUrl })}
-          className="flex items-center justify-center gap-2 rounded-xl border border-sky-700 p-3 text-center font-semibold text-sky-700 hover:bg-sky-100 active:bg-sky-200 dark:border-sky-200 dark:text-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-900"
-        >
-          <FcGoogle size={30} />
-          <span>Google</span>
-        </button>
-        <button
-          type="button"
-          onClick={() => signIn("github", { callbackUrl })}
-          className="flex items-center justify-center gap-2 rounded-xl border border-sky-700 p-3 text-center font-semibold text-sky-700 hover:bg-sky-100 active:bg-sky-200 dark:border-sky-200 dark:text-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-900"
-        >
-          <FaGithub size={30} />
-          <span>GitHub</span>
-        </button>
-      </div>
-      <div className="mt-2 flex items-center justify-center gap-4 text-sm before:grow-[1] before:border-[0.5px] before:border-slate-300 after:grow-[1] after:border-[0.5px] after:border-slate-300">
-        Or with email and password
-      </div>
       <div className="flex flex-col gap-4">
         <p className="mb-2 text-sm font-semibold text-sky-500">
           Fields marked with <span className="text-red-500">*</span> are
