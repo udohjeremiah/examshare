@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
     }
 
     const client = await connectClient();
-    const db = client.db(process.env.MONGODB_DATABSE);
+    const db = client.db(process.env.MONGODB_DATABASE);
     const collection = db.collection(process.env.MONGODB_COLLECTION_ANSWERS);
 
     const answers = await collection.find({ questionId: id }).toArray();
@@ -49,7 +49,7 @@ export async function POST(request, { params }) {
     }
 
     const client = await connectClient();
-    const db = client.db(process.env.MONGODB_DATABSE);
+    const db = client.db(process.env.MONGODB_DATABASE);
     const answersCollection = db.collection(
       process.env.MONGODB_COLLECTION_ANSWERS,
     );
@@ -116,7 +116,7 @@ export async function PATCH(request, { params }) {
     }
 
     const client = await connectClient();
-    const db = client.db(process.env.MONGODB_DATABSE);
+    const db = client.db(process.env.MONGODB_DATABASE);
     const answersCollection = db.collection(
       process.env.MONGODB_COLLECTION_ANSWERS,
     );
@@ -267,7 +267,7 @@ export async function DELETE(request, { params }) {
     }
 
     const client = await connectClient();
-    const db = client.db(process.env.MONGODB_DATABSE);
+    const db = client.db(process.env.MONGODB_DATABASE);
     const answersCollection = db.collection(
       process.env.MONGODB_COLLECTION_ANSWERS,
     );
