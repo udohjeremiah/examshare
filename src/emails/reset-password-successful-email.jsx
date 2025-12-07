@@ -44,8 +44,8 @@ export default function ResetPasswordSuccessfulEmail({ fullName }) {
               <Text>
                 However, if you did not request this password change, please
                 contact us immediately at{" "}
-                <Link href="mailto:examshare.vercel.app@gmail.com">
-                  examshare.vercel.app@gmail.com
+                <Link href={`mailto:${process.env.NEXT_PUBLIC_PROJECT_EMAIL}`}>
+                  {process.env.NEXT_PUBLIC_PROJECT_EMAIL}
                 </Link>
                 . Your security is our top priority, and we want to ensure the
                 protection of your account.
@@ -53,8 +53,8 @@ export default function ResetPasswordSuccessfulEmail({ fullName }) {
               <Text>
                 Should you encounter any challenges or have questions, our
                 dedicated support team is here to assist. Reach out to us at{" "}
-                <Link href="mailto:examshare.vercel.app@gmail.com">
-                  examshare.vercel.app@gmail.com
+                <Link href={`mailto:${process.env.NEXT_PUBLIC_PROJECT_EMAIL}`}>
+                  {process.env.NEXT_PUBLIC_PROJECT_EMAIL}
                 </Link>
                 .
               </Text>

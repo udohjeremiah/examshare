@@ -22,26 +22,20 @@ export async function POST(request) {
       />,
     );
 
+    // https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json
     const transport = nodemailer.createTransport({
-      service: "gmail",
-      /* 
-      setting service as 'gmail' is same as providing these setings:
-      host: "smtp.gmail.com",
+      host: "smtp.zoho.com",
       port: 465,
-      secure: true
-      If you want to use a different email provider other than gmail, you need to provide these manually.
-      Or you can go use these well known services and their settings at
-      https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json
-      */
+      secure: true,
       auth: {
-        user: process.env.PROJECT_EMAIL_USER,
+        user: process.env.NEXT_PUBLIC_PROJECT_EMAIL,
         pass: process.env.PROJECT_EMAIL_PASSWORD,
       },
     });
 
     const mailOptionsAdmin = {
-      from: process.env.PROJECT_EMAIL_USER,
-      to: process.env.PROJECT_EMAIL_USER,
+      from: process.env.NEXT_PUBLIC_PROJECT_EMAIL,
+      to: process.env.NEXT_PUBLIC_PROJECT_EMAIL,
       // cc: email, (uncomment this line if you want to send a copy to the sender)
       subject: subject,
       text: message,
@@ -57,7 +51,7 @@ export async function POST(request) {
     };
 
     const mailOptionsUser = {
-      from: process.env.PROJECT_EMAIL_USER,
+      from: process.env.NEXT_PUBLIC_PROJECT_EMAIL,
       to: email,
       subject: `Re: ${subject}`,
       html: contactUsEmailHtml,

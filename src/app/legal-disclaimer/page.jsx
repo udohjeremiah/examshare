@@ -192,10 +192,10 @@ export default function LegalDisclaimer() {
             <p>
               By email:{" "}
               <Link
-                href="mailto:examshare.vercel.app@gmail.com"
+                href={`mailto:${process.env.NEXT_PUBLIC_PROJECT_EMAIL}`}
                 className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
               >
-                examshare.vercel.app@gmail.com
+                {process.env.NEXT_PUBLIC_PROJECT_EMAIL}
               </Link>
             </p>
           </li>
