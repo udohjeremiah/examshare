@@ -1,12 +1,12 @@
 import pqa from "@/utils/pastQuestionsArchive";
 import LinkList from "@/components/LinkList";
 
-export default function Session({
+export default async function Session({
   params,
 }: {
-  params: { institution: string; department: string; session: string };
+  params: Promise<{ institution: string; department: string; session: string }>;
 }) {
-  const { institution, department, session } = params;
+  const { institution, department, session } = await params;
 
   const levelKeys = Object.keys(
     pqa[institution]["departments"][department]["sessions"][session]["levels"],

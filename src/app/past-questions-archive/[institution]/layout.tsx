@@ -1,25 +1,25 @@
 import pqa from "@/utils/pastQuestionsArchive";
 import BreadCrumb from "@/components/BreadCrumb";
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { institution: string };
+  params: Promise<{ institution: string }>;
 }) {
-  const { institution } = params;
+  const { institution } = await params;
   const institutionName = pqa[institution]["name"];
 
   return { title: `Past Questions Archive - ${institutionName} | ExamShare` };
 }
 
-export default function InstitutionLayout({
+export default async function InstitutionLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { institution: string };
+  params: Promise<{ institution: string }>;
 }) {
-  const { institution } = params;
+  const { institution } = await params;
   const institutionName = pqa[institution]["name"];
 
   return (

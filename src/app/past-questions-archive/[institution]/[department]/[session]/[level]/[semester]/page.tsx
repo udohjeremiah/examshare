@@ -1,18 +1,18 @@
 import pqa from "@/utils/pastQuestionsArchive";
 import LinkList from "@/components/LinkList";
 
-export default function Course({
+export default async function Course({
   params,
 }: {
-  params: {
+  params: Promise<{
     institution: string;
     department: string;
     session: string;
     level: string;
     semester: string;
-  };
+  }>;
 }) {
-  const { institution, department, session, level, semester } = params;
+  const { institution, department, session, level, semester } = await params;
 
   const courses = pqa[institution]["departments"][department]["sessions"][
     session

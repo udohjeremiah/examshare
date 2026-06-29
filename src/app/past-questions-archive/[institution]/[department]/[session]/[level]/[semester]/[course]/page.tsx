@@ -1,19 +1,20 @@
 import { lazy, Suspense } from "react";
 import pqa from "@/utils/pastQuestionsArchive";
 
-export default function Course({
+export default async function Course({
   params,
 }: {
-  params: {
+  params: Promise<{
     institution: string;
     department: string;
     session: string;
     level: string;
     semester: string;
     course: string;
-  };
+  }>;
 }) {
-  const { institution, department, session, level, semester, course } = params;
+  const { institution, department, session, level, semester, course } =
+    await params;
   const courseData = pqa[institution]["departments"][department]["sessions"][
     session
   ]["levels"][level]["semesters"][semester]["courses"].find(

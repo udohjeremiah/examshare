@@ -1,4 +1,5 @@
 allowBuilds:
   bcrypt: true
   esbuild: true
+  sharp: set this to true or false
   unrs-resolver: true

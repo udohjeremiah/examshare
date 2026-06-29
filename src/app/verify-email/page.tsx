@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import BreadCrumb from "@/components/BreadCrumb";
 import VerifyEmailForm from "@/components/VerifyEmailForm";
 
@@ -15,7 +16,9 @@ export default function VerifyEmail() {
         for your cooperation.
       </p>
       <div className="flex w-full max-w-prose flex-col">
-        <VerifyEmailForm />
+        <Suspense fallback={null}>
+          <VerifyEmailForm />
+        </Suspense>
       </div>
     </div>
   );

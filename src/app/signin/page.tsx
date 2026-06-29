@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import BreadCrumb from "@/components/BreadCrumb";
 import SignInForm from "@/components/SignInForm";
 import Link from "next/link";
@@ -25,7 +26,9 @@ export default function SignIn() {
         and shaping the future of education for generations to come.
       </p>
       <div className="flex w-full max-w-prose flex-col">
-        <SignInForm />
+        <Suspense fallback={null}>
+          <SignInForm />
+        </Suspense>
       </div>
     </div>
   );

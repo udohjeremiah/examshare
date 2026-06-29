@@ -1,12 +1,12 @@
 import pqa from "@/utils/pastQuestionsArchive";
 import LinkList from "@/components/LinkList";
 
-export default function Institution({
+export default async function Institution({
   params,
 }: {
-  params: { institution: string };
+  params: Promise<{ institution: string }>;
 }) {
-  const { institution } = params;
+  const { institution } = await params;
 
   const departmentKeys = Object.keys(pqa[institution]["departments"]);
   const departments = departmentKeys.map((departmentKey) => ({
