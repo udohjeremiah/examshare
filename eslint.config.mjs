@@ -2,6 +2,7 @@ import { FlatCompat } from "@eslint/eslintrc";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import nextPlugin from "@next/eslint-plugin-next";
+import tseslint from "typescript-eslint";
 import prettier from "eslint-config-prettier";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -11,10 +12,9 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-export default [
-  {
-    ignores: [".next/**", "out/**"],
-  },
+export default tseslint.config(
+  { ignores: [".next/**", "out/**"] },
+  ...tseslint.configs.recommended,
   {
     plugins: {
       "@next/next": nextPlugin,
@@ -37,4 +37,4 @@ export default [
     },
   },
   prettier,
-];
+);
