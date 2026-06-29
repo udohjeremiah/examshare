@@ -1,4 +1,4 @@
-import generateColor from "./generateColor";
+import generateColor from "./generate-color";
 
 export default function generateAvatar(fullName: string) {
   const initials = fullName

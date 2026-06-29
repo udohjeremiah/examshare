@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { IoClose } from "react-icons/io5";
+import { authClient } from "@/lib/auth-client";
 
 export default function ResetPasswordForm() {
   const [form, setForm] = useState({ newPassword: "", confirmPassword: "" });
@@ -28,7 +29,6 @@ export default function ResetPasswordForm() {
   const router = useRouter();
 
   useEffect(() => {
-    // Find the first input field with an error and focus on it
     for (const fieldName in formError) {
       if (
         formError[fieldName] &&
@@ -36,7 +36,7 @@ export default function ResetPasswordForm() {
         formRef[fieldName].current
       ) {
         formRef[fieldName].current.focus();
-        break; // Focus the first input with an error and exit the loop
+        break;
       }
     }
   }, [formError, formRef]);
@@ -45,7 +45,7 @@ export default function ResetPasswordForm() {
     setShowSuccessMessage(true);
     setTimeout(() => {
       setShowSuccessMessage(false);
-      router.push("/signin");
+      router.push("/sign-in");
     }, 5000);
   };
 
@@ -87,20 +87,12 @@ export default function ResetPasswordForm() {
 
       setIsFormSubmitting(true);
 
-      const response = await fetch("/api/auth/resetpassword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          token: token,
-          newPassword: form.newPassword,
-          confirmPassword: form.confirmPassword,
-        }),
+      const { error } = await authClient.resetPassword({
+        newPassword: form.newPassword,
+        token: token ?? undefined,
       });
 
-      if (!response.ok) {
+      if (error) {
         setIsFormSubmitting(false);
         setShowFailureMessage(true);
         return;

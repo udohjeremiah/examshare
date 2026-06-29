@@ -1,6 +1,6 @@
-import BreadCrumb from "@/components/BreadCrumb";
+import BreadCrumb from "@/components/bread-crumb";
 import Link from "next/link";
-import SubmitForm from "@/components/SubmitForm";
+import SubmitForm from "@/components/submit-form";
 
 export const metadata = {
   title: "Submit Past Question | ExamShare",

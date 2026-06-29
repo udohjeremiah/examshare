@@ -1,9 +1,9 @@
 "use client";
 
-import { useSession, signOut } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 import { useState, useRef } from "react";
 import Image from "next/image";
-import useClickOutside from "@/hooks/useClickOutside";
+import useClickOutside from "@/hooks/use-click-outside";
 import { FiLogOut } from "react-icons/fi";
 import InlineSVG from "react-inlinesvg";
 
@@ -17,7 +17,7 @@ export default function ProfileMenu() {
     setShowProfileMenu(false),
   );
 
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
 
   if (!session) {
     return;
@@ -60,13 +60,13 @@ export default function ProfileMenu() {
               )}
             </div>
             <div>
-              <p>{session.user.userName}</p>
+              <p>{session.user.name}</p>
               <p className="text-slate-400">{session.user.email}</p>
             </div>
           </li>
           <li className="flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1 hover:bg-sky-100 dark:hover:bg-sky-800">
             <button
-              onClick={() => signOut()}
+              onClick={() => authClient.signOut()}
               className="flex items-center gap-2"
             >
               <FiLogOut size={25} />

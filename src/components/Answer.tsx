@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useSWRConfig } from "swr";
-import { TbArrowBigUp, TbArrowBigDown } from "react-icons/tb";
-import RichTextEditor from "./RichTextEditor";
-import { useSession } from "next-auth/react";
+
+import RichTextEditor from "./rich-text-editor";
+import { authClient } from "@/lib/auth-client";
 import HTMLReactParser from "html-react-parser";
 import Image from "next/image";
 import InlineSVG from "react-inlinesvg";
@@ -17,8 +17,6 @@ interface AnswerData {
   createdAt: string;
   edited: boolean;
   answer: string;
-  upvotes: number;
-  upvotesHistory: Array<{ id: string; direction: string }>;
 }
 
 interface AnswerProps {
@@ -27,11 +25,9 @@ interface AnswerProps {
 }
 
 export default function Answer({ questionId, answer }: AnswerProps) {
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
   const { mutate } = useSWRConfig();
   const [htmlContent, setHtmlContent] = useState("");
-  const [isUpvoting, setIsUpvoting] = useState(false);
-  const [isDownvoting, setIsDownvoting] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -100,66 +96,6 @@ export default function Answer({ questionId, answer }: AnswerProps) {
     }
   };
 
-  const handleUpvoteAnswer = async (answer: AnswerData) => {
-    try {
-      setIsUpvoting(true);
-
-      const response = await fetch(`/api/answers/${questionId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          questionUserId: answer.userId,
-          userId: session?.user?.id,
-          upvotes: answer.upvotes,
-          upvotesDirection: "up",
-        }),
-      });
-
-      if (!response.ok) {
-        setIsUpvoting(false);
-        return;
-      }
-
-      setIsUpvoting(false);
-      await mutate(`/api/answers/${questionId}`);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const handleDownvoteAnswer = async (answer: AnswerData) => {
-    try {
-      setIsDownvoting(true);
-
-      const response = await fetch(`/api/answers/${questionId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          questionUserId: answer.userId,
-          userId: session?.user?.id,
-          upvotes: answer.upvotes,
-          upvotesDirection: "down",
-        }),
-      });
-
-      if (!response.ok) {
-        setIsDownvoting(false);
-        return;
-      }
-
-      setIsDownvoting(false);
-      await mutate(`/api/answers/${questionId}`);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   return (
     <>
       <div className="flex flex-col">
@@ -207,33 +143,6 @@ export default function Answer({ questionId, answer }: AnswerProps) {
             </div>
           )}
           <div className="mt-2 flex items-center justify-between">
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => handleUpvoteAnswer(answer)}
-                disabled={isUpvoting}
-                className="flex flex-col items-center justify-center"
-              >
-                <TbArrowBigUp
-                  size={25}
-                  className="text-slate-500 hover:text-sky-500"
-                />
-              </button>
-              <span className="font-bold">
-                {answer.upvotes > 0 && "+"}
-                {answer.upvotes}
-              </span>
-              <button
-                onClick={() => handleDownvoteAnswer(answer)}
-                disabled={isDownvoting}
-                className="flex flex-col items-center justify-center"
-              >
-                <TbArrowBigDown
-                  size={25}
-                  className="text-slate-500 hover:text-red-500"
-                />
-              </button>
-            </div>
-
             {answer.userId === session?.user?.id && (
               <div className="flex gap-2">
                 {!isEditing && (

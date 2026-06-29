@@ -9,10 +9,10 @@ import { MdClose, MdLogin } from "react-icons/md";
 import { BiBookAlt, BiAddToQueue } from "react-icons/bi";
 import { TbBuildingBank } from "react-icons/tb";
 import { useState, useRef } from "react";
-import { useTheme } from "@/providers/ThemeProvider";
-import useClickOutside from "@/hooks/useClickOutside";
-import { useSession } from "next-auth/react";
-import ProfileMenu from "./ProfileMenu";
+import { useTheme } from "@/providers/theme-provider";
+import useClickOutside from "@/hooks/use-click-outside";
+import { authClient } from "@/lib/auth-client";
+import ProfileMenu from "./profile-menu";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
@@ -30,7 +30,7 @@ export default function Header() {
   );
   useClickOutside(themeNavRef, showThemeNavRef, () => setShowThemeNav(false));
 
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
 
   return (
     <header className="sticky top-0 z-40 flex items-center justify-between bg-white/80 px-4 py-2 text-slate-900 shadow-[inset_0_-1px_0_0] shadow-sky-100 backdrop-blur-sm md:px-10 dark:bg-slate-800/80 dark:text-slate-50 dark:shadow-sky-800">
@@ -110,7 +110,7 @@ export default function Header() {
                 {!session && (
                   <li className="max-w-max">
                     <Link
-                      href="/signin"
+                      href="/sign-in"
                       className="flex items-center gap-2"
                       onClick={() => setShowMobileNav(false)}
                     >
@@ -142,7 +142,7 @@ export default function Header() {
               </li>
               {!session && (
                 <li className="hover:text-sky-500 dark:hover:text-sky-600">
-                  <Link href="/signin">Log In</Link>
+                  <Link href="/sign-in">Log In</Link>
                 </li>
               )}
             </ul>

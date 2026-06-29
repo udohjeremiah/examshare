@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import BreadCrumb from "@/components/BreadCrumb";
-import VerifyEmailForm from "@/components/VerifyEmailForm";
+import BreadCrumb from "@/components/bread-crumb";
+import VerifyEmailForm from "@/components/verify-email-form";
 
 export default function VerifyEmail() {
   return (

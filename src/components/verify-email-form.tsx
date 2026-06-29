@@ -1,17 +1,26 @@
 "use client";
 
-import Link from "next/link";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { CiLogout } from "react-icons/ci";
+import { authClient } from "@/lib/auth-client";
 
-export default function ForgotPasswordForm() {
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState(false);
-
+export default function VerifyEmailForm() {
   const [isFormSubmitting, setIsFormSubmitting] = useState(false);
   const [showFailureMessage, setShowFailureMessage] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
+  const router = useRouter();
+
+  const showSuccessMessageWithTimeout = () => {
+    setShowSuccessMessage(true);
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+      router.push("/sign-in");
+    }, 5000);
+  };
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,33 +28,20 @@ export default function ForgotPasswordForm() {
     try {
       setShowFailureMessage(false);
       setShowSuccessMessage(false);
-      setEmailError(false);
-
-      if (email.trim().length <= 0) {
-        setEmailError(true);
-        return;
-      }
-
       setIsFormSubmitting(true);
 
-      const response = await fetch("/api/auth/forgotpassword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({ email }),
+      const { error } = await authClient.verifyEmail({
+        query: { token: token ?? "" },
       });
 
-      if (!response.ok) {
+      if (error) {
         setIsFormSubmitting(false);
         setShowFailureMessage(true);
         return;
       }
 
-      setEmail("");
       setIsFormSubmitting(false);
-      setShowSuccessMessage(true);
+      showSuccessMessageWithTimeout();
     } catch (error) {
       console.error(error);
     }
@@ -56,40 +52,6 @@ export default function ForgotPasswordForm() {
       onSubmit={handleFormSubmit}
       className="flex flex-col gap-6 rounded-md border px-5 py-10 shadow-md sm:px-10"
     >
-      {showSuccessMessage && (
-        <div className="flex items-start justify-between gap-2 rounded-lg border border-green-400 bg-green-50 p-5 dark:border-green-600 dark:bg-green-950">
-          <p>
-            Done! If the email you entered matches an account, the password
-            reset link will be sent to that email address.
-          </p>
-          <button onClick={() => setShowSuccessMessage(false)}>
-            <IoClose size={25} className="text-green-400 dark:text-green-600" />
-          </button>
-        </div>
-      )}
-      <div>
-        <label
-          htmlFor="email"
-          className="block max-w-max leading-6 font-medium"
-        >
-          Email
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          placeholder="name@domain.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
-        />
-        {emailError && (
-          <span className="text-xs text-red-500">
-            Email address cannot be empty
-          </span>
-        )}
-      </div>
       {isFormSubmitting ? (
         <button
           disabled
@@ -115,22 +77,13 @@ export default function ForgotPasswordForm() {
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          Reset Your Password
+          Verify Email Address
         </button>
       ) : (
         <button className="rounded-xl bg-sky-500 p-3 text-center font-semibold text-white hover:bg-sky-600 active:bg-sky-700 dark:bg-sky-400 dark:text-sky-950 dark:hover:bg-sky-300 dark:active:bg-sky-500">
-          Reset Your Password
+          Verify Email Address
         </button>
       )}
-      <div className="flex items-center justify-center">
-        <Link
-          href="/signin"
-          className="flex items-center gap-1 font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
-        >
-          <CiLogout />
-          <span>Back to Login</span>
-        </Link>
-      </div>
       {showFailureMessage && (
         <div className="flex items-start justify-between gap-2 rounded-lg border border-red-400 bg-red-50 p-5 dark:border-red-600 dark:bg-red-950">
           <p>
@@ -140,6 +93,17 @@ export default function ForgotPasswordForm() {
           </p>
           <button onClick={() => setShowFailureMessage(false)}>
             <IoClose size={25} className="text-red-400 dark:text-red-600" />
+          </button>
+        </div>
+      )}
+      {showSuccessMessage && (
+        <div className="flex items-start justify-between gap-2 rounded-lg border border-green-400 bg-green-50 p-5 dark:border-green-600 dark:bg-green-950">
+          <p>
+            Your account has been successfully activated! You will be redirected
+            to the sign-in page automatically.
+          </p>
+          <button onClick={() => setShowSuccessMessage(false)}>
+            <IoClose size={25} className="text-green-400 dark:text-green-600" />
           </button>
         </div>
       )}

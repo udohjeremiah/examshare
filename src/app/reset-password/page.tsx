@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import BreadCrumb from "@/components/BreadCrumb";
-import ResetPasswordForm from "@/components/ResetPasswordForm";
+import BreadCrumb from "@/components/bread-crumb";
+import ResetPasswordForm from "@/components/reset-password-form";
 
 export default function ResetPassword() {
   return (

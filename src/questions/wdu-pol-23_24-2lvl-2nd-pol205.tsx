@@ -1,5 +1,5 @@
-import Questions from "@/components/Questions";
-import Answers from "@/components/Answers";
+import Questions from "@/components/questions";
+import Answers from "@/components/answers";
 
 export default function POL205() {
   return (

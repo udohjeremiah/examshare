@@ -1,11 +1,11 @@
 "use client";
 
-import { useQuestionsId } from "@/providers/QuestionsIdProvider";
+import { useQuestionsId } from "@/providers/questions-id-provider";
 import { useState } from "react";
 import useSWR, { useSWRConfig } from "swr";
-import Answer from "./Answer";
-import RichTextEditor from "./RichTextEditor";
-import { signIn, useSession } from "next-auth/react";
+import Answer from "./answer";
+import RichTextEditor from "./rich-text-editor";
+import { authClient } from "@/lib/auth-client";
 import { usePathname } from "next/navigation";
 
 interface AnswersProps {
@@ -13,7 +13,7 @@ interface AnswersProps {
 }
 
 export default function Answers({ questionNumber }: AnswersProps) {
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
   const paths = usePathname();
   const [showAnswerBtn, setShowAnswerBtn] = useState(true);
   const [showAnswers, setShowAnswers] = useState(false);
@@ -25,13 +25,6 @@ export default function Answers({ questionNumber }: AnswersProps) {
   const questionId = `${questionsId}_${questionNumber}`;
 
   const { mutate } = useSWRConfig();
-
-  const compareFn = (
-    item1: { upvotes: number },
-    item2: { upvotes: number },
-  ) => {
-    return item2.upvotes - item1.upvotes;
-  };
 
   const fetcher = async (key: string) => {
     try {
@@ -47,7 +40,7 @@ export default function Answers({ questionNumber }: AnswersProps) {
       }
 
       const result = await response.json();
-      return result.answers.sort(compareFn);
+      return result.answers;
     } catch (e) {
       console.error("An error occured while fetching the data: ", e);
     }
@@ -61,7 +54,8 @@ export default function Answers({ questionNumber }: AnswersProps) {
 
   const handleShowButton = async () => {
     if (!session) {
-      signIn(undefined, { callbackUrl: paths });
+      window.location.href = `/sign-in?callbackUrl=${encodeURIComponent(paths)}`;
+      return;
     }
 
     setShowAnswerBtn(false);
@@ -89,7 +83,7 @@ export default function Answers({ questionNumber }: AnswersProps) {
         },
         body: JSON.stringify({
           userId: session?.user?.id,
-          userName: session?.user?.userName,
+          userName: session?.user?.name,
           userImage: session?.user?.image,
           htmlContent: content,
         }),
@@ -138,8 +132,6 @@ export default function Answers({ questionNumber }: AnswersProps) {
                     createdAt: string;
                     edited: boolean;
                     answer: string;
-                    upvotes: number;
-                    upvotesHistory: Array<{ id: string; direction: string }>;
                   }) => (
                     <li key={answer._id} className="mb-4 flex gap-2 py-2">
                       <Answer questionId={questionId} answer={answer} />

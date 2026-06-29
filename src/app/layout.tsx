@@ -1,8 +1,8 @@
 import "./globals.css";
-import AuthProvider from "@/providers/AuthProvider";
-import { ThemeProvider } from "@/providers/ThemeProvider";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import AuthProvider from "@/providers/auth-provider";
+import { ThemeProvider } from "@/providers/theme-provider";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 export const metadata = {
   title: "Elevate Your Exams | ExamShare",

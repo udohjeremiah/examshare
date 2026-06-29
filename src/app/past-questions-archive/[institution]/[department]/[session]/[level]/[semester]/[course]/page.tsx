@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import pqa from "@/utils/pastQuestionsArchive";
+import pqa from "@/utils/past-questions-archive";
 
 export default async function Course({
   params,
@@ -15,6 +15,7 @@ export default async function Course({
 }) {
   const { institution, department, session, level, semester, course } =
     await params;
+  // @ts-expect-error — dynamic string index on inferred JSON type
   const courseData = pqa[institution]["departments"][department]["sessions"][
     session
   ]["levels"][level]["semesters"][semester]["courses"].find(

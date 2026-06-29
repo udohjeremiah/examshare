@@ -1,4 +1,4 @@
-import BreadCrumb from "@/components/BreadCrumb";
+import BreadCrumb from "@/components/bread-crumb";
 import Link from "next/link";
 
 export const metadata = {

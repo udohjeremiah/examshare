@@ -1,5 +1,5 @@
-import BreadCrumb from "@/components/BreadCrumb";
-import ForgotPasswordForm from "@/components/ForgotPasswordForm";
+import BreadCrumb from "@/components/bread-crumb";
+import ForgotPasswordForm from "@/components/forgot-password-form";
 
 export const metadata = {
   title: "Forgot Password | ExamShare",

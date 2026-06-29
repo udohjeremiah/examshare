@@ -1,6 +1,6 @@
-import pqa from "@/utils/pastQuestionsArchive";
-import LinkList from "@/components/LinkList";
-import BreadCrumb from "@/components/BreadCrumb";
+import pqa from "@/utils/past-questions-archive";
+import LinkList from "@/components/link-list";
+import BreadCrumb from "@/components/bread-crumb";
 
 export const metadata = {
   title: "Past Questions Archive | ExamShare",
@@ -10,6 +10,7 @@ export default function PastQuestionsArchive() {
   const institutionKeys = Object.keys(pqa);
   const institutions = institutionKeys.map((institutionKey) => ({
     href: `/past-questions-archive/${institutionKey}`,
+    // @ts-expect-error — dynamic string index on inferred JSON type
     name: pqa[institutionKey]["name"],
   }));
 

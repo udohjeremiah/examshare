@@ -1,5 +1,4 @@
-import connectClient from "@/db/client";
-import { ObjectId } from "mongodb";
+import { dbClient } from "@/lib/db-client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -16,9 +15,9 @@ export async function GET(
       );
     }
 
-    const client = await connectClient();
-    const db = client.db(process.env.MONGODB_DATABASE);
-    const collection = db.collection(process.env.MONGODB_COLLECTION_ANSWERS);
+    const collection = dbClient
+      .db(process.env.MONGODB_DATABASE)
+      .collection(process.env.MONGODB_COLLECTION_ANSWERS);
 
     const answers = await collection.find({ questionId: id }).toArray();
 
@@ -54,12 +53,9 @@ export async function POST(
       );
     }
 
-    const client = await connectClient();
-    const db = client.db(process.env.MONGODB_DATABASE);
-    const answersCollection = db.collection(
-      process.env.MONGODB_COLLECTION_ANSWERS,
-    );
-    const usersCollection = db.collection(process.env.MONGODB_COLLECTION_USERS);
+    const answersCollection = dbClient
+      .db(process.env.MONGODB_DATABASE)
+      .collection(process.env.MONGODB_COLLECTION_ANSWERS);
 
     // Check if the user has already answered this question
     if (
@@ -88,11 +84,6 @@ export async function POST(
       upvotes: 0,
       upvotesHistory: [],
     });
-
-    await usersCollection.findOneAndUpdate(
-      { _id: new ObjectId(userId) },
-      { $inc: { providedAnswers: 1 } },
-    );
 
     return NextResponse.json(
       {
@@ -124,108 +115,20 @@ export async function PATCH(
       );
     }
 
-    const client = await connectClient();
-    const db = client.db(process.env.MONGODB_DATABASE);
-    const answersCollection = db.collection(
-      process.env.MONGODB_COLLECTION_ANSWERS,
-    );
-    const usersCollection = db.collection(process.env.MONGODB_COLLECTION_USERS);
+    const answersCollection = dbClient
+      .db(process.env.MONGODB_DATABASE)
+      .collection(process.env.MONGODB_COLLECTION_ANSWERS);
 
-    const { questionUserId, userId, htmlContent, upvotes, upvotesDirection } =
-      await request.json();
+    const { userId, htmlContent } = await request.json();
 
-    if (!questionUserId || !userId) {
+    if (!userId) {
       return NextResponse.json(
         { success: false, message: "Bad request" },
         { status: 400 },
       );
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const updateFields: Record<string, any> = {};
-
-    if (htmlContent !== undefined) {
-      updateFields.answer = htmlContent;
-      updateFields.edited = true;
-    }
-
-    if (upvotes !== undefined) {
-      if (!upvotesDirection) {
-        return NextResponse.json(
-          { success: false, message: "Bad request" },
-          { status: 400 },
-        );
-      }
-
-      const foundAnswer = await answersCollection.findOne({
-        questionId: id,
-        userId: questionUserId,
-      });
-      if (!foundAnswer) {
-        return NextResponse.json(
-          { success: false, message: "Answer not found" },
-          { status: 404 },
-        );
-      }
-      const upvotesHistory = foundAnswer.upvotesHistory;
-
-      if (
-        upvotesHistory.some(
-          (item: { id: string; direction: string }) =>
-            JSON.stringify(item) ===
-            JSON.stringify({ id: userId, direction: upvotesDirection }),
-        )
-      ) {
-        return NextResponse.json(
-          {
-            success: false,
-            message: `User with id ${userId} has already ${
-              upvotesDirection === "up" ? "upvoted" : "downvoted"
-            } this answer before`,
-          },
-          { status: 409, statusText: "Conflict" },
-        );
-      }
-
-      // Check if the user has voted before
-      const existingVote = upvotesHistory.find(
-        (item: { id: string; direction: string }) => item.id === userId,
-      );
-
-      if (existingVote) {
-        if (existingVote.direction === upvotesDirection) {
-          // If the vote direction is the same as the current, remove it (toggle)
-          updateFields.upvotes =
-            upvotesDirection === "up" ? upvotes - 1 : upvotes + 1;
-
-          updateFields.upvotesHistory = upvotesHistory.filter(
-            (item: { id: string; direction: string }) => item.id !== userId,
-          );
-        } else {
-          // If the vote direction is different, toggle it (upvote -> downvote or vice versa)
-          updateFields.upvotes =
-            upvotesDirection === "up" ? upvotes + 1 : upvotes - 1;
-
-          updateFields.upvotesHistory = upvotesHistory.map(
-            (item: { id: string; direction: string }) =>
-              item.id === userId
-                ? { id: userId, direction: upvotesDirection }
-                : item,
-          );
-        }
-      } else {
-        // If the user has not voted before, add their vote
-        updateFields.upvotes =
-          upvotesDirection === "up" ? upvotes + 1 : upvotes - 1;
-
-        updateFields.upvotesHistory = [
-          ...upvotesHistory,
-          { id: userId, direction: upvotesDirection },
-        ];
-      }
-    }
-
-    if (Object.keys(updateFields).length === 0) {
+    if (htmlContent === undefined) {
       return NextResponse.json(
         {
           success: false,
@@ -236,16 +139,9 @@ export async function PATCH(
     }
 
     const result = await answersCollection.updateOne(
-      { questionId: id, userId: questionUserId },
-      { $set: updateFields },
+      { questionId: id, userId },
+      { $set: { answer: htmlContent, edited: true } },
     );
-
-    console.log(updateFields.upvotes);
-    await usersCollection.findOneAndUpdate(
-      { _id: new ObjectId(userId) },
-      { $inc: { totalUpvotesReceived: updateFields.upvotes } },
-    );
-
     if (result.modifiedCount === 1) {
       return NextResponse.json(
         {
@@ -287,22 +183,14 @@ export async function DELETE(
       );
     }
 
-    const client = await connectClient();
-    const db = client.db(process.env.MONGODB_DATABASE);
-    const answersCollection = db.collection(
-      process.env.MONGODB_COLLECTION_ANSWERS,
-    );
-    const usersCollection = db.collection(process.env.MONGODB_COLLECTION_USERS);
+    const answersCollection = dbClient
+      .db(process.env.MONGODB_DATABASE)
+      .collection(process.env.MONGODB_COLLECTION_ANSWERS);
 
     const result = await answersCollection.deleteOne({
       questionId: id,
       userId,
     });
-
-    await usersCollection.findOneAndUpdate(
-      { _id: new ObjectId(userId) },
-      { $inc: { providedAnswers: -1 } },
-    );
 
     if (result.deletedCount === 1) {
       return NextResponse.json(

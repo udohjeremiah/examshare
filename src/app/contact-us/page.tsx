@@ -1,6 +1,6 @@
-import BreadCrumb from "@/components/BreadCrumb";
+import BreadCrumb from "@/components/bread-crumb";
 import Link from "next/link";
-import ContactForm from "@/components/ContactForm";
+import ContactForm from "@/components/contact-form";
 
 export const metadata = {
   title: "Contact Us | ExamShare",

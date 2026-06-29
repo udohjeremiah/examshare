@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useMemo } from "react";
-import nigerianUniversities from "@/utils/nigerianUniversities";
+import nigerianUniversities from "@/utils/nigerian-universities";
 import { IoClose } from "react-icons/io5";
 
 export default function SubmitPastQuestionForm() {

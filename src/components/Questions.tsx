@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import QuestionsIdProvider from "@/providers/QuestionsIdProvider";
+import QuestionsIdProvider from "@/providers/questions-id-provider";
 
 interface QuestionsProps {
   school: string;

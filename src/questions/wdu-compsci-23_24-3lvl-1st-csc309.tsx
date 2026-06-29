@@ -1,5 +1,5 @@
-import Answers from "@/components/Answers";
-import Questions from "@/components/Questions";
+import Answers from "@/components/answers";
+import Questions from "@/components/questions";
 
 export default function CSC309() {
   return (

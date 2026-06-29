@@ -3,7 +3,6 @@ declare namespace NodeJS {
     MONGODB_URI: string;
     MONGODB_DATABASE: string;
     MONGODB_COLLECTION_ANSWERS: string;
-    MONGODB_COLLECTION_USERS: string;
     PROJECT_DOMAIN: string;
     NEXT_PUBLIC_PROJECT_DOMAIN: string;
     NODEMAILER_EMAIL: string;

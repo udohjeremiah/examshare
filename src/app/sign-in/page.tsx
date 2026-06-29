@@ -1,33 +1,34 @@
-import BreadCrumb from "@/components/BreadCrumb";
-import SignUpForm from "@/components/SignUpForm";
+import { Suspense } from "react";
+import BreadCrumb from "@/components/bread-crumb";
+import SignInForm from "@/components/sign-in-form";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Sign Up | ExamShare",
+  title: "Sign In | ExamShare",
 };
 
-export default function SignUp() {
+export default function SignIn() {
   return (
     <div className="flex flex-col items-center gap-6 px-4 py-14 md:px-10">
       <BreadCrumb />
       <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">
-        Create An Account
+        Log In
       </h2>
       <p className="max-w-prose text-center">
-        Thank you for joining the{" "}
+        Welcome back to ExamShare! Sign in to access the collaborative community
+        advocating{" "}
         <Link
           href="https://opensource.com/resources/what-open-education"
           className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
         >
           open-source education
         </Link>{" "}
-        community on Examshare. By signing up, you access collaborative
-        learning, share, discuss, and learn from others&apos; answers to past
-        examination questions. Your impact lies in shaping the future and
-        contributing to a timeless resource for future generations.
+        and shaping the future of education for generations to come.
       </p>
       <div className="flex w-full max-w-prose flex-col">
-        <SignUpForm />
+        <Suspense fallback={null}>
+          <SignInForm />
+        </Suspense>
       </div>
     </div>
   );

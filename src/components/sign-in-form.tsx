@@ -1,25 +1,28 @@
 "use client";
 
-import { useState, useRef, useEffect, useMemo } from "react";
+import {
+  useState,
+  useRef,
+  useEffect,
+  useMemo,
+  type FormEvent,
+  type RefObject,
+} from "react";
+
+import { useSearchParams } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 import Link from "next/link";
-import { IoClose } from "react-icons/io5";
 
-export default function SignUpForm() {
+export default function SignInForm() {
   const [form, setForm] = useState({
-    fullName: "",
     email: "",
     password: "",
   });
-  const fullNameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const formRef: Record<
-    string,
-    React.RefObject<HTMLInputElement | null>
-  > = useMemo(
+  const formRef: Record<string, RefObject<HTMLInputElement | null>> = useMemo(
     () => ({
-      fullName: fullNameRef,
       email: emailRef,
       password: passwordRef,
     }),
@@ -30,6 +33,9 @@ export default function SignUpForm() {
   const [isFormSubmitting, setIsFormSubmitting] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showFailureMessage, setShowFailureMessage] = useState(false);
+
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   useEffect(() => {
     // Find the first input field with an error and focus on it
@@ -49,12 +55,6 @@ export default function SignUpForm() {
     const tempErrors: Record<string, boolean> = {};
     let isValid = true;
 
-    if (form.fullName.trim().length <= 0) {
-      tempErrors["fullName"] = true;
-      isValid = false;
-      return isValid;
-    }
-
     if (form.email.trim().length <= 0) {
       tempErrors["email"] = true;
       isValid = false;
@@ -70,7 +70,7 @@ export default function SignUpForm() {
     return isValid;
   };
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -85,34 +85,17 @@ export default function SignUpForm() {
 
       setIsFormSubmitting(true);
 
-      const response = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({ ...form }),
+      const { error } = await authClient.signIn.email({
+        email: form.email,
+        password: form.password,
+        callbackURL: callbackUrl,
       });
 
-      if (!response.ok) {
+      if (error) {
         setIsFormSubmitting(false);
-
-        const responseJson = await response.json();
-        if (responseJson.status === 409) {
-          setFormError({ email: true });
-        } else {
-          setShowFailureMessage(true);
-        }
+        setShowFailureMessage(true);
         return;
       }
-
-      setForm({
-        fullName: "",
-        email: "",
-        password: "",
-      });
-      setIsFormSubmitting(false);
-      setShowSuccessMessage(true);
     } catch (error) {
       console.error(error);
     }
@@ -123,36 +106,12 @@ export default function SignUpForm() {
       onSubmit={handleFormSubmit}
       className="flex flex-col gap-6 rounded-md border px-5 py-10 shadow-md sm:px-10"
     >
-      <h3 className="mb-2 text-2xl font-medium">Sign Up</h3>
+      <h3 className="mb-2 text-2xl font-medium">Sign In</h3>
       <div className="flex flex-col gap-4">
         <p className="mb-2 text-sm font-semibold text-sky-500">
           Fields marked with <span className="text-red-500">*</span> are
           required.
         </p>
-        <div>
-          <label
-            htmlFor="fullName"
-            className="block max-w-max leading-6 font-medium"
-          >
-            Full Name <span className="text-red-500">*</span>
-          </label>
-          <input
-            ref={formRef.fullName}
-            id="fullName"
-            name="fullName"
-            type="text"
-            required
-            placeholder="e.g., Ozakpolor Emmanuel"
-            value={form.fullName}
-            onChange={(e) => setForm({ ...form, fullName: e.target.value })}
-            className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
-          />
-          {formError.fullName && (
-            <span className="text-xs text-red-500">
-              Full name cannot be empty
-            </span>
-          )}
-        </div>
         <div>
           <label
             htmlFor="email"
@@ -178,7 +137,7 @@ export default function SignUpForm() {
             </span>
           )}
         </div>
-        <div className="relative">
+        <div className="flex flex-col">
           <label
             htmlFor="password"
             className="block max-w-max leading-6 font-medium"
@@ -195,6 +154,12 @@ export default function SignUpForm() {
             onChange={(e) => setForm({ ...form, password: e.target.value })}
             className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset placeholder:flex focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
           />
+          <Link
+            href="/forgot-password"
+            className="mt-2 w-max self-end text-sm font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          >
+            Forgot password?
+          </Link>
           {formError.password && (
             <span className="text-xs text-red-500">
               Password cannot be empty
@@ -202,23 +167,6 @@ export default function SignUpForm() {
           )}
         </div>
       </div>
-      <p className="text-center text-xs md:text-sm">
-        By creating an account, you accept our{" "}
-        <Link
-          href="/terms-and-conditions"
-          className="font-bold whitespace-nowrap text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
-        >
-          Terms & Conditions
-        </Link>{" "}
-        and{" "}
-        <Link
-          href="/privacy-policy"
-          className="font-bold whitespace-nowrap text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
-        >
-          Privacy Policy
-        </Link>
-        .
-      </p>
       {isFormSubmitting ? (
         <button
           disabled
@@ -244,43 +192,30 @@ export default function SignUpForm() {
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          Sign Up
+          Sign In
         </button>
       ) : (
         <button className="rounded-xl bg-sky-500 p-3 text-center font-semibold text-white hover:bg-sky-600 active:bg-sky-700 dark:bg-sky-400 dark:text-sky-950 dark:hover:bg-sky-300 dark:active:bg-sky-500">
-          Sign Up
+          Sign In
         </button>
       )}
       <p className="self-center">
-        Have an account?{" "}
+        Don&apos;t have an account?{" "}
         <Link
-          href="/signin"
+          href="/sign-up"
           className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
         >
-          Log In
+          Sign Up
         </Link>
       </p>
       {showFailureMessage && (
-        <div className="flex items-start justify-between gap-2 rounded-lg border border-red-400 bg-red-50 p-5 dark:border-red-600 dark:bg-red-950">
-          <p>
-            Oops! An error occurred while processing your request. This could be
-            due to an invalid request or our servers encountering an issue. We
-            apologize for the inconvenience. Please try again.
-          </p>
-          <button onClick={() => setShowFailureMessage(false)}>
-            <IoClose size={25} className="text-red-400 dark:text-red-600" />
-          </button>
+        <div className="text-red-500">
+          There was an error submitting the form. Please try again later.
         </div>
       )}
       {showSuccessMessage && (
-        <div className="flex items-start justify-between gap-2 rounded-lg border border-green-400 bg-green-50 p-5 dark:border-green-600 dark:bg-green-950">
-          <p>
-            Your account has been successfully created! A confirmation email has
-            been sent to you for verification.
-          </p>
-          <button onClick={() => setShowSuccessMessage(false)}>
-            <IoClose size={25} className="text-green-400 dark:text-green-600" />
-          </button>
+        <div className="text-green-500">
+          Your account has been created successfully.
         </div>
       )}
     </form>

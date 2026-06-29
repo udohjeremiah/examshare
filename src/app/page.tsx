@@ -4,11 +4,11 @@ import { LiaUsersSolid } from "react-icons/lia";
 import { BsGlobe } from "react-icons/bs";
 import Image from "next/image";
 
-import { options } from "./api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 
 export default async function Home() {
-  const session = await getServerSession(options);
+  const session = await auth.api.getSession({ headers: await headers() });
 
   return (
     <>
@@ -164,14 +164,14 @@ export default async function Home() {
                 To access and contribute answers to past exam questions, you
                 need an account with us. If you don&apos;t have one, please{" "}
                 <Link
-                  href="/signup"
+                  href="/sign-up"
                   className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
                 >
                   create an account
                 </Link>
                 . If you already have an account, simply{" "}
                 <Link
-                  href="/signin"
+                  href="/sign-in"
                   className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
                 >
                   log in
@@ -239,13 +239,13 @@ export default async function Home() {
             </p>
             <div className="flex flex-col gap-4">
               <Link
-                href="/signup"
+                href="/sign-up"
                 className="rounded-xl bg-sky-500 p-3 text-center font-semibold text-white hover:bg-sky-600 active:bg-sky-700 dark:bg-sky-400 dark:text-sky-950 dark:hover:bg-sky-500 dark:active:bg-sky-600"
               >
                 Sign Up Now
               </Link>
               <Link
-                href="/signin"
+                href="/sign-in"
                 className="rounded-xl border border-sky-700 p-3 text-center font-semibold text-sky-700 hover:bg-sky-100 active:bg-sky-200 dark:border-sky-200 dark:text-sky-300 dark:hover:bg-sky-950 dark:active:bg-sky-900"
               >
                 Already have an account? Log In
