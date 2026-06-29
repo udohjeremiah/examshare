@@ -7,14 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --check --ignore-path .gitignore .",
-    "format:fix": "prettier --write --ignore-path .gitignore .",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
     "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,css,md}": [
-      "npm run format",
-      "npm run lint ."
+      "pnpm run format",
+      "pnpm run lint ."
     ]
   },
   "dependencies": {

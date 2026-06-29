@@ -17,11 +17,11 @@ available to all students. Our goal is to help students prepare effectively for 
 ### Installation
 
 1. `cd examshare` to navigate to the project's root directory.
-2. `npm install` to install the website's npm dependencies.
+2. `pnpm install` to install dependencies.
 
 ### Running locally
 
-1. `npm run dev` to start the development server (powered by [Next.js](https://nextjs.org/))
+1. `pnpm run dev` to start the development server (powered by [Next.js](https://nextjs.org/))
 2. Open `http://localhost:3000` in your favorite browser to access the site.
 
 ## Contributing
@@ -53,9 +53,9 @@ important to emphasize the need for respect towards everyone, regardless of thei
 
 ### Test the change
 
-1. Run `npm run format`. This command uses Prettier to validate code formatting, ensuring it adheres to Prettier's style.
-   To correct any code format issues, use `npm run format:fix`.
-2. Run `npm run lint`. This command runs ESLint to catch any linting errors. Be sure to fix any errors and warnings that
+1. Run `pnpm run format`. This command uses Prettier to validate code formatting, ensuring it adheres to Prettier's style.
+   To correct any code format issues, use `pnpm run format:fix`.
+2. Run `pnpm run lint`. This command runs ESLint to catch any linting errors. Be sure to fix any errors and warnings that
    may appear.
 3. If possible, test any visual changes in the latest versions of common browsers, both on desktop and mobile.
 
