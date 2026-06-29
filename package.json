@@ -42,13 +42,13 @@
     "html-react-parser": "^5.0.6",
     "mongodb": "^6.3.0",
     "next": "14.0.1",
-    "next-auth": "^4.24.5",
     "nodemailer": "^6.9.7",
     "react": "^18",
     "react-dom": "^18",
     "react-email": "^1.9.5",
     "react-icons": "^4.11.0",
     "react-inlinesvg": "^4.1.0",
+    "next-auth": "^4.24.5",
     "swr": "^2.2.4"
   },
   "devDependencies": {
