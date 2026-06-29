@@ -26,6 +26,7 @@ import ListItem from "@tiptap/extension-list-item";
 import Link from "@tiptap/extension-link";
 import StarterKit from "@tiptap/starter-kit";
 import HTMLReactParser from "html-react-parser";
+import { cn } from "@/lib/utils";
 
 export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
   const setLink = useCallback(() => {
@@ -72,9 +73,10 @@ export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         disabled={!editor.can().chain().focus().toggleBold().run()}
-        className={`rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950 ${
-          editor.isActive("bold") && "bg-sky-200 dark:bg-sky-950"
-        }`}
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
+          editor.isActive("bold") && "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <MdFormatBold size={20} />
         <span className="sr-only">Bold</span>
@@ -82,9 +84,10 @@ export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
       <button
         onClick={() => editor.chain().focus().toggleItalic().run()}
         disabled={!editor.can().chain().focus().toggleItalic().run()}
-        className={`dark:active:bg-sky-950" rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 ${
-          editor.isActive("italic") && "bg-sky-200 dark:bg-sky-950"
-        }`}
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
+          editor.isActive("italic") && "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <MdFormatItalic size={20} />
         <span className="sr-only">Italic</span>
@@ -92,9 +95,10 @@ export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
       <button
         onClick={() => editor.chain().focus().toggleUnderline().run()}
         disabled={!editor.can().chain().focus().toggleUnderline().run()}
-        className={`"hover:bg-sky-100 dark:active:bg-sky-950" rounded p-2 active:bg-sky-200 dark:hover:bg-sky-800 ${
-          editor.isActive("underline") && "bg-sky-200 dark:bg-sky-950"
-        }`}
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
+          editor.isActive("underline") && "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <MdFormatUnderlined size={20} />
         <span className="sr-only">Underline</span>
@@ -102,9 +106,10 @@ export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
       <button
         onClick={() => editor.chain().focus().toggleStrike().run()}
         disabled={!editor.can().chain().focus().toggleStrike().run()}
-        className={`dark:active:bg-sky-950"} rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 ${
-          editor.isActive("strike") && "bg-sky-200 dark:bg-sky-950"
-        }`}
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
+          editor.isActive("strike") && "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <MdStrikethroughS size={20} />
         <span className="sr-only">Strikethrough</span>
@@ -114,10 +119,11 @@ export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
         disabled={
           !editor.can().chain().focus().toggleHeading({ level: 2 }).run()
         }
-        className={`rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950 ${
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
           editor.isActive("heading", { level: 2 }) &&
-          "bg-sky-200 dark:bg-sky-950"
-        }`}
+            "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <LuHeading size={20} />
         <span className="sr-only">Heading Level 2</span>
@@ -125,9 +131,10 @@ export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
       <button
         onClick={() => editor.chain().focus().toggleSubscript().run()}
         disabled={!editor.can().chain().focus().toggleSubscript().run()}
-        className={`rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950 ${
-          editor.isActive("subscript") && "bg-sky-200 dark:bg-sky-950"
-        }`}
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
+          editor.isActive("subscript") && "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <MdSubscript size={20} />
         <span className="sr-only">Subscript</span>
@@ -135,9 +142,10 @@ export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
       <button
         onClick={() => editor.chain().focus().toggleSuperscript().run()}
         disabled={!editor.can().chain().focus().toggleSuperscript().run()}
-        className={`dark:active:bg-sky-950" rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 ${
-          editor.isActive("superscript") && "bg-sky-200 dark:bg-sky-950"
-        }`}
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
+          editor.isActive("superscript") && "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <MdSuperscript size={20} />
         <span className="sr-only">Superscript</span>
@@ -145,9 +153,10 @@ export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         disabled={!editor.can().chain().focus().toggleBulletList().run()}
-        className={`rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950 ${
-          editor.isActive("bulletList") && "bg-sky-200 dark:bg-sky-950"
-        }`}
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
+          editor.isActive("bulletList") && "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <VscListUnordered size={20} />
         <span className="sr-only">Bullet List</span>
@@ -155,18 +164,20 @@ export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
       <button
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         disabled={!editor.can().chain().focus().toggleOrderedList().run()}
-        className={`rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950 ${
-          editor.isActive("orderedList") && "bg-sky-200 dark:bg-sky-950"
-        }`}
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
+          editor.isActive("orderedList") && "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <VscListOrdered size={20} />
         <span className="sr-only">Ordered List</span>
       </button>
       <button
         onClick={setLink}
-        className={`rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950 ${
-          editor.isActive("link") && "bg-sky-200 dark:bg-sky-950"
-        }`}
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
+          editor.isActive("link") && "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <GoLink size={20} />
         <span className="sr-only">Link</span>
@@ -174,9 +185,10 @@ export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
       <button
         onClick={() => editor.chain().focus().toggleCode().run()}
         disabled={!editor.can().chain().focus().toggleCode().run()}
-        className={`rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950 ${
-          editor.isActive("code") && "bg-sky-200 dark:bg-sky-950"
-        }`}
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
+          editor.isActive("code") && "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <MdCode size={20} />
         <span className="sr-only">Code Inline</span>
@@ -184,9 +196,10 @@ export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
       <button
         onClick={() => editor.chain().focus().toggleCodeBlock().run()}
         disabled={!editor.can().chain().focus().toggleCodeBlock().run()}
-        className={`rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950 ${
-          editor.isActive("codeBlock") && "bg-sky-200 dark:bg-sky-950"
-        }`}
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
+          editor.isActive("codeBlock") && "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <AiFillCode size={20} />
         <span className="sr-only">Code Block</span>
@@ -194,9 +207,10 @@ export const EditorHeader = ({ editor }: { editor: Editor | null }) => {
       <button
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
         disabled={!editor.can().chain().focus().toggleBlockquote().run()}
-        className={`rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950 ${
-          editor.isActive("blockquote") && "bg-sky-200 dark:bg-sky-950"
-        }`}
+        className={cn(
+          "rounded p-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950",
+          editor.isActive("blockquote") && "bg-sky-200 dark:bg-sky-950",
+        )}
       >
         <MdFormatQuote size={20} />
         <span className="sr-only">Blockquote</span>
@@ -234,9 +248,10 @@ export const EditorFooter = ({
             setWriteMode(true);
             editor.setEditable(true);
           }}
-          className={`px-3 py-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 ${
-            writeMode && "bg-sky-200 font-bold dark:bg-sky-950"
-          }`}
+          className={cn(
+            "px-3 py-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800",
+            writeMode && "bg-sky-200 font-bold dark:bg-sky-950",
+          )}
         >
           Write
         </button>
@@ -245,9 +260,10 @@ export const EditorFooter = ({
             setWriteMode(false);
             editor.setEditable(false);
           }}
-          className={`px-3 py-2 hover:bg-sky-100 dark:hover:bg-sky-800 ${
-            !writeMode && "bg-sky-200 font-bold dark:bg-sky-950"
-          }`}
+          className={cn(
+            "px-3 py-2 hover:bg-sky-100 dark:hover:bg-sky-800",
+            !writeMode && "bg-sky-200 font-bold dark:bg-sky-950",
+          )}
         >
           Preview
         </button>
@@ -255,7 +271,7 @@ export const EditorFooter = ({
       {submitting ? (
         <button className="flex cursor-not-allowed px-3 py-2 hover:bg-sky-100 active:bg-sky-200 dark:hover:bg-sky-800 dark:active:bg-sky-950">
           <svg
-            className="-ml-1 mr-3 h-5 w-5 animate-spin text-white"
+            className="mr-3 -ml-1 h-5 w-5 animate-spin text-white"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -358,7 +374,7 @@ export default function RichTextEditor({
       ) : (
         <>
           <div className="h-[3rem] border-b border-b-sky-700 bg-sky-50 px-3 py-2 dark:border-b-sky-300 dark:bg-sky-900"></div>
-          <div className="prose prose-sm prose-slate m-5 max-h-[20rem] min-h-[20rem] overflow-y-auto dark:prose-invert sm:prose-base focus:outline-none">
+          <div className="m-5 prose prose-sm max-h-[20rem] min-h-[20rem] overflow-y-auto prose-slate focus:outline-none sm:prose-base dark:prose-invert">
             {HTMLReactParser(content)}
           </div>
         </>

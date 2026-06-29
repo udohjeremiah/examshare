@@ -207,7 +207,7 @@ export default function SubmitPastQuestionForm() {
             <div className="w-full">
               <label
                 htmlFor="first-name"
-                className="block max-w-max font-medium leading-6"
+                className="block max-w-max leading-6 font-medium"
               >
                 First Name <span className="text-red-500">*</span>
               </label>
@@ -222,7 +222,7 @@ export default function SubmitPastQuestionForm() {
                 onChange={(e) =>
                   setForm({ ...form, firstName: e.target.value })
                 }
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               />
               {formError.firstName && (
                 <span className="text-xs text-red-500">
@@ -233,7 +233,7 @@ export default function SubmitPastQuestionForm() {
             <div className="w-full">
               <label
                 htmlFor="last-name"
-                className="block max-w-max font-medium leading-6"
+                className="block max-w-max leading-6 font-medium"
               >
                 Last Name <span className="text-red-500">*</span>
               </label>
@@ -246,7 +246,7 @@ export default function SubmitPastQuestionForm() {
                 placeholder="Emmanuel"
                 value={form.lastName}
                 onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               />
               {formError.lastName && (
                 <span className="text-xs text-red-500">
@@ -259,7 +259,7 @@ export default function SubmitPastQuestionForm() {
             <div className="w-full">
               <label
                 htmlFor="email"
-                className="block max-w-max font-medium leading-6"
+                className="block max-w-max leading-6 font-medium"
               >
                 Email <span className="text-red-500">*</span>
               </label>
@@ -273,7 +273,7 @@ export default function SubmitPastQuestionForm() {
                 placeholder="name@domain.com"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               />
               {formError.email && (
                 <span className="text-xs text-red-500">
@@ -284,7 +284,7 @@ export default function SubmitPastQuestionForm() {
             <div className="w-full">
               <label
                 htmlFor="phone-number"
-                className="block max-w-max font-medium leading-6"
+                className="block max-w-max leading-6 font-medium"
               >
                 Phone Number
               </label>
@@ -299,7 +299,7 @@ export default function SubmitPastQuestionForm() {
                 onChange={(e) =>
                   setForm({ ...form, phoneNumber: e.target.value })
                 }
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -307,7 +307,7 @@ export default function SubmitPastQuestionForm() {
             <div className="w-full">
               <label
                 htmlFor="name-of-institution"
-                className="block max-w-max font-medium leading-6"
+                className="block max-w-max leading-6 font-medium"
               >
                 Name of Institution <span className="text-red-500">*</span>
               </label>
@@ -323,7 +323,7 @@ export default function SubmitPastQuestionForm() {
                     nameOfInstitution: e.target.value,
                   })
                 }
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               >
                 <option value="">--Please choose an option--</option>
                 {Object.keys(nigerianUniversities).map((header) => (
@@ -356,7 +356,7 @@ export default function SubmitPastQuestionForm() {
             <div className="w-full">
               <label
                 htmlFor="status-at-institution"
-                className="block max-w-max font-medium leading-6"
+                className="block max-w-max leading-6 font-medium"
               >
                 Status at Institution <span className="text-red-500">*</span>
               </label>
@@ -372,7 +372,7 @@ export default function SubmitPastQuestionForm() {
                     statusAtInstitution: e.target.value,
                   })
                 }
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               />
               {formError.statusAtInstitution && (
                 <span className="text-xs text-red-500">
@@ -388,7 +388,7 @@ export default function SubmitPastQuestionForm() {
             <div className="w-full">
               <label
                 htmlFor="department"
-                className="block max-w-max font-medium leading-6"
+                className="block max-w-max leading-6 font-medium"
               >
                 Department <span className="text-red-500">*</span>
               </label>
@@ -403,7 +403,7 @@ export default function SubmitPastQuestionForm() {
                 onChange={(e) =>
                   setForm({ ...form, department: e.target.value })
                 }
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               />
               {formError.department && (
                 <span className="text-xs text-red-500">
@@ -414,7 +414,7 @@ export default function SubmitPastQuestionForm() {
             <div className="w-full">
               <label
                 htmlFor="level"
-                className="block max-w-max font-medium leading-6"
+                className="block max-w-max leading-6 font-medium"
               >
                 Level <span className="text-red-500">*</span>
               </label>
@@ -429,7 +429,7 @@ export default function SubmitPastQuestionForm() {
                 placeholder="e.g., 300"
                 value={form.level}
                 onChange={(e) => setForm({ ...form, level: e.target.value })}
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               />
               {formError.level && (
                 <span className="text-xs text-red-500">
@@ -442,7 +442,7 @@ export default function SubmitPastQuestionForm() {
             <div className="w-full">
               <label
                 htmlFor="session"
-                className="block max-w-max font-medium leading-6"
+                className="block max-w-max leading-6 font-medium"
               >
                 Session <span className="text-red-500">*</span>
               </label>
@@ -455,7 +455,7 @@ export default function SubmitPastQuestionForm() {
                 placeholder="e.g., 2022/2023"
                 value={form.session}
                 onChange={(e) => setForm({ ...form, session: e.target.value })}
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               />
               {formError.session && (
                 <span className="text-xs text-red-500">
@@ -466,7 +466,7 @@ export default function SubmitPastQuestionForm() {
             <div className="w-full">
               <label
                 htmlFor="semester"
-                className="block max-w-max font-medium leading-6"
+                className="block max-w-max leading-6 font-medium"
               >
                 Semester <span className="text-red-500">*</span>
               </label>
@@ -481,7 +481,7 @@ export default function SubmitPastQuestionForm() {
                 placeholder="e.g., 1"
                 value={form.semester}
                 onChange={(e) => setForm({ ...form, semester: e.target.value })}
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               />
               {formError.semester && (
                 <span className="text-xs text-red-500">
@@ -494,7 +494,7 @@ export default function SubmitPastQuestionForm() {
             <div className="mb-4">
               <label
                 htmlFor="past-question"
-                className="block max-w-max font-medium leading-6"
+                className="block max-w-max leading-6 font-medium"
               >
                 Upload Past Question <span className="text-red-500">*</span>
               </label>
@@ -512,7 +512,7 @@ export default function SubmitPastQuestionForm() {
                     pastQuestion: e.target.files?.[0] ?? null,
                   })
                 }
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:text-gray-100 sm:text-sm sm:leading-6"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6 dark:text-gray-100"
               />
               {formError.pastQuestion && (
                 <span className="text-xs text-red-500">

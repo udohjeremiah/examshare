@@ -70,7 +70,7 @@ export default function ForgotPasswordForm() {
       <div>
         <label
           htmlFor="email"
-          className="block max-w-max font-medium leading-6"
+          className="block max-w-max leading-6 font-medium"
         >
           Email
         </label>
@@ -82,7 +82,7 @@ export default function ForgotPasswordForm() {
           placeholder="name@domain.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
         />
         {emailError && (
           <span className="text-xs text-red-500">
@@ -96,7 +96,7 @@ export default function ForgotPasswordForm() {
           className="flex cursor-not-allowed items-center justify-center rounded-xl bg-sky-200 p-3 text-center font-semibold text-sky-500 dark:bg-sky-800 dark:text-sky-100"
         >
           <svg
-            className="-ml-1 mr-3 h-5 w-5 animate-spin text-white"
+            className="mr-3 -ml-1 h-5 w-5 animate-spin text-white"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

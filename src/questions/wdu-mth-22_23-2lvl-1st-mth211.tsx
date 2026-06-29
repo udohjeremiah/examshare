@@ -22,7 +22,7 @@ export default function MTH211() {
             course MTH211 and CSC 201 for the given scores sand predict the
             relationship between them{" "}
             <div className="overflow-auto">
-              <table className="mb-2 mt-2">
+              <table className="mt-2 mb-2">
                 <tbody>
                   <tr>
                     <th scope="row" className="border px-6 text-center">
@@ -108,7 +108,7 @@ export default function MTH211() {
             (in month) of ten machines of formula types in a manufacturing
             company
             <div className="overflow-auto">
-              <table className="mb-2 mt-2">
+              <table className="mt-2 mb-2">
                 <tbody>
                   <tr>
                     <th scope="row" className="border px-6 text-center">
@@ -195,7 +195,7 @@ export default function MTH211() {
             (pdf) given by:
             <div className="flex items-center gap-2">
               <div>F(X) = </div>
-              <div className="relative mb-4 mt-4 inline-block">
+              <div className="relative mt-4 mb-4 inline-block">
                 <span className="text-7xl">&#123;</span>
                 <span className="absolute top-0 w-max">
                   <sup>1</sup>/<sub>b-a,</sub> a &lt; x &lt; b
@@ -231,7 +231,7 @@ export default function MTH211() {
             The discrete random variable X has a probability non function given
             in the table below. Find var (X)
             <div className="overflow-auto">
-              <table className="mb-2 mt-2">
+              <table className="mt-2 mb-2">
                 <tbody>
                   <tr>
                     <th scope="row" className="border px-6 text-center">

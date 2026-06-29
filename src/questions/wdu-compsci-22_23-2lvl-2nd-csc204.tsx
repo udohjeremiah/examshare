@@ -44,7 +44,7 @@ export default function CSC204() {
             Consider the organized file presented here under and use it to
             answer the questions that follow.
             <div className="overflow-auto">
-              <table className="mb-2 mt-2 border-collapse border">
+              <table className="mt-2 mb-2 border-collapse border">
                 <thead>
                   <tr>
                     <th className="border px-6 text-center">S/N</th>
@@ -164,7 +164,7 @@ export default function CSC204() {
           <li>
             Copy and complete the table below
             <div className="overflow-auto">
-              <table className="mb-2 mt-2 border-collapse border">
+              <table className="mt-2 mb-2 border-collapse border">
                 <thead>
                   <tr>
                     <th className="border px-6 text-center">S/N</th>

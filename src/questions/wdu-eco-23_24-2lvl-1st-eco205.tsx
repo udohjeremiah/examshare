@@ -21,7 +21,7 @@ export default function ECO201() {
             The following table gives life length of 200 light bulbs
             manufactured by a company. Determine the mode for the data.
             <div className="overflow-auto">
-              <table className="mb-2 mt-2">
+              <table className="mt-2 mb-2">
                 <tbody>
                   <tr>
                     <th className="border px-6 text-center">Life in weeks</th>
@@ -56,7 +56,7 @@ export default function ECO201() {
             The following table shows the age distribution of persons in a
             particular region
             <div className="overflow-auto">
-              <table className="mb-2 mt-2">
+              <table className="mt-2 mb-2">
                 <tbody>
                   <tr>
                     <th className="border px-6 text-center">Age (Years)</th>
@@ -123,7 +123,7 @@ export default function ECO201() {
             telephone calls received in 245 successive one minute intervals at
             an exchage:
             <div className="overflow-auto">
-              <table className="mb-2 mt-2 border-collapse border">
+              <table className="mt-2 mb-2 border-collapse border">
                 <tbody>
                   <tr>
                     <th className="border px-6 text-center">Number of calls</th>
@@ -158,7 +158,7 @@ export default function ECO201() {
           <li>
             Calculate the mean for the following frequency distribution
             <div className="overflow-auto">
-              <table className="mb-2 mt-2 border-collapse border">
+              <table className="mt-2 mb-2 border-collapse border">
                 <tbody>
                   <tr>
                     <th className="border px-6 text-center">Marks</th>
@@ -198,7 +198,7 @@ export default function ECO201() {
             The following table gives the frequency distribution of the weekly
             wages (N&apos;00) of 100 workers in a factory.
             <div className="overflow-auto">
-              <table className="mb-2 mt-2 border-collapse border">
+              <table className="mt-2 mb-2 border-collapse border">
                 <tbody>
                   <tr>
                     <th className="border px-6 text-center">Weekly wages</th>

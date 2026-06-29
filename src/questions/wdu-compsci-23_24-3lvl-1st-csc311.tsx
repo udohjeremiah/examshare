@@ -63,7 +63,7 @@ export default function CSC311() {
           <li>
             Match the items in Column A to their definitions in Column B.
             <div className="overflow-auto">
-              <table className="mb-2 mt-2 border-collapse border">
+              <table className="mt-2 mb-2 border-collapse border">
                 <thead>
                   <tr>
                     <th className="border px-6 text-center">Column A</th>
@@ -142,7 +142,7 @@ export default function CSC311() {
             Normalize the following table into First, Second, Third, and Fourth
             Normal Forms:
             <div className="overflow-auto">
-              <table className="mb-2 mt-2 border-collapse border">
+              <table className="mt-2 mb-2 border-collapse border">
                 <thead>
                   <tr>
                     <th className="border px-6 text-center">Cust_Name</th>
@@ -288,7 +288,7 @@ export default function CSC311() {
       <li>
         <h4 className="mb-2 font-bold">Question 6</h4>
         <div className="overflow-auto">
-          <table className="mb-2 mt-2 border-collapse border">
+          <table className="mt-2 mb-2 border-collapse border">
             <thead>
               <tr>
                 <th className="border px-6 text-center">Cust_ID</th>

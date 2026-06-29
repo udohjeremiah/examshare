@@ -107,7 +107,7 @@ export default function CSC303() {
             displayed below will be executed using the Shortest Job First (SIF)
             algorithm stating their Start time and Finish time?{" "}
             <strong className="whitespace-nowrap">(5 marks)</strong>
-            <table className="mb-2 mt-2 border-collapse border">
+            <table className="mt-2 mb-2 border-collapse border">
               <thead>
                 <tr>
                   <th className="border px-6 text-center">S/N</th>

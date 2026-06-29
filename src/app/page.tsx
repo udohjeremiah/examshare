@@ -12,9 +12,9 @@ export default async function Home() {
 
   return (
     <>
-      <section className="flex flex-col items-center gap-6 bg-sky-50 px-4 py-20 dark:bg-sky-900 md:px-10 lg:flex-row">
+      <section className="flex flex-col items-center gap-6 bg-sky-50 px-4 py-20 md:px-10 lg:flex-row dark:bg-sky-900">
         <div className="flex flex-col gap-6">
-          <h2 className="text-center text-4xl font-extrabold text-slate-900 dark:text-white md:text-5xl lg:text-left lg:text-7xl">
+          <h2 className="text-center text-4xl font-extrabold text-slate-900 md:text-5xl lg:text-left lg:text-7xl dark:text-white">
             ELEVATE YOUR EXAMS
           </h2>
           <p className="max-w-prose text-center md:text-lg lg:text-left lg:text-xl">
@@ -61,7 +61,7 @@ export default async function Home() {
                 <FaRegCompass size={25} />
                 <h3 className="text-xl">Past Goldmines</h3>
               </div>
-              <p className="ml-3 max-w-prose border-l border-sky-200 px-5 pb-6 pt-2 dark:border-sky-700">
+              <p className="ml-3 max-w-prose border-l border-sky-200 px-5 pt-2 pb-6 dark:border-sky-700">
                 There is nothing new under the sun. Explore questions from
                 earlier years and beyond, generously shared by individuals who
                 have taken these exams before you, to enhance your exam
@@ -73,7 +73,7 @@ export default async function Home() {
                 <LiaUsersSolid size={25} />
                 <h3 className="text-xl">Boost Learning</h3>
               </div>
-              <p className="ml-3 max-w-prose border-l border-sky-200 px-5 pb-6 pt-2 dark:border-sky-700">
+              <p className="ml-3 max-w-prose border-l border-sky-200 px-5 pt-2 pb-6 dark:border-sky-700">
                 Unlock the potential of collaborative learning. Share, discuss,
                 and learn from others&apos; answers to these past examination
                 questions.
@@ -84,7 +84,7 @@ export default async function Home() {
                 <BsGlobe size={25} />
                 <h3 className="text-xl">Help The Future</h3>
               </div>
-              <p className="ml-3 max-w-prose px-5 pb-6 pt-2">
+              <p className="ml-3 max-w-prose px-5 pt-2 pb-6">
                 Following the example set by generous individuals who shared
                 with you, assist future generations in their learning journey by
                 sharing your own past examination questions. This simple act
@@ -103,7 +103,7 @@ export default async function Home() {
         />
       </section>
 
-      <section className="flex flex-col gap-6 bg-sky-50 px-4 py-14 dark:bg-sky-900 md:px-10">
+      <section className="flex flex-col gap-6 bg-sky-50 px-4 py-14 md:px-10 dark:bg-sky-900">
         <div className="flex flex-col items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-sky-400 to-sky-600 p-12 text-white dark:from-sky-300 dark:to-sky-500 dark:text-sky-950">
           <h3 className="text-4xl font-extrabold">500+</h3>
           <p className="text-3xl font-medium">Institutions</p>
@@ -225,7 +225,7 @@ export default async function Home() {
       {!session && (
         <section
           id="join-now"
-          className="flex flex-col items-center gap-6 bg-gradient-to-br from-sky-50 via-sky-200 to-sky-500 px-4 py-14 dark:from-sky-500 dark:via-sky-700 dark:to-sky-900 md:px-10"
+          className="flex flex-col items-center gap-6 bg-gradient-to-br from-sky-50 via-sky-200 to-sky-500 px-4 py-14 md:px-10 dark:from-sky-500 dark:via-sky-700 dark:to-sky-900"
         >
           <div className="flex flex-col gap-6">
             <h2 className="text-center text-3xl font-extrabold text-slate-900 dark:text-white">

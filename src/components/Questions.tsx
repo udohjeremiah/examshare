@@ -36,7 +36,7 @@ export default function Questions({
     <QuestionsIdProvider id={id}>
       <article className="flex flex-col gap-4">
         <hgroup>
-          <h3 className="mb-4 text-xl font-semibold uppercase text-slate-900 dark:text-white">
+          <h3 className="mb-4 text-xl font-semibold text-slate-900 uppercase dark:text-white">
             department of {department}
             <br />
             college of {college}

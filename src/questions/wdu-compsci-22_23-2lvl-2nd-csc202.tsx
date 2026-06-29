@@ -69,7 +69,7 @@ export default function CSC202() {
           <li>
             Write an assembly language representation for the following C
             program segment: <br />
-            <pre className="mb-2 mt-2 block">
+            <pre className="mt-2 mb-2 block">
               <code>
                 sum = 0, i = 0, x = 10;
                 <br />
@@ -98,7 +98,7 @@ export default function CSC202() {
         <ol className="flex list-[lower-alpha] flex-col gap-2">
           <li>
             Identify the addressing mode in the following instructions:
-            <pre className="mb-2 mt-2 block">
+            <pre className="mt-2 mb-2 block">
               <code>
                 mov ax, 0ah
                 <br />
@@ -279,7 +279,7 @@ export default function CSC202() {
           <li>
             Write an assembly language representation for the following C
             program segment{" "}
-            <pre className="mb-2 mt-2 block">
+            <pre className="mt-2 mb-2 block">
               <code>
                 y1 = 25;
                 <br />

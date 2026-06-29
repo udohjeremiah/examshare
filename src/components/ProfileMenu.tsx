@@ -44,7 +44,7 @@ export default function ProfileMenu() {
       {showProfileMenu && (
         <ul
           ref={profileMenuRef}
-          className="absolute right-4 top-4 z-50 mt-8 space-y-2 rounded-lg bg-sky-50 px-1 py-2 text-sm font-semibold shadow-lg ring-1 ring-slate-900/10 dark:bg-sky-900 dark:ring-0 md:right-10"
+          className="absolute top-4 right-4 z-50 mt-8 space-y-2 rounded-lg bg-sky-50 px-1 py-2 text-sm font-semibold shadow-lg ring-1 ring-slate-900/10 md:right-10 dark:bg-sky-900 dark:ring-0"
         >
           <li className="flex items-center gap-2 rounded-lg px-2 py-1">
             <div className="relative h-10 w-10">

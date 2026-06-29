@@ -48,7 +48,7 @@ export default function CSC203() {
           <li>
             Copy and complete the table.{" "}
             <strong className="whitespace-nowrap">(5 marks)</strong>
-            <table className="mb-2 mt-2 border-collapse border">
+            <table className="mt-2 mb-2 border-collapse border">
               <thead>
                 <tr>
                   <th className="border px-6 text-center">Data Type</th>
@@ -182,7 +182,7 @@ export default function CSC203() {
           <li>
             Study the C++ code below and use it to answer the question that
             follows:
-            <pre className="mb-2 mt-2 block">
+            <pre className="mt-2 mb-2 block">
               <code>
                 #include &lt;iostream&gt;
                 <br />
@@ -256,7 +256,7 @@ export default function CSC203() {
           </li>
           <li>
             Given the array string
-            <pre className="mb-2 mt-2 block">
+            <pre className="mt-2 mb-2 block">
               <code>
                 letters[2][6] = &#123;&#123;&quot;I&quot;, &quot;J&quot;,
                 &quot;K&quot;, &quot;L&quot;, &quot;M&quot;,

@@ -86,7 +86,7 @@ export default function ACC201() {
             <h5 className="mb-2 font-bold">Question 1</h5>
             The following are extracted from READWELL Enterprises as at 31
             <sup>st</sup> July, 2019:
-            <table className="mb-2 mt-2 border">
+            <table className="mt-2 mb-2 border">
               <tbody>
                 <tr>
                   <td className="p-4">1/7/2019</td>
@@ -175,7 +175,7 @@ export default function ACC201() {
             general ledger and balanced at the end of each month. From the
             following details, show how these two control accounts will appear
             in the general ledger for the month of December 2018.
-            <div className="mb-4 mt-2 space-y-1">
+            <div className="mt-2 mb-4 space-y-1">
               <div className="flex items-center justify-between">
                 <p>At Dec. 2018</p>
                 <p>N</p>
@@ -197,7 +197,7 @@ export default function ACC201() {
                 <p>12,000</p>
               </div>
             </div>
-            <div className="mb-4 mt-2 space-y-1">
+            <div className="mt-2 mb-4 space-y-1">
               <div className="flex items-center justify-between">
                 <p>For the month of Dec. 2018</p>
                 <p>N</p>
@@ -323,7 +323,7 @@ export default function ACC201() {
             transferring N720,000 from his private current account into a bank
             account which he has opened for the business. His transactions for
             the month of January 2022 were as follows:
-            <div className="mb-4 mt-2 space-y-1">
+            <div className="mt-2 mb-4 space-y-1">
               <div className="flex items-center justify-between">
                 <p></p>
                 <p>N</p>

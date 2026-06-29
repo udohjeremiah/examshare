@@ -13,6 +13,7 @@ import { useTheme } from "@/providers/ThemeProvider";
 import useClickOutside from "@/hooks/useClickOutside";
 import { useSession } from "next-auth/react";
 import ProfileMenu from "./ProfileMenu";
+import { cn } from "@/lib/utils";
 
 export default function Header() {
   const [showMobileNav, setShowMobileNav] = useState(false);
@@ -32,7 +33,7 @@ export default function Header() {
   const { data: session } = useSession();
 
   return (
-    <header className="sticky top-0 z-40 flex items-center justify-between bg-white/80 px-4 py-2 text-slate-900 shadow-[inset_0_-1px_0_0] shadow-sky-100 backdrop-blur-sm dark:bg-slate-800/80 dark:text-slate-50 dark:shadow-sky-800 md:px-10">
+    <header className="sticky top-0 z-40 flex items-center justify-between bg-white/80 px-4 py-2 text-slate-900 shadow-[inset_0_-1px_0_0] shadow-sky-100 backdrop-blur-sm md:px-10 dark:bg-slate-800/80 dark:text-slate-50 dark:shadow-sky-800">
       <Link href="/" className="hover:text-sky-500 dark:hover:text-sky-600">
         <h1 className="text-lg font-bold">EXAMSHARE</h1>
       </Link>
@@ -48,14 +49,15 @@ export default function Header() {
           </button>
           <nav
             aria-hidden={showMobileNav}
-            className={`fixed right-0 top-0 z-50 flex min-h-screen w-screen bg-slate-900/70 transition-opacity duration-1000 ease-in-out dark:bg-slate-700/70 ${
-              showMobileNav ? "visible opacity-100" : "invisible opacity-0"
-            }`}
+            className={cn(
+              "fixed top-0 right-0 z-50 flex min-h-screen w-screen bg-slate-900/70 transition-opacity duration-1000 ease-in-out dark:bg-slate-700/70",
+              showMobileNav ? "visible opacity-100" : "invisible opacity-0",
+            )}
           >
             <div className="w-1/4"></div>
             <div
               ref={mobileNavRef}
-              className="flex min-h-screen w-3/4 flex-col gap-8 bg-sky-50 px-4 py-6 text-slate-600 dark:bg-sky-900 dark:text-slate-300 md:px-10"
+              className="flex min-h-screen w-3/4 flex-col gap-8 bg-sky-50 px-4 py-6 text-slate-600 md:px-10 dark:bg-sky-900 dark:text-slate-300"
             >
               <button
                 aria-label="close menu"
@@ -121,7 +123,7 @@ export default function Header() {
             </div>
           </nav>
         </div>
-        <div className="flex grow items-center font-medium text-slate-600 dark:text-slate-300 max-lg:hidden">
+        <div className="flex grow items-center font-medium text-slate-600 max-lg:hidden dark:text-slate-300">
           <nav className="grow">
             <ul className="flex items-center justify-evenly text-center text-sm">
               <li className="hover:text-sky-500 dark:hover:text-sky-600">
@@ -162,7 +164,7 @@ export default function Header() {
               ref={themeNavRef}
               role="listbox"
               aria-label="theme options"
-              className="absolute right-4 top-4 z-50 mt-8 w-40 rounded-lg bg-sky-50 px-1 py-2 text-sm font-semibold shadow-lg ring-1 ring-slate-900/10 dark:bg-sky-900 dark:ring-0 md:right-10"
+              className="absolute top-4 right-4 z-50 mt-8 w-40 rounded-lg bg-sky-50 px-1 py-2 text-sm font-semibold shadow-lg ring-1 ring-slate-900/10 md:right-10 dark:bg-sky-900 dark:ring-0"
             >
               <li
                 role="option"
@@ -180,9 +182,10 @@ export default function Header() {
                   }
                 }}
                 tabIndex={0}
-                className={`mb-1 flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 hover:bg-sky-100 dark:hover:bg-sky-800 ${
-                  theme === "light" && "font-extrabold text-sky-400"
-                }`}
+                className={cn(
+                  "mb-1 flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 hover:bg-sky-100 dark:hover:bg-sky-800",
+                  theme === "light" && "font-extrabold text-sky-400",
+                )}
               >
                 <FiSun size={25} />
                 <span>Light</span>
@@ -203,9 +206,10 @@ export default function Header() {
                   }
                 }}
                 tabIndex={0}
-                className={`mb-1 flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 hover:bg-sky-100 dark:hover:bg-sky-800 ${
-                  theme === "dark" && "font-extrabold text-sky-400"
-                }`}
+                className={cn(
+                  "mb-1 flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 hover:bg-sky-100 dark:hover:bg-sky-800",
+                  theme === "dark" && "font-extrabold text-sky-400",
+                )}
               >
                 <PiMoonStarsBold size={25} />
                 <span>Dark</span>
@@ -226,9 +230,10 @@ export default function Header() {
                   }
                 }}
                 tabIndex={0}
-                className={`mb-1 flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 hover:bg-sky-100 dark:hover:bg-sky-800 ${
-                  theme === "os" && "font-extrabold text-sky-400"
-                }`}
+                className={cn(
+                  "mb-1 flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 hover:bg-sky-100 dark:hover:bg-sky-800",
+                  theme === "os" && "font-extrabold text-sky-400",
+                )}
               >
                 <WiMoonAltThirdQuarter size={25} />
                 <span>OS Default</span>

@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-pt-16">
-      <body className="flex min-h-screen max-w-[100vw] flex-col bg-white font-system text-slate-600 antialiased dark:bg-slate-800 dark:text-slate-300">
+      <body className="font-system flex min-h-screen max-w-[100vw] flex-col bg-white text-slate-600 antialiased dark:bg-slate-800 dark:text-slate-300">
         <AuthProvider>
           <ThemeProvider>
             <Header />

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center gap-6 px-4 py-20 shadow-[inset_0_-1px_0_0] shadow-sky-100 dark:shadow-sky-800 md:px-10">
+    <div className="flex flex-col items-center justify-center gap-6 px-4 py-20 shadow-[inset_0_-1px_0_0] shadow-sky-100 md:px-10 dark:shadow-sky-800">
       <h2 className="text-4xl font-bold">404 Error</h2>
       <Image src="/404.svg" alt="" width={300} height={303} priority />
       <p className="max-w-prose text-center">

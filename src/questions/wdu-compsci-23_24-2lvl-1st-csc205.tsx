@@ -160,7 +160,7 @@ export default function CSC205() {
             Give the table below, fill in the expected outcome for A and B.{" "}
             <strong className="whitespace-nowrap">(5 marks)</strong>
             <div className="overflow-auto">
-              <table className="mb-2 mt-2 border-collapse border">
+              <table className="mt-2 mb-2 border-collapse border">
                 <thead>
                   <tr>
                     <th className="border px-6 text-center">A B</th>

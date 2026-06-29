@@ -121,7 +121,7 @@ export default function ECO101() {
             what unit equilibrium is established, given price for commodity A as
             #4.00 and commodity B as #2.00 and income (Y) as #24.00{" "}
             <div className="overflow-auto">
-              <table className="mb-2 mt-2">
+              <table className="mt-2 mb-2">
                 <thead>
                   <tr>
                     <th scope="col" className="border px-6 text-center">

@@ -143,7 +143,7 @@ export default function ContactUsForm() {
           <div className="w-full">
             <label
               htmlFor="first-name"
-              className="block max-w-max font-medium leading-6"
+              className="block max-w-max leading-6 font-medium"
             >
               First Name <span className="text-red-500">*</span>
             </label>
@@ -156,7 +156,7 @@ export default function ContactUsForm() {
               placeholder="e.g., Ozakpolor"
               value={form.firstName}
               onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             />
             {formError.firstName && (
               <span className="text-xs text-red-500">
@@ -167,7 +167,7 @@ export default function ContactUsForm() {
           <div className="w-full">
             <label
               htmlFor="last-name"
-              className="block max-w-max font-medium leading-6"
+              className="block max-w-max leading-6 font-medium"
             >
               Last Name <span className="text-red-500">*</span>
             </label>
@@ -180,7 +180,7 @@ export default function ContactUsForm() {
               placeholder="Emmanuel"
               value={form.lastName}
               onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             />
             {formError.lastName && (
               <span className="text-xs text-red-500">
@@ -193,7 +193,7 @@ export default function ContactUsForm() {
           <div className="w-full">
             <label
               htmlFor="email"
-              className="block max-w-max font-medium leading-6"
+              className="block max-w-max leading-6 font-medium"
             >
               Email <span className="text-red-500">*</span>
             </label>
@@ -207,7 +207,7 @@ export default function ContactUsForm() {
               placeholder="name@domain.com"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             />
             {formError.email && (
               <span className="text-xs text-red-500">
@@ -218,7 +218,7 @@ export default function ContactUsForm() {
           <div className="w-full">
             <label
               htmlFor="phone-number"
-              className="block max-w-max font-medium leading-6"
+              className="block max-w-max leading-6 font-medium"
             >
               Phone Number
             </label>
@@ -233,7 +233,7 @@ export default function ContactUsForm() {
               onChange={(e) =>
                 setForm({ ...form, phoneNumber: e.target.value })
               }
-              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             />
           </div>
         </div>
@@ -241,7 +241,7 @@ export default function ContactUsForm() {
           <div className="mb-4">
             <label
               htmlFor="subject"
-              className="block max-w-max font-medium leading-6"
+              className="block max-w-max leading-6 font-medium"
             >
               Subject <span className="text-red-500">*</span>
             </label>
@@ -254,7 +254,7 @@ export default function ContactUsForm() {
               placeholder="e.g., I want more information about you"
               value={form.subject}
               onChange={(e) => setForm({ ...form, subject: e.target.value })}
-              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             />
             {formError.subject && (
               <span className="text-xs text-red-500">
@@ -265,7 +265,7 @@ export default function ContactUsForm() {
           <div>
             <label
               htmlFor="message"
-              className="block max-w-max font-medium leading-6"
+              className="block max-w-max leading-6 font-medium"
             >
               Message <span className="text-red-500">*</span>
             </label>
@@ -276,7 +276,7 @@ export default function ContactUsForm() {
               placeholder="Describe your message here..."
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="mt-2 block w-full resize-none rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:text-slate-900 sm:text-sm sm:leading-6"
+              className="mt-2 block w-full resize-none rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6 dark:text-slate-900"
             ></textarea>
             {formError.message && (
               <span className="text-xs text-red-500">

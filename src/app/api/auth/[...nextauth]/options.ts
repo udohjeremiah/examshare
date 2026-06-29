@@ -13,8 +13,8 @@ export const options: NextAuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       async authorize(credentials): Promise<any> {
-        // eslint-disable-line @typescript-eslint/no-explicit-any
         if (!credentials?.email || !credentials?.password) return null;
 
         try {

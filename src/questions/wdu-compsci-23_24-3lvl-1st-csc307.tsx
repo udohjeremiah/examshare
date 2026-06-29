@@ -71,7 +71,7 @@ export default function CSC307() {
               <li>
                 Give a formal description of Context Free Grammer (CFG). Assume
                 that the production rule for a regular expression is as follows:
-                <pre className="mb-2 mt-2 block">
+                <pre className="mt-2 mb-2 block">
                   <code>
                     S -&gt; bS..................Rule 1
                     <br />S -&gt; e...................Rule 2
@@ -114,7 +114,7 @@ export default function CSC307() {
           </li>
           <li>
             Consider the Grammer:
-            <pre className="mb-2 mt-2 block">
+            <pre className="mt-2 mb-2 block">
               <code>
                 S -&gt; aAS/aSS/e..................Rule 1
                 <br />A -&gt; SbA/ba.....................Rule 2
@@ -155,7 +155,7 @@ export default function CSC307() {
           </li>
           <li>
             The production rule for a regular expression is given as follows:
-            <pre className="mb-2 mt-2 block">
+            <pre className="mt-2 mb-2 block">
               <code>
                 S -&gt; AB/e..................Rule 1
                 <br />A -&gt; aB....................Rule 2

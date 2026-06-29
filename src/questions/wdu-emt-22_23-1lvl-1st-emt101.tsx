@@ -429,7 +429,7 @@ export default function EMT101() {
         <h4 className="mb-2 font-bold">Question 68</h4>
         Match the following classes of algae to their common names:
         <div className="overflow-auto">
-          <table className="mb-2 mt-2">
+          <table className="mt-2 mb-2">
             <tbody>
               <tr>
                 <td className="border px-6">Chlorophyceae</td>

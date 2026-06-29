@@ -97,7 +97,7 @@ export default function CSC209() {
           <li>
             Consider the Assembly language code below and use it to answer the
             question that follows:
-            <code className="mb-2 mt-2 block">
+            <code className="mt-2 mb-2 block">
               READ X<br />
               ADD Y<br />
               STORE Z<br />

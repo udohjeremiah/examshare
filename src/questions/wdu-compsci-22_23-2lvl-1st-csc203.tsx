@@ -39,7 +39,7 @@ export default function CSC203() {
           <li>
             Consider the following C++ program and use it to answer the question
             that follows: <br />
-            <pre className="mb-2 mt-2 block">
+            <pre className="mt-2 mb-2 block">
               <code>
                 &#47;&#47; This program computes the area of a circle
                 <br />
@@ -108,7 +108,7 @@ export default function CSC203() {
 
           <li>
             Write a C++ program that generates the table below
-            <table className="mb-2 mt-2 border-collapse border">
+            <table className="mt-2 mb-2 border-collapse border">
               <thead>
                 <tr>
                   <th className="border px-6 text-center">Year</th>
@@ -207,7 +207,7 @@ export default function CSC203() {
             Write a C++ program that obtains test score and assigns grade
             according to the following information. The test score is an integer
             from 1 to 100
-            <table className="mb-2 mt-2 border-collapse border">
+            <table className="mt-2 mb-2 border-collapse border">
               <thead>
                 <tr>
                   <th className="border px-6 text-center">Test Score</th>
