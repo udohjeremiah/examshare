@@ -90,10 +90,9 @@ export const EditorHeader = ({ editor }) => {
       <button
         onClick={() => editor.chain().focus().toggleUnderline().run()}
         disabled={!editor.can().chain().focus().toggleUnderline().run()}
-        className={`"hover:bg-sky-100 dark:active:bg-sky-950"
-          rounded p-2 active:bg-sky-200 dark:hover:bg-sky-800 ${
-            editor.isActive("underline") && "bg-sky-200 dark:bg-sky-950"
-          }`}
+        className={`"hover:bg-sky-100 dark:active:bg-sky-950" rounded p-2 active:bg-sky-200 dark:hover:bg-sky-800 ${
+          editor.isActive("underline") && "bg-sky-200 dark:bg-sky-950"
+        }`}
       >
         <MdFormatUnderlined size={20} />
         <span className="sr-only">Underline</span>

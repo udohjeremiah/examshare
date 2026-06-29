@@ -6,15 +6,24 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "lint-staged": {
-    "*.{js,ts,jsx,tsx,css,md}": [
-      "pnpm run format",
-      "pnpm run lint ."
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,md,json,yml,yaml}": [
+      "prettier --write"
     ]
   },
   "dependencies": {
@@ -43,16 +52,24 @@
     "swr": "^2.2.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21",
+    "@commitlint/config-conventional": "^21",
+    "@eslint/eslintrc": "^3.3.5",
+    "@next/eslint-plugin-next": "^16",
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.0.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.1",
-    "eslint-config-prettier": "^9.0.0",
-    "husky": "^8.0.0",
-    "lint-staged": "^15.0.2",
+    "commitizen": "^4.3.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^9",
+    "eslint-config-prettier": "^10",
+    "eslint-plugin-jsx-a11y": "^6",
+    "eslint-plugin-react": "^7",
+    "eslint-plugin-react-hooks": "^5",
+    "husky": "^9",
+    "lint-staged": "^17",
     "postcss": "^8",
     "prettier": "^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.5.6",
+    "prettier-plugin-tailwindcss": "^0.8",
     "tailwindcss": "^3.3.0"
   }
 }
