@@ -1,3 +1,4 @@
+import { env } from "@/env";
 import { dbClient } from "@/lib/db-client";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -16,8 +17,8 @@ export async function GET(
     }
 
     const collection = dbClient
-      .db(process.env.MONGODB_DATABASE)
-      .collection(process.env.MONGODB_COLLECTION_ANSWERS);
+      .db(env.MONGODB_DATABASE)
+      .collection(env.MONGODB_COLLECTION_ANSWERS);
 
     const answers = await collection.find({ questionId: id }).toArray();
 
@@ -54,8 +55,8 @@ export async function POST(
     }
 
     const answersCollection = dbClient
-      .db(process.env.MONGODB_DATABASE)
-      .collection(process.env.MONGODB_COLLECTION_ANSWERS);
+      .db(env.MONGODB_DATABASE)
+      .collection(env.MONGODB_COLLECTION_ANSWERS);
 
     // Check if the user has already answered this question
     if (
@@ -116,8 +117,8 @@ export async function PATCH(
     }
 
     const answersCollection = dbClient
-      .db(process.env.MONGODB_DATABASE)
-      .collection(process.env.MONGODB_COLLECTION_ANSWERS);
+      .db(env.MONGODB_DATABASE)
+      .collection(env.MONGODB_COLLECTION_ANSWERS);
 
     const { userId, htmlContent } = await request.json();
 
@@ -184,8 +185,8 @@ export async function DELETE(
     }
 
     const answersCollection = dbClient
-      .db(process.env.MONGODB_DATABASE)
-      .collection(process.env.MONGODB_COLLECTION_ANSWERS);
+      .db(env.MONGODB_DATABASE)
+      .collection(env.MONGODB_COLLECTION_ANSWERS);
 
     const result = await answersCollection.deleteOne({
       questionId: id,

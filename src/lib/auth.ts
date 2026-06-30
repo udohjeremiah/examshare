@@ -1,3 +1,4 @@
+import { env } from "@/env";
 import { dbClient } from "@/lib/db-client";
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
@@ -5,7 +6,7 @@ import { nextCookies } from "better-auth/next-js";
 import { sendEmail } from "./email";
 
 export const auth = betterAuth({
-  database: mongodbAdapter(dbClient.db(process.env.MONGODB_DATABASE), {
+  database: mongodbAdapter(dbClient.db(env.MONGODB_DATABASE), {
     client: dbClient,
   }),
   emailAndPassword: {

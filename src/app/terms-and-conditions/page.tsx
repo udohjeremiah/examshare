@@ -1,3 +1,4 @@
+import { env } from "@/env";
 import BreadCrumb from "@/components/bread-crumb";
 import Link from "next/link";
 
@@ -182,10 +183,10 @@ export default function TermsAndConditions() {
           than as set out in this section or elsewhere in our Legal Terms,
           please address your request to:{" "}
           <Link
-            href={`mailto:${process.env.NEXT_PUBLIC_PROJECT_EMAIL}`}
+            href={`mailto:${env.NEXT_PUBLIC_PROJECT_EMAIL}`}
             className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
           >
-            {process.env.NEXT_PUBLIC_PROJECT_EMAIL}
+            {env.NEXT_PUBLIC_PROJECT_EMAIL}
           </Link>
           . If we ever grant you permission to post, reproduce, or publicly
           display any part of our Services or Content, you must identify us as
@@ -887,10 +888,10 @@ export default function TermsAndConditions() {
             <p>
               By email:{" "}
               <Link
-                href={`mailto:${process.env.NEXT_PUBLIC_PROJECT_EMAIL}`}
+                href={`mailto:${env.NEXT_PUBLIC_PROJECT_EMAIL}`}
                 className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
               >
-                {process.env.NEXT_PUBLIC_PROJECT_EMAIL}
+                {env.NEXT_PUBLIC_PROJECT_EMAIL}
               </Link>
             </p>
           </li>
