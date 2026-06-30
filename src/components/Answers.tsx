@@ -4,7 +4,7 @@ import type { AnswerData } from "./answer";
 import { apiClient } from "@/lib/api-client";
 import { useQuestionsId } from "@/providers/questions-id-provider";
 import { useState } from "react";
-import useSWR, { useSWRConfig } from "swr";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Answer from "./answer";
 import RichTextEditor from "./rich-text-editor";
 import { authClient } from "@/lib/auth-client";
@@ -26,28 +26,20 @@ export default function Answers({ questionNumber }: AnswersProps) {
   const questionsId = useQuestionsId();
   const questionId = `${questionsId}_${questionNumber}`;
 
-  const { mutate } = useSWRConfig();
-
-  const fetcher = async (key: string) => {
-    try {
-      const response = await apiClient.get(key);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const result: { answers: AnswerData[] } = await response.json();
-      return result.answers;
-    } catch (e) {
-      console.error("An error occured while fetching the data: ", e);
-    }
-  };
+  const queryClient = useQueryClient();
 
   const {
     data: answers,
     error,
     isLoading,
-  } = useSWR(`answers/${questionId}`, fetcher);
+  } = useQuery({
+    queryKey: ["answers", questionId],
+    queryFn: async () => {
+      const response = await apiClient.get(`answers/${questionId}`);
+      const result: { answers: AnswerData[] } = await response.json();
+      return result.answers;
+    },
+  });
 
   const handleShowButton = async () => {
     if (!session) {
@@ -91,7 +83,9 @@ export default function Answers({ questionNumber }: AnswersProps) {
       setIsSubmitting(false);
       setHtmlContent("");
       setAddAnswer(false);
-      await mutate(`answers/${questionId}`);
+      await queryClient.invalidateQueries({
+        queryKey: ["answers", questionId],
+      });
     } catch (e) {
       console.error(e);
     }

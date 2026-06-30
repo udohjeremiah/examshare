@@ -2,7 +2,7 @@
 
 import { apiClient } from "@/lib/api-client";
 import { useState } from "react";
-import { useSWRConfig } from "swr";
+import { useQueryClient } from "@tanstack/react-query";
 
 import RichTextEditor from "./rich-text-editor";
 import { authClient } from "@/lib/auth-client";
@@ -27,7 +27,7 @@ interface AnswerProps {
 
 export default function Answer({ questionId, answer }: AnswerProps) {
   const { data: session } = authClient.useSession();
-  const { mutate } = useSWRConfig();
+  const queryClient = useQueryClient();
   const [htmlContent, setHtmlContent] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -53,7 +53,9 @@ export default function Answer({ questionId, answer }: AnswerProps) {
 
       setIsSaving(false);
       setIsEditing(false);
-      await mutate(`answers/${questionId}`);
+      await queryClient.invalidateQueries({
+        queryKey: ["answers", questionId],
+      });
     } catch (e) {
       console.log(e);
     }
@@ -81,7 +83,9 @@ export default function Answer({ questionId, answer }: AnswerProps) {
       }
 
       setIsDeleting(false);
-      await mutate(`answers/${questionId}`);
+      await queryClient.invalidateQueries({
+        queryKey: ["answers", questionId],
+      });
     } catch (e) {
       console.error(e);
     }

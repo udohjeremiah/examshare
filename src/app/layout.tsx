@@ -1,6 +1,7 @@
 import "./globals.css";
 import AuthProvider from "@/providers/auth-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
+import QueryProvider from "@/providers/query-client-provider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
@@ -18,13 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-pt-16">
       <body className="font-system flex min-h-screen max-w-[100vw] flex-col bg-white text-slate-600 antialiased dark:bg-slate-800 dark:text-slate-300">
-        <AuthProvider>
-          <ThemeProvider>
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </ThemeProvider>
-        </AuthProvider>
+        <QueryProvider>
+          <AuthProvider>
+            <ThemeProvider>
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </ThemeProvider>
+          </AuthProvider>
+        </QueryProvider>
       </body>
     </html>
   );
