@@ -1,4 +1,5 @@
-import { env } from "@/env";
+import { env } from "@/env/server";
+import { env as publicEnv } from "@/env/client";
 import nodemailer from "nodemailer";
 
 const transport = nodemailer.createTransport({
@@ -6,7 +7,7 @@ const transport = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: env.NEXT_PUBLIC_PROJECT_EMAIL,
+    user: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
     pass: env.PROJECT_EMAIL_PASSWORD,
   },
 });
@@ -21,7 +22,7 @@ export async function sendEmail({
   html: string;
 }) {
   await transport.sendMail({
-    from: env.NEXT_PUBLIC_PROJECT_EMAIL,
+    from: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
     to,
     subject,
     html,

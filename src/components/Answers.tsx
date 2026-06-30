@@ -1,5 +1,7 @@
 "use client";
 
+import type { AnswerData } from "./answer";
+import { apiClient } from "@/lib/api-client";
 import { useQuestionsId } from "@/providers/questions-id-provider";
 import { useState } from "react";
 import useSWR, { useSWRConfig } from "swr";
@@ -28,18 +30,13 @@ export default function Answers({ questionNumber }: AnswersProps) {
 
   const fetcher = async (key: string) => {
     try {
-      const response = await fetch(key, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
+      const response = await apiClient.get(key);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const result = await response.json();
+      const result: { answers: AnswerData[] } = await response.json();
       return result.answers;
     } catch (e) {
       console.error("An error occured while fetching the data: ", e);
@@ -50,7 +47,7 @@ export default function Answers({ questionNumber }: AnswersProps) {
     data: answers,
     error,
     isLoading,
-  } = useSWR(`/api/answers/${questionId}`, fetcher);
+  } = useSWR(`answers/${questionId}`, fetcher);
 
   const handleShowButton = async () => {
     if (!session) {
@@ -75,18 +72,13 @@ export default function Answers({ questionNumber }: AnswersProps) {
     try {
       setIsSubmitting(true);
 
-      const response = await fetch(`/api/answers/${questionId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
+      const response = await apiClient.post(`answers/${questionId}`, {
+        json: {
           userId: session?.user?.id,
           userName: session?.user?.name,
           userImage: session?.user?.image,
           htmlContent: content,
-        }),
+        },
       });
 
       if (!response.ok) {
@@ -99,7 +91,7 @@ export default function Answers({ questionNumber }: AnswersProps) {
       setIsSubmitting(false);
       setHtmlContent("");
       setAddAnswer(false);
-      await mutate(`/api/answers/${questionId}`);
+      await mutate(`answers/${questionId}`);
     } catch (e) {
       console.error(e);
     }
@@ -121,23 +113,13 @@ export default function Answers({ questionNumber }: AnswersProps) {
           {error && <div>failed to load</div>}
           {isLoading && <div>loading...</div>}
           <div className="space-y-2">
-            {answers?.length > 0 && (
+            {answers && answers.length > 0 && (
               <ol>
-                {answers.map(
-                  (answer: {
-                    _id: string;
-                    userId: string;
-                    userImage: string;
-                    userName: string;
-                    createdAt: string;
-                    edited: boolean;
-                    answer: string;
-                  }) => (
-                    <li key={answer._id} className="mb-4 flex gap-2 py-2">
-                      <Answer questionId={questionId} answer={answer} />
-                    </li>
-                  ),
-                )}
+                {answers.map((answer: AnswerData) => (
+                  <li key={answer._id} className="mb-4 flex gap-2 py-2">
+                    <Answer questionId={questionId} answer={answer} />
+                  </li>
+                ))}
               </ol>
             )}
 

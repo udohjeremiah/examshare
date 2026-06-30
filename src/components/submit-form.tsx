@@ -1,5 +1,6 @@
 "use client";
 
+import { apiClient } from "@/lib/api-client";
 import { useState, useRef, useEffect, useMemo } from "react";
 import nigerianUniversities from "@/utils/nigerian-universities";
 import { IoClose } from "react-icons/io5";
@@ -153,8 +154,7 @@ export default function SubmitPastQuestionForm() {
       formData.append("semester", form.semester);
       formData.append("pastQuestion", form.pastQuestion!);
 
-      const response = await fetch("/api/submit-past-question", {
-        method: "POST",
+      const response = await apiClient.post("submit-past-question", {
         body: formData,
       });
 

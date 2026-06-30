@@ -1,4 +1,5 @@
-import { env } from "@/env";
+import { env } from "@/env/server";
+import { env as publicEnv } from "@/env/client";
 import { NextRequest, NextResponse } from "next/server";
 import { render } from "@react-email/components";
 import SubmitPastQuestionEmail from "@/emails/submit-past-question-email";
@@ -55,14 +56,14 @@ export async function POST(request: NextRequest) {
       port: 465,
       secure: true,
       auth: {
-        user: env.NEXT_PUBLIC_PROJECT_EMAIL,
+        user: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
         pass: env.PROJECT_EMAIL_PASSWORD,
       },
     });
 
     const mailOptionsAdmin = {
-      from: env.NEXT_PUBLIC_PROJECT_EMAIL,
-      to: env.NEXT_PUBLIC_PROJECT_EMAIL,
+      from: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
+      to: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
       // cc: email, (uncomment this line if you want to send a copy to the sender)
       subject: String(nameOfInstitution),
       text: `${firstName} ${lastName}`,
@@ -88,7 +89,7 @@ export async function POST(request: NextRequest) {
     };
 
     const mailOptionsUser = {
-      from: env.NEXT_PUBLIC_PROJECT_EMAIL,
+      from: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
       to: email,
       subject: "Past Question Submitted Successfully",
       html: SubmitPastQuestionEmailHtml,

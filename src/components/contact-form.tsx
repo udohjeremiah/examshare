@@ -1,5 +1,6 @@
 "use client";
 
+import { apiClient } from "@/lib/api-client";
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import { IoClose } from "react-icons/io5";
 
@@ -98,13 +99,8 @@ export default function ContactUsForm() {
 
       setIsFormSubmitting(true);
 
-      const response = await fetch("/api/contact-us", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({ ...form }),
+      const response = await apiClient.post("contact-us", {
+        json: { ...form },
       });
 
       if (!response.ok) {

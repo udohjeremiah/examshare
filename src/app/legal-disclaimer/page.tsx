@@ -1,4 +1,4 @@
-import { env } from "@/env";
+import { env } from "@/env/client";
 import BreadCrumb from "@/components/bread-crumb";
 import Link from "next/link";
 

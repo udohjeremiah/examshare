@@ -1,4 +1,4 @@
-import { createEnv } from "@t3-oss/env-core";
+import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
 export const env = createEnv({
@@ -10,10 +10,5 @@ export const env = createEnv({
     BETTER_AUTH_SECRET: z.string().min(1),
     BETTER_AUTH_URL: z.url(),
   },
-  client: {
-    NEXT_PUBLIC_PROJECT_EMAIL: z.string().min(1),
-  },
-  clientPrefix: "NEXT_PUBLIC_",
-  runtimeEnv: process.env,
-  emptyStringAsUndefined: true,
+  experimental__runtimeEnv: process.env,
 });

@@ -1,4 +1,4 @@
-import { env } from "@/env";
+import { env } from "@/env/server";
 import { dbClient } from "@/lib/db-client";
 import { NextRequest, NextResponse } from "next/server";
 

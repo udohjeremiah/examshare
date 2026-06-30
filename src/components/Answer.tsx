@@ -1,5 +1,6 @@
 "use client";
 
+import { apiClient } from "@/lib/api-client";
 import { useState } from "react";
 import { useSWRConfig } from "swr";
 
@@ -9,7 +10,7 @@ import HTMLReactParser from "html-react-parser";
 import Image from "next/image";
 import InlineSVG from "react-inlinesvg";
 
-interface AnswerData {
+export interface AnswerData {
   _id: string;
   userId: string;
   userImage: string;
@@ -36,17 +37,12 @@ export default function Answer({ questionId, answer }: AnswerProps) {
     try {
       setIsSaving(true);
 
-      const response = await fetch(`/api/answers/${questionId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
+      const response = await apiClient.patch(`answers/${questionId}`, {
+        json: {
           questionUserId: answer.userId,
           userId: session?.user?.id,
           htmlContent: content,
-        }),
+        },
       });
 
       if (!response.ok) {
@@ -57,7 +53,7 @@ export default function Answer({ questionId, answer }: AnswerProps) {
 
       setIsSaving(false);
       setIsEditing(false);
-      await mutate(`/api/answers/${questionId}`);
+      await mutate(`answers/${questionId}`);
     } catch (e) {
       console.log(e);
     }
@@ -75,13 +71,8 @@ export default function Answer({ questionId, answer }: AnswerProps) {
 
       setIsDeleting(true);
 
-      const response = await fetch(`/api/answers/${questionId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({ userId: session?.user?.id }),
+      const response = await apiClient.delete(`answers/${questionId}`, {
+        json: { userId: session?.user?.id },
       });
 
       if (!response.ok) {
@@ -90,7 +81,7 @@ export default function Answer({ questionId, answer }: AnswerProps) {
       }
 
       setIsDeleting(false);
-      await mutate(`/api/answers/${questionId}`);
+      await mutate(`answers/${questionId}`);
     } catch (e) {
       console.error(e);
     }
