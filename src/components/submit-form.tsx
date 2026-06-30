@@ -1,23 +1,24 @@
 "use client";
 
-import { apiClient } from "@/lib/api-client";
-import { useState, useRef, useEffect, useMemo } from "react";
-import nigerianUniversities from "@/utils/nigerian-universities";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { IoClose } from "react-icons/io5";
 
-export default function SubmitPastQuestionForm() {
+import { apiClient } from "@/lib/api-client";
+import { nigerianUniversities } from "@/utils/nigerian-universities";
+
+export function SubmitForm() {
   const [form, setForm] = useState({
+    department: "",
+    email: "",
     firstName: "",
     lastName: "",
-    email: "",
-    phoneNumber: "",
-    nameOfInstitution: "",
-    statusAtInstitution: "",
-    department: "",
     level: "",
-    session: "",
+    nameOfInstitution: "",
+    pastQuestion: undefined as File | undefined,
+    phoneNumber: "",
     semester: "",
-    pastQuestion: null as File | null,
+    session: "",
+    statusAtInstitution: "",
   });
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
@@ -34,17 +35,17 @@ export default function SubmitPastQuestionForm() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const formRef: any = useMemo(
     () => ({
+      department: departmentRef,
+      email: emailRef,
       firstName: firstNameRef,
       lastName: lastNameRef,
-      email: emailRef,
-      phoneNumber: phoneNumberRef,
-      nameOfInstitution: nameOfInstitutionRef,
-      statusAtInstitution: statusAtInstitutionRef,
-      department: departmentRef,
       level: levelRef,
-      session: sessionRef,
-      semester: semesterRef,
+      nameOfInstitution: nameOfInstitutionRef,
       pastQuestion: pastQuestionRef,
+      phoneNumber: phoneNumberRef,
+      semester: semesterRef,
+      session: sessionRef,
+      statusAtInstitution: statusAtInstitutionRef,
     }),
     [],
   );
@@ -58,8 +59,8 @@ export default function SubmitPastQuestionForm() {
     // Find the first input field with an error and focus on it
     for (const fieldName in formError) {
       if (
-        formError[fieldName] &&
-        formRef[fieldName] &&
+        Object.hasOwn(formError, fieldName) &&
+        Object.hasOwn(formRef, fieldName) &&
         formRef[fieldName].current
       ) {
         formRef[fieldName].current.focus();
@@ -69,65 +70,65 @@ export default function SubmitPastQuestionForm() {
   }, [formError, formRef]);
 
   const handleValidation = () => {
-    const tempErrors: Record<string, boolean> = {};
+    const temporaryErrors: Record<string, boolean> = {};
     let isValid = true;
 
-    if (form.firstName.trim().length <= 0) {
-      tempErrors["firstName"] = true;
+    if (form.firstName.trim().length === 0) {
+      temporaryErrors["firstName"] = true;
       isValid = false;
     }
 
-    if (form.lastName.trim().length <= 0) {
-      tempErrors["lastName"] = true;
+    if (form.lastName.trim().length === 0) {
+      temporaryErrors["lastName"] = true;
       isValid = false;
     }
 
-    if (form.email.trim().length <= 0) {
-      tempErrors["email"] = true;
+    if (form.email.trim().length === 0) {
+      temporaryErrors["email"] = true;
       isValid = false;
     }
 
-    if (form.nameOfInstitution.trim().length <= 0) {
-      tempErrors["nameOfInstitution"] = true;
+    if (form.nameOfInstitution.trim().length === 0) {
+      temporaryErrors["nameOfInstitution"] = true;
       isValid = false;
     }
 
-    if (form.statusAtInstitution.trim().length <= 0) {
-      tempErrors["statusAtInstitution"] = true;
+    if (form.statusAtInstitution.trim().length === 0) {
+      temporaryErrors["statusAtInstitution"] = true;
       isValid = false;
     }
 
-    if (form.department.trim().length <= 0) {
-      tempErrors["department"] = true;
+    if (form.department.trim().length === 0) {
+      temporaryErrors["department"] = true;
       isValid = false;
     }
 
-    if (form.level.trim().length <= 0) {
-      tempErrors["level"] = true;
+    if (form.level.trim().length === 0) {
+      temporaryErrors["level"] = true;
       isValid = false;
     }
 
-    if (form.session.trim().length <= 0) {
-      tempErrors["session"] = true;
+    if (form.session.trim().length === 0) {
+      temporaryErrors["session"] = true;
       isValid = false;
     }
 
-    if (form.semester.trim().length <= 0) {
-      tempErrors["semester"] = true;
+    if (form.semester.trim().length === 0) {
+      temporaryErrors["semester"] = true;
       isValid = false;
     }
 
     if (!form.pastQuestion) {
-      tempErrors["pastQuestion"] = true;
+      temporaryErrors["pastQuestion"] = true;
       isValid = false;
     }
 
-    setFormError({ ...tempErrors });
+    setFormError({ ...temporaryErrors });
     return isValid;
   };
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleFormSubmit = async (event_: React.FormEvent<HTMLFormElement>) => {
+    event_.preventDefault();
 
     try {
       setShowFailureMessage(false);
@@ -165,17 +166,17 @@ export default function SubmitPastQuestionForm() {
       }
 
       setForm({
+        department: "",
+        email: "",
         firstName: "",
         lastName: "",
-        email: "",
-        phoneNumber: "",
-        nameOfInstitution: "",
-        statusAtInstitution: "",
-        department: "",
         level: "",
-        session: "",
+        nameOfInstitution: "",
+        pastQuestion: undefined,
+        phoneNumber: "",
         semester: "",
-        pastQuestion: null,
+        session: "",
+        statusAtInstitution: "",
       });
       // Clear the file input by setting its value to an empty string
       if (formRef.pastQuestion.current) {
@@ -190,8 +191,8 @@ export default function SubmitPastQuestionForm() {
 
   return (
     <form
-      onSubmit={handleFormSubmit}
       className="flex flex-col gap-6 rounded-md border px-5 py-10 shadow-md sm:px-10"
+      onSubmit={handleFormSubmit}
     >
       <h3 className="mb-2 text-2xl font-medium">
         Become a pioneer of open-source education
@@ -206,23 +207,23 @@ export default function SubmitPastQuestionForm() {
           <div className="flex flex-col gap-4 lg:flex-row">
             <div className="w-full">
               <label
-                htmlFor="first-name"
                 className="block max-w-max leading-6 font-medium"
+                htmlFor="first-name"
               >
                 First Name <span className="text-red-500">*</span>
               </label>
               <input
-                ref={formRef.firstName}
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
                 id="first-name"
                 name="first-name"
-                type="text"
-                required
-                placeholder="e.g., Ozakpolor"
-                value={form.firstName}
-                onChange={(e) =>
-                  setForm({ ...form, firstName: e.target.value })
+                onChange={(event_) =>
+                  setForm({ ...form, firstName: event_.target.value })
                 }
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+                placeholder="e.g., Ozakpolor"
+                ref={formRef.firstName}
+                required
+                type="text"
+                value={form.firstName}
               />
               {formError.firstName && (
                 <span className="text-xs text-red-500">
@@ -232,21 +233,23 @@ export default function SubmitPastQuestionForm() {
             </div>
             <div className="w-full">
               <label
-                htmlFor="last-name"
                 className="block max-w-max leading-6 font-medium"
+                htmlFor="last-name"
               >
                 Last Name <span className="text-red-500">*</span>
               </label>
               <input
-                ref={formRef.lastName}
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
                 id="last-name"
                 name="last-name"
-                type="text"
-                required
+                onChange={(event_) =>
+                  setForm({ ...form, lastName: event_.target.value })
+                }
                 placeholder="Emmanuel"
+                ref={formRef.lastName}
+                required
+                type="text"
                 value={form.lastName}
-                onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               />
               {formError.lastName && (
                 <span className="text-xs text-red-500">
@@ -258,22 +261,24 @@ export default function SubmitPastQuestionForm() {
           <div className="flex flex-col gap-4 lg:flex-row">
             <div className="w-full">
               <label
-                htmlFor="email"
                 className="block max-w-max leading-6 font-medium"
+                htmlFor="email"
               >
                 Email <span className="text-red-500">*</span>
               </label>
               <input
-                ref={formRef.email}
+                autoComplete="email"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
                 id="email"
                 name="email"
-                type="email"
-                autoComplete="email"
-                required
+                onChange={(event_) =>
+                  setForm({ ...form, email: event_.target.value })
+                }
                 placeholder="name@domain.com"
+                ref={formRef.email}
+                required
+                type="email"
                 value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               />
               {formError.email && (
                 <span className="text-xs text-red-500">
@@ -283,68 +288,65 @@ export default function SubmitPastQuestionForm() {
             </div>
             <div className="w-full">
               <label
-                htmlFor="phone-number"
                 className="block max-w-max leading-6 font-medium"
+                htmlFor="phone-number"
               >
                 Phone Number
               </label>
               <input
-                ref={formRef.phoneNumber}
+                autoComplete="tel"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
                 id="phone-number"
                 name="phone-number"
-                type="tel"
-                autoComplete="tel"
-                placeholder="+234 500 600 7000"
-                value={form.phoneNumber}
-                onChange={(e) =>
-                  setForm({ ...form, phoneNumber: e.target.value })
+                onChange={(event_) =>
+                  setForm({ ...form, phoneNumber: event_.target.value })
                 }
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+                placeholder="+234 500 600 7000"
+                ref={formRef.phoneNumber}
+                type="tel"
+                value={form.phoneNumber}
               />
             </div>
           </div>
           <div className="flex flex-col gap-4 lg:flex-row">
             <div className="w-full">
               <label
-                htmlFor="name-of-institution"
                 className="block max-w-max leading-6 font-medium"
+                htmlFor="name-of-institution"
               >
                 Name of Institution <span className="text-red-500">*</span>
               </label>
               <select
-                ref={formRef.nameOfInstitution}
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
                 id="name-of-institution"
                 name="name-of-institution"
-                required
-                value={form.nameOfInstitution}
-                onChange={(e) =>
+                onChange={(event_) =>
                   setForm({
                     ...form,
-                    nameOfInstitution: e.target.value,
+                    nameOfInstitution: event_.target.value,
                   })
                 }
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+                ref={formRef.nameOfInstitution}
+                required
+                value={form.nameOfInstitution}
               >
                 <option value="">--Please choose an option--</option>
-                {Object.keys(nigerianUniversities).map((header) => (
-                  <optgroup key={header} label={header.toUpperCase()}>
-                    {(
-                      nigerianUniversities as Record<
-                        string,
-                        Array<{ name: string; route: string }>
-                      >
-                    )[header].map(
-                      (
-                        item: { name: string; route: string },
-                        index: number,
-                      ) => (
-                        <option key={index} value={item?.name}>
-                          {item?.name}
-                        </option>
-                      ),
-                    )}
-                  </optgroup>
-                ))}
+                {Object.entries(nigerianUniversities).map(
+                  ([header, universities]) => (
+                    <optgroup key={header} label={header.toUpperCase()}>
+                      {universities.map(
+                        (
+                          item: { name: string; route: string },
+                          index: number,
+                        ) => (
+                          <option key={index} value={item?.name}>
+                            {item?.name}
+                          </option>
+                        ),
+                      )}
+                    </optgroup>
+                  ),
+                )}
               </select>
 
               {formError.nameOfInstitution && (
@@ -355,24 +357,24 @@ export default function SubmitPastQuestionForm() {
             </div>
             <div className="w-full">
               <label
-                htmlFor="status-at-institution"
                 className="block max-w-max leading-6 font-medium"
+                htmlFor="status-at-institution"
               >
                 Status at Institution <span className="text-red-500">*</span>
               </label>
               <input
-                ref={formRef.statusAtInstitution}
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
                 id="status-at-institution"
                 name="status-at-institution"
-                placeholder="e.g., Student"
-                value={form.statusAtInstitution}
-                onChange={(e) =>
+                onChange={(event_) =>
                   setForm({
                     ...form,
-                    statusAtInstitution: e.target.value,
+                    statusAtInstitution: event_.target.value,
                   })
                 }
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+                placeholder="e.g., Student"
+                ref={formRef.statusAtInstitution}
+                value={form.statusAtInstitution}
               />
               {formError.statusAtInstitution && (
                 <span className="text-xs text-red-500">
@@ -387,23 +389,23 @@ export default function SubmitPastQuestionForm() {
           <div className="flex flex-col gap-4 lg:flex-row">
             <div className="w-full">
               <label
-                htmlFor="department"
                 className="block max-w-max leading-6 font-medium"
+                htmlFor="department"
               >
                 Department <span className="text-red-500">*</span>
               </label>
               <input
-                ref={formRef.department}
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
                 id="department"
                 name="department"
-                type="text"
-                required
-                placeholder="e.g., Computer Science"
-                value={form.department}
-                onChange={(e) =>
-                  setForm({ ...form, department: e.target.value })
+                onChange={(event_) =>
+                  setForm({ ...form, department: event_.target.value })
                 }
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+                placeholder="e.g., Computer Science"
+                ref={formRef.department}
+                required
+                type="text"
+                value={form.department}
               />
               {formError.department && (
                 <span className="text-xs text-red-500">
@@ -413,23 +415,25 @@ export default function SubmitPastQuestionForm() {
             </div>
             <div className="w-full">
               <label
-                htmlFor="level"
                 className="block max-w-max leading-6 font-medium"
+                htmlFor="level"
               >
                 Level <span className="text-red-500">*</span>
               </label>
               <input
-                ref={formRef.level}
-                id="level"
-                name="level"
-                type="number"
-                min="100"
-                max="600"
-                step="100"
-                placeholder="e.g., 300"
-                value={form.level}
-                onChange={(e) => setForm({ ...form, level: e.target.value })}
                 className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+                id="level"
+                max="600"
+                min="100"
+                name="level"
+                onChange={(event_) =>
+                  setForm({ ...form, level: event_.target.value })
+                }
+                placeholder="e.g., 300"
+                ref={formRef.level}
+                step="100"
+                type="number"
+                value={form.level}
               />
               {formError.level && (
                 <span className="text-xs text-red-500">
@@ -441,21 +445,23 @@ export default function SubmitPastQuestionForm() {
           <div className="flex flex-col gap-4 lg:flex-row">
             <div className="w-full">
               <label
-                htmlFor="session"
                 className="block max-w-max leading-6 font-medium"
+                htmlFor="session"
               >
                 Session <span className="text-red-500">*</span>
               </label>
               <input
-                ref={formRef.session}
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
                 id="session"
                 name="session"
-                type="text"
-                required
+                onChange={(event_) =>
+                  setForm({ ...form, session: event_.target.value })
+                }
                 placeholder="e.g., 2022/2023"
+                ref={formRef.session}
+                required
+                type="text"
                 value={form.session}
-                onChange={(e) => setForm({ ...form, session: e.target.value })}
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               />
               {formError.session && (
                 <span className="text-xs text-red-500">
@@ -465,23 +471,25 @@ export default function SubmitPastQuestionForm() {
             </div>
             <div className="w-full">
               <label
-                htmlFor="semester"
                 className="block max-w-max leading-6 font-medium"
+                htmlFor="semester"
               >
                 Semester <span className="text-red-500">*</span>
               </label>
               <input
-                ref={formRef.semester}
-                id="semester"
-                name="semester"
-                type="number"
-                min="1"
-                max="2"
-                step="1"
-                placeholder="e.g., 1"
-                value={form.semester}
-                onChange={(e) => setForm({ ...form, semester: e.target.value })}
                 className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+                id="semester"
+                max="2"
+                min="1"
+                name="semester"
+                onChange={(event_) =>
+                  setForm({ ...form, semester: event_.target.value })
+                }
+                placeholder="e.g., 1"
+                ref={formRef.semester}
+                step="1"
+                type="number"
+                value={form.semester}
               />
               {formError.semester && (
                 <span className="text-xs text-red-500">
@@ -493,26 +501,26 @@ export default function SubmitPastQuestionForm() {
           <div>
             <div className="mb-4">
               <label
-                htmlFor="past-question"
                 className="block max-w-max leading-6 font-medium"
+                htmlFor="past-question"
               >
                 Upload Past Question <span className="text-red-500">*</span>
               </label>
               <input
-                ref={formRef.pastQuestion}
+                accept=".pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx, image/*"
+                capture="environment"
+                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6 dark:text-gray-100"
                 id="past-question"
                 name="past-question"
-                type="file"
-                capture="environment"
-                accept=".pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx, image/*"
-                required
-                onChange={(e) =>
+                onChange={(event_) =>
                   setForm({
                     ...form,
-                    pastQuestion: e.target.files?.[0] ?? null,
+                    pastQuestion: event_.target.files?.[0] ?? undefined,
                   })
                 }
-                className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6 dark:text-gray-100"
+                ref={formRef.pastQuestion}
+                required
+                type="file"
               />
               {formError.pastQuestion && (
                 <span className="text-xs text-red-500">
@@ -524,8 +532,8 @@ export default function SubmitPastQuestionForm() {
         </fieldset>
         {isFormSubmitting ? (
           <button
-            disabled
             className="cursor-not-allowed rounded-xl bg-sky-200 p-3 text-center font-semibold text-sky-500 dark:bg-sky-800 dark:text-sky-100"
+            disabled
           >
             Submitting
             <span className="animate-blink">.</span>
@@ -546,7 +554,7 @@ export default function SubmitPastQuestionForm() {
             apologize for the inconvenience. Please try again.
           </p>
           <button onClick={() => setShowFailureMessage(false)}>
-            <IoClose size={25} className="text-red-400 dark:text-red-600" />
+            <IoClose className="text-red-400 dark:text-red-600" size={25} />
           </button>
         </div>
       )}
@@ -554,7 +562,7 @@ export default function SubmitPastQuestionForm() {
         <div className="flex items-start justify-between gap-2 rounded-lg border border-green-400 bg-green-50 p-5 dark:border-green-600 dark:bg-green-950">
           <p>Your past question has been submitted successfully.</p>
           <button onClick={() => setShowSuccessMessage(false)}>
-            <IoClose size={25} className="text-green-400 dark:text-green-600" />
+            <IoClose className="text-green-400 dark:text-green-600" size={25} />
           </button>
         </div>
       )}

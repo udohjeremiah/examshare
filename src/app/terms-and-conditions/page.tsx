@@ -1,6 +1,7 @@
-import { env } from "@/env/client";
-import BreadCrumb from "@/components/bread-crumb";
 import Link from "next/link";
+
+import { BreadCrumb } from "@/components/bread-crumb";
+import { env } from "@/env/client";
 
 export default function TermsAndConditions() {
   return (
@@ -97,10 +98,10 @@ export default function TermsAndConditions() {
             <p>
               <strong>Website</strong> refers to ExamShare, accessible from{" "}
               <Link
+                className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
                 href="https://examshare.vercel.app"
                 rel="external nofollow noopener"
                 target="_blank"
-                className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
               >
                 https://examshare.vercel.app
               </Link>
@@ -183,8 +184,8 @@ export default function TermsAndConditions() {
           than as set out in this section or elsewhere in our Legal Terms,
           please address your request to:{" "}
           <Link
-            href={`mailto:${env.NEXT_PUBLIC_PROJECT_EMAIL}`}
             className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+            href={`mailto:${env.NEXT_PUBLIC_PROJECT_EMAIL}`}
           >
             {env.NEXT_PUBLIC_PROJECT_EMAIL}
           </Link>
@@ -888,8 +889,8 @@ export default function TermsAndConditions() {
             <p>
               By email:{" "}
               <Link
-                href={`mailto:${env.NEXT_PUBLIC_PROJECT_EMAIL}`}
                 className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+                href={`mailto:${env.NEXT_PUBLIC_PROJECT_EMAIL}`}
               >
                 {env.NEXT_PUBLIC_PROJECT_EMAIL}
               </Link>
@@ -899,10 +900,10 @@ export default function TermsAndConditions() {
             <p>
               By visiting this page on our website:{" "}
               <Link
+                className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
                 href="https://examshare.vercel.app/contact-us"
                 rel="external nofollow noopener"
                 target="_blank"
-                className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
               >
                 https://examshare.vercel.app/contact-us
               </Link>

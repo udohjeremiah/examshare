@@ -1,6 +1,7 @@
-import { env } from "@/env/client";
-import BreadCrumb from "@/components/bread-crumb";
 import Link from "next/link";
+
+import { BreadCrumb } from "@/components/bread-crumb";
+import { env } from "@/env/client";
 
 export default function PrivacyPolicy() {
   return (
@@ -92,10 +93,10 @@ export default function PrivacyPolicy() {
           <li>
             <strong>Website</strong> refers to ExamShare, accessible from{" "}
             <Link
+              className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
               href="https://examshare.vercel.app"
               rel="external nofollow noopener"
               target="_blank"
-              className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
             >
               https://examshare.vercel.app
             </Link>
@@ -180,9 +181,9 @@ export default function PrivacyPolicy() {
           when You go offline, while Session Cookies are deleted as soon as You
           close Your web browser. Learn more about cookies on the{" "}
           <Link
+            className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
             href="https://www.freeprivacypolicy.com/blog/sample-privacy-policy-template/#Use_Of_Cookies_And_Tracking"
             target="_blank"
-            className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
           >
             Free Privacy Policy website
           </Link>{" "}
@@ -500,8 +501,8 @@ export default function PrivacyPolicy() {
           <li>
             By email:{" "}
             <Link
-              href={`mailto:${env.NEXT_PUBLIC_PROJECT_EMAIL}`}
               className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+              href={`mailto:${env.NEXT_PUBLIC_PROJECT_EMAIL}`}
             >
               {env.NEXT_PUBLIC_PROJECT_EMAIL}
             </Link>
@@ -509,10 +510,10 @@ export default function PrivacyPolicy() {
           <li>
             By visiting this page on our website:{" "}
             <Link
+              className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
               href="https://examshare.vercel.app/contact-us"
               rel="external nofollow noopener"
               target="_blank"
-              className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
             >
               https://examshare.vercel.app/contact-us
             </Link>

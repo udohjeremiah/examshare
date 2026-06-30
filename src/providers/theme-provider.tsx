@@ -1,22 +1,16 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface ThemeContextType {
-  theme: string | null;
   setTheme: (theme: string) => void;
+  theme: string | undefined;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (!context) throw new Error("useTheme must be used within a ThemeProvider");
-  return context;
-}
-
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<string | null>(null);
+  const [theme, setTheme] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (!localStorage.getItem("theme")) {
@@ -26,28 +20,23 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    const updateThemeFromOS = (e: MediaQueryListEvent | MediaQueryList) => {
+    const updateThemeFromOS = (
+      event_: MediaQueryList | MediaQueryListEvent,
+    ) => {
       if (localStorage.getItem("theme") === "os") {
-        if (e.matches) {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
+        document.documentElement.classList.toggle("dark", event_.matches);
       }
     };
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const mediaQuery = matchMedia("(prefers-color-scheme: dark)");
     updateThemeFromOS(mediaQuery);
     mediaQuery.addEventListener("change", updateThemeFromOS);
 
-    if (
+    document.documentElement.classList.toggle(
+      "dark",
       theme === "dark" ||
-      (localStorage.getItem("theme") === "os" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+        (localStorage.getItem("theme") === "os" &&
+          matchMedia("(prefers-color-scheme: dark)").matches),
+    );
 
     return () => {
       mediaQuery.removeEventListener("change", updateThemeFromOS);
@@ -55,8 +44,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ setTheme, theme }}>
       {children}
     </ThemeContext.Provider>
   );
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext);
+  if (!context) throw new Error("useTheme must be used within a ThemeProvider");
+  return context;
 }

@@ -1,33 +1,35 @@
-import { env } from "@/env/server";
-import { dbClient } from "@/lib/db-client";
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { nextCookies } from "better-auth/next-js";
+
+import { env } from "@/env/server";
+import { databaseClient } from "@/lib/database-client";
+
 import { sendEmail } from "./email";
 
 export const auth = betterAuth({
-  database: mongodbAdapter(dbClient.db(env.MONGODB_DATABASE), {
-    client: dbClient,
+  database: mongodbAdapter(databaseClient.db(env.MONGODB_DATABASE), {
+    client: databaseClient,
   }),
   emailAndPassword: {
-    enabled: true,
     autoSignIn: true,
+    enabled: true,
     requireEmailVerification: true,
-    sendResetPassword: async ({ user, url }) => {
+    sendResetPassword: async ({ url, user }) => {
       await sendEmail({
-        to: user.email,
-        subject: "Reset Your Password",
         html: `<p>Hi ${user.name},</p><p>Click <a href="${url}">here</a> to reset your password.</p>`,
+        subject: "Reset Your Password",
+        to: user.email,
       });
     },
   },
   emailVerification: {
     sendOnSignUp: true,
-    sendVerificationEmail: async ({ user, url }) => {
+    sendVerificationEmail: async ({ url, user }) => {
       await sendEmail({
-        to: user.email,
-        subject: "Verify Your Account",
         html: `<p>Hi ${user.name},</p><p>Click <a href="${url}">here</a> to verify your email address.</p>`,
+        subject: "Verify Your Account",
+        to: user.email,
       });
     },
   },

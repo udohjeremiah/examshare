@@ -1,31 +1,29 @@
-import pqa from "@/utils/past-questions-archive";
-import LinkList from "@/components/link-list";
+import { LinkList } from "@/components/link-list";
+import { pqa } from "@/utils/past-questions-archive";
 
 export default async function Level({
   params,
 }: {
   params: Promise<{
-    institution: string;
     department: string;
-    session: string;
+    institution: string;
     level: string;
+    session: string;
   }>;
 }) {
-  const { institution, department, session, level } = await params;
+  const { department, institution, level, session } = await params;
 
   const semesterKeys = Object.keys(
-    // @ts-expect-error — dynamic string index on inferred JSON type
     pqa[institution]["departments"][department]["sessions"][session]["levels"][
       level
     ]["semesters"],
   );
   const semesters = semesterKeys.map((semesterKey) => ({
     href: `/past-questions-archive/${institution}/${department}/${session}/${level}/${semesterKey}`,
-    // @ts-expect-error — dynamic string index on inferred JSON type
     name: pqa[institution]["departments"][department]["sessions"][session][
       "levels"
     ][level]["semesters"][semesterKey]["name"],
   }));
 
-  return <LinkList items={semesters} isOrdered={true} />;
+  return <LinkList isOrdered={true} items={semesters} />;
 }

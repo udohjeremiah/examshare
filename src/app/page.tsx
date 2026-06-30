@@ -1,10 +1,10 @@
+import { headers } from "next/headers";
+import Image from "next/image";
 import Link from "next/link";
+import { BsGlobe } from "react-icons/bs";
 import { FaRegCompass } from "react-icons/fa";
 import { LiaUsersSolid } from "react-icons/lia";
-import { BsGlobe } from "react-icons/bs";
-import Image from "next/image";
 
-import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 
 export default async function Home() {
@@ -24,32 +24,32 @@ export default async function Home() {
           </p>
           <div className="flex w-full flex-col gap-4">
             <Link
-              href="/past-questions-archive"
               className="rounded-xl bg-sky-500 p-3 text-center font-semibold text-white hover:bg-sky-600 active:bg-sky-700 dark:bg-sky-400 dark:text-sky-950 dark:hover:bg-sky-300 dark:active:bg-sky-500"
+              href="/past-questions-archive"
             >
               Explore Past Questions
             </Link>
             <Link
-              href="/submit-past-question"
               className="rounded-xl border border-sky-700 p-3 text-center font-semibold text-sky-700 hover:bg-sky-100 active:bg-sky-200 dark:border-sky-300 dark:text-sky-300 dark:hover:bg-sky-950 dark:active:bg-sky-900"
+              href="/submit-past-question"
             >
               Submit a Past Question
             </Link>
           </div>
         </div>
         <Image
-          src="/hero_image.svg"
           alt="A girl holding a book in her hands while surrounded by other books, looking at a spaceship flying into the air"
-          width={1664}
+          className="lg:w-6/12"
           height={1117}
           priority
-          className="lg:w-6/12"
+          src="/hero_image.svg"
+          width={1664}
         />
       </section>
 
       <section
-        id="discover-examshare"
         className="flex flex-col items-center gap-7 px-4 py-14 md:px-10 lg:flex-row"
+        id="discover-examshare"
       >
         <div className="flex flex-col gap-6">
           <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">
@@ -94,12 +94,12 @@ export default async function Home() {
           </div>
         </div>
         <Image
-          src="/help_image.svg"
           alt="A young man sitting and extending his hands to assist a young girl who is falling on the ground and reaching out for help"
-          width={1664}
+          className="lg:w-5/12"
           height={1117}
           priority
-          className="lg:w-5/12"
+          src="/help_image.svg"
+          width={1664}
         />
       </section>
 
@@ -119,15 +119,15 @@ export default async function Home() {
       </section>
 
       <section
-        id="faqs"
         className="flex flex-col items-center gap-7 px-4 py-14 md:px-10 lg:flex-row"
+        id="faqs"
       >
         <Image
-          src="/faq.svg"
           alt=""
-          width={1000}
-          height={659}
           className="lg:w-5/12"
+          height={659}
+          src="/faq.svg"
+          width={1000}
         />
         <div className="flex flex-col gap-6">
           <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">
@@ -141,8 +141,8 @@ export default async function Home() {
               <p className="max-w-prose text-sm">
                 To access past exam questions for your school, go to the{" "}
                 <Link
-                  href="/past-questions-archive"
                   className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+                  href="/past-questions-archive"
                 >
                   past questions archive page
                 </Link>{" "}
@@ -164,15 +164,15 @@ export default async function Home() {
                 To access and contribute answers to past exam questions, you
                 need an account with us. If you don&apos;t have one, please{" "}
                 <Link
-                  href="/sign-up"
                   className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+                  href="/sign-up"
                 >
                   create an account
                 </Link>
                 . If you already have an account, simply{" "}
                 <Link
-                  href="/sign-in"
                   className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+                  href="/sign-in"
                 >
                   log in
                 </Link>
@@ -224,8 +224,8 @@ export default async function Home() {
 
       {!session && (
         <section
-          id="join-now"
           className="flex flex-col items-center gap-6 bg-gradient-to-br from-sky-50 via-sky-200 to-sky-500 px-4 py-14 md:px-10 dark:from-sky-500 dark:via-sky-700 dark:to-sky-900"
+          id="join-now"
         >
           <div className="flex flex-col gap-6">
             <h2 className="text-center text-3xl font-extrabold text-slate-900 dark:text-white">
@@ -239,14 +239,14 @@ export default async function Home() {
             </p>
             <div className="flex flex-col gap-4">
               <Link
-                href="/sign-up"
                 className="rounded-xl bg-sky-500 p-3 text-center font-semibold text-white hover:bg-sky-600 active:bg-sky-700 dark:bg-sky-400 dark:text-sky-950 dark:hover:bg-sky-500 dark:active:bg-sky-600"
+                href="/sign-up"
               >
                 Sign Up Now
               </Link>
               <Link
-                href="/sign-in"
                 className="rounded-xl border border-sky-700 p-3 text-center font-semibold text-sky-700 hover:bg-sky-100 active:bg-sky-200 dark:border-sky-200 dark:text-sky-300 dark:hover:bg-sky-950 dark:active:bg-sky-900"
+                href="/sign-in"
               >
                 Already have an account? Log In
               </Link>

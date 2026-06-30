@@ -1,21 +1,21 @@
 import { lazy, Suspense } from "react";
-import pqa from "@/utils/past-questions-archive";
+
+import { pqa } from "@/utils/past-questions-archive";
 
 export default async function Course({
   params,
 }: {
   params: Promise<{
-    institution: string;
+    course: string;
     department: string;
-    session: string;
+    institution: string;
     level: string;
     semester: string;
-    course: string;
+    session: string;
   }>;
 }) {
-  const { institution, department, session, level, semester, course } =
+  const { course, department, institution, level, semester, session } =
     await params;
-  // @ts-expect-error — dynamic string index on inferred JSON type
   const courseData = pqa[institution]["departments"][department]["sessions"][
     session
   ]["levels"][level]["semesters"][semester]["courses"].find(
@@ -23,12 +23,15 @@ export default async function Course({
   );
 
   // Get the questions key from the courseData
-  const questionsKey = courseData ? courseData.question : null;
+  const questionsKey = courseData ? courseData.question : undefined;
 
   // Dynamically import the component using the questionsKey
   const QAndAComponent = questionsKey
-    ? lazy(() => import(`@/questions/${questionsKey}`))
-    : null;
+    ? lazy(async () => {
+        const module = await import(`@/questions/${questionsKey}`);
+        return { default: module.PastQuestion };
+      })
+    : undefined;
 
   return (
     <div>

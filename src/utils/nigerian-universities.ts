@@ -1,5 +1,5 @@
 // source from https://www.nuc.edu.ng/nigerian-univerisities
-const nigerianUniversities = {
+export const nigerianUniversities = {
   a: [
     {
       name: "Abia State University, Uturu",
@@ -1056,6 +1056,3 @@ const nigerianUniversities = {
     { name: "Zamfara State University", route: "past-questions-archive/zsu" },
   ],
 };
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default nigerianUniversities as any;

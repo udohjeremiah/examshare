@@ -12,16 +12,16 @@ import {
   Text,
 } from "@react-email/components";
 
-interface ContactUsEmailProps {
+interface ContactUsEmailProperties {
   fullName: string;
-  subject: string;
   message: string;
+  subject: string;
 }
 
-export default function ContactUsEmail({
+export function ContactUsEmail({
   fullName,
   subject,
-}: ContactUsEmailProps) {
+}: ContactUsEmailProperties) {
   const previewText =
     "Thanks for reaching out. We've received your message and are reviewing it. Expect a response soon.";
 

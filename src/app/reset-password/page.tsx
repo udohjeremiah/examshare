@@ -1,6 +1,7 @@
 import { Suspense } from "react";
-import BreadCrumb from "@/components/bread-crumb";
-import ResetPasswordForm from "@/components/reset-password-form";
+
+import { BreadCrumb } from "@/components/bread-crumb";
+import { ResetPasswordForm } from "@/components/reset-password-form";
 
 export default function ResetPassword() {
   return (
@@ -15,7 +16,7 @@ export default function ResetPassword() {
         your account.
       </p>
       <div className="flex w-full max-w-prose flex-col">
-        <Suspense fallback={null}>
+        <Suspense fallback={undefined}>
           <ResetPasswordForm />
         </Suspense>
       </div>

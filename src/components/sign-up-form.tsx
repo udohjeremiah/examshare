@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useRef, useEffect, useMemo } from "react";
-
 import Link from "next/link";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { IoClose } from "react-icons/io5";
+
 import { authClient } from "@/lib/auth-client";
 
-export default function SignUpForm() {
+export function SignUpForm() {
   const [form, setForm] = useState({
-    fullName: "",
     email: "",
+    fullName: "",
     password: "",
   });
   const fullNameRef = useRef<HTMLInputElement>(null);
@@ -20,8 +20,8 @@ export default function SignUpForm() {
     React.RefObject<HTMLInputElement | null>
   > = useMemo(
     () => ({
-      fullName: fullNameRef,
       email: emailRef,
+      fullName: fullNameRef,
       password: passwordRef,
     }),
     [],
@@ -36,8 +36,8 @@ export default function SignUpForm() {
     // Find the first input field with an error and focus on it
     for (const fieldName in formError) {
       if (
-        formError[fieldName] &&
-        formRef[fieldName] &&
+        Object.hasOwn(formError, fieldName) &&
+        Object.hasOwn(formRef, fieldName) &&
         formRef[fieldName].current
       ) {
         formRef[fieldName].current.focus();
@@ -47,32 +47,32 @@ export default function SignUpForm() {
   }, [formError, formRef]);
 
   const handleValidation = () => {
-    const tempErrors: Record<string, boolean> = {};
+    const temporaryErrors: Record<string, boolean> = {};
     let isValid = true;
 
-    if (form.fullName.trim().length <= 0) {
-      tempErrors["fullName"] = true;
+    if (form.fullName.trim().length === 0) {
+      temporaryErrors["fullName"] = true;
       isValid = false;
       return isValid;
     }
 
-    if (form.email.trim().length <= 0) {
-      tempErrors["email"] = true;
+    if (form.email.trim().length === 0) {
+      temporaryErrors["email"] = true;
       isValid = false;
       return isValid;
     }
 
-    if (form.password.trim().length <= 0) {
-      tempErrors["password"] = true;
+    if (form.password.trim().length === 0) {
+      temporaryErrors["password"] = true;
       isValid = false;
     }
 
-    setFormError({ ...tempErrors });
+    setFormError({ ...temporaryErrors });
     return isValid;
   };
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleFormSubmit = async (event_: React.FormEvent<HTMLFormElement>) => {
+    event_.preventDefault();
 
     try {
       setShowFailureMessage(false);
@@ -87,8 +87,8 @@ export default function SignUpForm() {
       setIsFormSubmitting(true);
 
       const { error } = await authClient.signUp.email({
-        name: form.fullName,
         email: form.email,
+        name: form.fullName,
         password: form.password,
       });
 
@@ -104,8 +104,8 @@ export default function SignUpForm() {
       }
 
       setForm({
-        fullName: "",
         email: "",
+        fullName: "",
         password: "",
       });
       setIsFormSubmitting(false);
@@ -117,8 +117,8 @@ export default function SignUpForm() {
 
   return (
     <form
-      onSubmit={handleFormSubmit}
       className="flex flex-col gap-6 rounded-md border px-5 py-10 shadow-md sm:px-10"
+      onSubmit={handleFormSubmit}
     >
       <h3 className="mb-2 text-2xl font-medium">Sign Up</h3>
       <div className="flex flex-col gap-4">
@@ -128,21 +128,23 @@ export default function SignUpForm() {
         </p>
         <div>
           <label
-            htmlFor="fullName"
             className="block max-w-max leading-6 font-medium"
+            htmlFor="fullName"
           >
             Full Name <span className="text-red-500">*</span>
           </label>
           <input
-            ref={formRef.fullName}
+            className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             id="fullName"
             name="fullName"
-            type="text"
-            required
+            onChange={(event_) =>
+              setForm({ ...form, fullName: event_.target.value })
+            }
             placeholder="e.g., Ozakpolor Emmanuel"
+            ref={formRef.fullName}
+            required
+            type="text"
             value={form.fullName}
-            onChange={(e) => setForm({ ...form, fullName: e.target.value })}
-            className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
           />
           {formError.fullName && (
             <span className="text-xs text-red-500">
@@ -152,22 +154,24 @@ export default function SignUpForm() {
         </div>
         <div>
           <label
-            htmlFor="email"
             className="block max-w-max leading-6 font-medium"
+            htmlFor="email"
           >
             Email <span className="text-red-500">*</span>
           </label>
           <input
-            ref={formRef.email}
+            autoComplete="email"
+            className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             id="email"
             name="email"
-            type="email"
-            autoComplete="email"
-            required
+            onChange={(event_) =>
+              setForm({ ...form, email: event_.target.value })
+            }
             placeholder="name@domain.com"
+            ref={formRef.email}
+            required
+            type="email"
             value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
           />
           {formError.email && (
             <span className="text-xs text-red-500">
@@ -177,20 +181,22 @@ export default function SignUpForm() {
         </div>
         <div className="relative">
           <label
-            htmlFor="password"
             className="block max-w-max leading-6 font-medium"
+            htmlFor="password"
           >
             Password <span className="text-red-500">*</span>
           </label>
           <input
-            ref={formRef.password}
+            className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset placeholder:flex focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             id="password"
             name="password"
-            type="password"
+            onChange={(event_) =>
+              setForm({ ...form, password: event_.target.value })
+            }
+            ref={formRef.password}
             required
+            type="password"
             value={form.password}
-            onChange={(e) => setForm({ ...form, password: e.target.value })}
-            className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset placeholder:flex focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
           />
           {formError.password && (
             <span className="text-xs text-red-500">
@@ -202,15 +208,15 @@ export default function SignUpForm() {
       <p className="text-center text-xs md:text-sm">
         By creating an account, you accept our{" "}
         <Link
-          href="/terms-and-conditions"
           className="font-bold whitespace-nowrap text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          href="/terms-and-conditions"
         >
           Terms & Conditions
         </Link>{" "}
         and{" "}
         <Link
-          href="/privacy-policy"
           className="font-bold whitespace-nowrap text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          href="/privacy-policy"
         >
           Privacy Policy
         </Link>
@@ -218,14 +224,14 @@ export default function SignUpForm() {
       </p>
       {isFormSubmitting ? (
         <button
-          disabled
           className="flex cursor-not-allowed items-center justify-center rounded-xl bg-sky-200 p-3 text-center font-semibold text-sky-500 dark:bg-sky-800 dark:text-sky-100"
+          disabled
         >
           <svg
             className="mr-3 -ml-1 h-5 w-5 animate-spin text-white"
-            xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <circle
               className="opacity-25"
@@ -237,8 +243,8 @@ export default function SignUpForm() {
             ></circle>
             <path
               className="opacity-75"
-              fill="currentColor"
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              fill="currentColor"
             ></path>
           </svg>
           Sign Up
@@ -251,8 +257,8 @@ export default function SignUpForm() {
       <p className="self-center">
         Have an account?{" "}
         <Link
-          href="/sign-in"
           className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          href="/sign-in"
         >
           Log In
         </Link>
@@ -265,7 +271,7 @@ export default function SignUpForm() {
             apologize for the inconvenience. Please try again.
           </p>
           <button onClick={() => setShowFailureMessage(false)}>
-            <IoClose size={25} className="text-red-400 dark:text-red-600" />
+            <IoClose className="text-red-400 dark:text-red-600" size={25} />
           </button>
         </div>
       )}
@@ -276,7 +282,7 @@ export default function SignUpForm() {
             been sent to you for verification.
           </p>
           <button onClick={() => setShowSuccessMessage(false)}>
-            <IoClose size={25} className="text-green-400 dark:text-green-600" />
+            <IoClose className="text-green-400 dark:text-green-600" size={25} />
           </button>
         </div>
       )}

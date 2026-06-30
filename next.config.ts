@@ -1,5 +1,8 @@
 import "./src/env/server";
 import "./src/env/client";
 
-/** @type {import('next').NextConfig} */
-export default {};
+import type { NextConfig } from "next";
+
+const config: NextConfig = {};
+
+export default config;

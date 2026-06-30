@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { BsGithub, BsTwitter, BsFacebook, BsInstagram } from "react-icons/bs";
+import { BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className="flex flex-col items-center justify-center gap-11 py-16 shadow-[inset_0_1px_0_0] shadow-sky-100 md:gap-14 dark:shadow-sky-800">
       <div className="flex flex-col items-center justify-center gap-3">
@@ -15,7 +15,7 @@ export default function Footer() {
         </p>
       </div>
       <div className="flex flex-col items-center justify-center gap-4">
-        <ul className="flex w-full justify-center gap-6" aria-label="Community">
+        <ul aria-label="Community" className="flex w-full justify-center gap-6">
           <li>
             <Link href="https://github.com/udohjeremiah/examshare">
               <BsGithub size={25} />
@@ -46,20 +46,20 @@ export default function Footer() {
         </p>
         <div className="flex w-full items-center justify-center gap-5 text-xs">
           <Link
-            href="/privacy-policy"
             className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+            href="/privacy-policy"
           >
             Privacy Policy
           </Link>
           <Link
-            href="/terms-and-conditions"
             className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+            href="/terms-and-conditions"
           >
             Terms of Use
           </Link>
           <Link
-            href="/legal-disclaimer"
             className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+            href="/legal-disclaimer"
           >
             Disclaimer
           </Link>

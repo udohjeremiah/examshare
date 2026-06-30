@@ -4,22 +4,22 @@ import { createContext, useContext } from "react";
 
 const QuestionsIdContext = createContext<string | undefined>(undefined);
 
-export function useQuestionsId() {
-  return useContext(QuestionsIdContext);
-}
-
-interface QuestionsIdProviderProps {
-  id: string;
+interface QuestionsIdProviderProperties {
   children: React.ReactNode;
+  id: string;
 }
 
-export default function QuestionsIdProvider({
-  id,
+export function QuestionsIdProvider({
   children,
-}: QuestionsIdProviderProps) {
+  id,
+}: QuestionsIdProviderProperties) {
   return (
     <QuestionsIdContext.Provider value={id}>
       {children}
     </QuestionsIdContext.Provider>
   );
+}
+
+export function useQuestionsId() {
+  return useContext(QuestionsIdContext);
 }

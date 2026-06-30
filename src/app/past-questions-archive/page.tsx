@@ -1,6 +1,6 @@
-import pqa from "@/utils/past-questions-archive";
-import LinkList from "@/components/link-list";
-import BreadCrumb from "@/components/bread-crumb";
+import { BreadCrumb } from "@/components/bread-crumb";
+import { LinkList } from "@/components/link-list";
+import { pqa } from "@/utils/past-questions-archive";
 
 export const metadata = {
   title: "Past Questions Archive | ExamShare",
@@ -10,7 +10,6 @@ export default function PastQuestionsArchive() {
   const institutionKeys = Object.keys(pqa);
   const institutions = institutionKeys.map((institutionKey) => ({
     href: `/past-questions-archive/${institutionKey}`,
-    // @ts-expect-error — dynamic string index on inferred JSON type
     name: pqa[institutionKey]["name"],
   }));
 
@@ -29,7 +28,7 @@ export default function PastQuestionsArchive() {
         expectation of encountering the exact same questions in your exams.
       </p>
       <div className="flex w-full max-w-prose flex-col gap-2">
-        <LinkList items={institutions} isOrdered={true} />
+        <LinkList isOrdered={true} items={institutions} />
       </div>
     </div>
   );

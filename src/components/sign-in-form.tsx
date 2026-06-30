@@ -1,20 +1,19 @@
 "use client";
 
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import {
-  useState,
-  useRef,
-  useEffect,
-  useMemo,
   type FormEvent,
   type RefObject,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
 } from "react";
 
-import { useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 
-import Link from "next/link";
-
-export default function SignInForm() {
+export function SignInForm() {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -34,15 +33,15 @@ export default function SignInForm() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showFailureMessage, setShowFailureMessage] = useState(false);
 
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const searchParameters = useSearchParams();
+  const callbackUrl = searchParameters.get("callbackUrl") || "/";
 
   useEffect(() => {
     // Find the first input field with an error and focus on it
     for (const fieldName in formError) {
       if (
-        formError[fieldName] &&
-        formRef[fieldName] &&
+        Object.hasOwn(formError, fieldName) &&
+        Object.hasOwn(formRef, fieldName) &&
         formRef[fieldName].current
       ) {
         formRef[fieldName].current.focus();
@@ -52,26 +51,26 @@ export default function SignInForm() {
   }, [formError, formRef]);
 
   const handleValidation = () => {
-    const tempErrors: Record<string, boolean> = {};
+    const temporaryErrors: Record<string, boolean> = {};
     let isValid = true;
 
-    if (form.email.trim().length <= 0) {
-      tempErrors["email"] = true;
+    if (form.email.trim().length === 0) {
+      temporaryErrors["email"] = true;
       isValid = false;
       return isValid;
     }
 
-    if (form.password.trim().length <= 0) {
-      tempErrors["password"] = true;
+    if (form.password.trim().length === 0) {
+      temporaryErrors["password"] = true;
       isValid = false;
     }
 
-    setFormError({ ...tempErrors });
+    setFormError({ ...temporaryErrors });
     return isValid;
   };
 
-  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleFormSubmit = async (event_: FormEvent<HTMLFormElement>) => {
+    event_.preventDefault();
 
     try {
       setShowFailureMessage(false);
@@ -86,9 +85,9 @@ export default function SignInForm() {
       setIsFormSubmitting(true);
 
       const { error } = await authClient.signIn.email({
+        callbackURL: callbackUrl,
         email: form.email,
         password: form.password,
-        callbackURL: callbackUrl,
       });
 
       if (error) {
@@ -103,8 +102,8 @@ export default function SignInForm() {
 
   return (
     <form
-      onSubmit={handleFormSubmit}
       className="flex flex-col gap-6 rounded-md border px-5 py-10 shadow-md sm:px-10"
+      onSubmit={handleFormSubmit}
     >
       <h3 className="mb-2 text-2xl font-medium">Sign In</h3>
       <div className="flex flex-col gap-4">
@@ -114,22 +113,24 @@ export default function SignInForm() {
         </p>
         <div>
           <label
-            htmlFor="email"
             className="block max-w-max leading-6 font-medium"
+            htmlFor="email"
           >
             Email <span className="text-red-500">*</span>
           </label>
           <input
-            ref={formRef.email}
+            autoComplete="email"
+            className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             id="email"
             name="email"
-            type="email"
-            autoComplete="email"
-            required
+            onChange={(event_) =>
+              setForm({ ...form, email: event_.target.value })
+            }
             placeholder="name@domain.com"
+            ref={formRef.email}
+            required
+            type="email"
             value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
           />
           {formError.email && (
             <span className="text-xs text-red-500">
@@ -139,24 +140,26 @@ export default function SignInForm() {
         </div>
         <div className="flex flex-col">
           <label
-            htmlFor="password"
             className="block max-w-max leading-6 font-medium"
+            htmlFor="password"
           >
             Password <span className="text-red-500">*</span>
           </label>
           <input
-            ref={formRef.password}
+            className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset placeholder:flex focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             id="password"
             name="password"
-            type="password"
+            onChange={(event_) =>
+              setForm({ ...form, password: event_.target.value })
+            }
+            ref={formRef.password}
             required
+            type="password"
             value={form.password}
-            onChange={(e) => setForm({ ...form, password: e.target.value })}
-            className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset placeholder:flex focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
           />
           <Link
-            href="/forgot-password"
             className="mt-2 w-max self-end text-sm font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+            href="/forgot-password"
           >
             Forgot password?
           </Link>
@@ -169,14 +172,14 @@ export default function SignInForm() {
       </div>
       {isFormSubmitting ? (
         <button
-          disabled
           className="flex cursor-not-allowed items-center justify-center rounded-xl bg-sky-200 p-3 text-center font-semibold text-sky-500 dark:bg-sky-800 dark:text-sky-100"
+          disabled
         >
           <svg
             className="mr-3 -ml-1 h-5 w-5 animate-spin text-white"
-            xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <circle
               className="opacity-25"
@@ -188,8 +191,8 @@ export default function SignInForm() {
             ></circle>
             <path
               className="opacity-75"
-              fill="currentColor"
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              fill="currentColor"
             ></path>
           </svg>
           Sign In
@@ -202,8 +205,8 @@ export default function SignInForm() {
       <p className="self-center">
         Don&apos;t have an account?{" "}
         <Link
-          href="/sign-up"
           className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          href="/sign-up"
         >
           Sign Up
         </Link>

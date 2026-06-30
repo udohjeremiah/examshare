@@ -1,40 +1,86 @@
-import { FlatCompat } from "@eslint/eslintrc";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import nextPlugin from "@next/eslint-plugin-next";
-import tseslint from "typescript-eslint";
-import prettier from "eslint-config-prettier";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+import prettier from "eslint-config-prettier/flat";
+import * as depend from "eslint-plugin-depend";
+import { importX } from "eslint-plugin-import-x";
+import * as perfectionist from "eslint-plugin-perfectionist";
+import security from "eslint-plugin-security";
+import * as sonarjs from "eslint-plugin-sonarjs";
+import unicorn from "eslint-plugin-unicorn";
+import unusedImports from "eslint-plugin-unused-imports";
+import { defineConfig, globalIgnores } from "eslint/config";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-export default tseslint.config(
-  { ignores: [".next/**", "out/**"] },
-  ...tseslint.configs.recommended,
+export default defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  depend.configs["flat/recommended"],
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.typescript,
+  perfectionist.configs["recommended-natural"],
+  security.configs.recommended,
+  sonarjs.configs.recommended,
+  unicorn.configs.recommended,
   {
     plugins: {
-      "@next/next": nextPlugin,
+      "unused-imports": unusedImports,
     },
     rules: {
-      ...nextPlugin.configs["core-web-vitals"].rules,
-    },
-  },
-  ...compat.extends("plugin:react/recommended"),
-  ...compat.extends("plugin:react-hooks/recommended"),
-  ...compat.extends("plugin:jsx-a11y/recommended"),
-  {
-    rules: {
-      "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "import-x/no-default-export": "error",
+      "import-x/order": "off",
+      "security/detect-object-injection": "off",
+      "unicorn/logical-assignment-operators": "off",
+      "unicorn/name-replacements": [
+        "error",
+        {
+          replacements: {
+            env: false,
+            param: false,
+            params: false,
+            props: false,
+            ref: false,
+          },
+        },
+      ],
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "warn",
+        {
+          args: "after-used",
+          argsIgnorePattern: "^_",
+          vars: "all",
+          varsIgnorePattern: "^_",
+        },
+      ],
     },
     settings: {
-      react: {
-        version: "detect",
+      "import-x/resolver": {
+        node: true,
+        typescript: { project: "tsconfig.json" },
       },
     },
   },
+  {
+    files: [
+      "eslint.config.*",
+      "next.config.*",
+      "commitlint.config.*",
+      "postcss.config.*",
+      "prettier.config.*",
+      "**/page.tsx",
+      "**/layout.tsx",
+      "**/not-found.tsx",
+      "**/error.tsx",
+      "**/loading.tsx",
+    ],
+    rules: { "import-x/no-default-export": "off" },
+  },
   prettier,
-);
+  globalIgnores([
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+    "src/types/mathml.d.ts",
+  ]),
+]);

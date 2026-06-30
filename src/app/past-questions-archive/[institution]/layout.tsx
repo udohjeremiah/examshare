@@ -1,5 +1,5 @@
-import pqa from "@/utils/past-questions-archive";
-import BreadCrumb from "@/components/bread-crumb";
+import { BreadCrumb } from "@/components/bread-crumb";
+import { pqa } from "@/utils/past-questions-archive";
 
 export async function generateMetadata({
   params,
@@ -7,7 +7,6 @@ export async function generateMetadata({
   params: Promise<{ institution: string }>;
 }) {
   const { institution } = await params;
-  // @ts-expect-error — dynamic string index on inferred JSON type
   const institutionName = pqa[institution]["name"];
 
   return { title: `Past Questions Archive - ${institutionName} | ExamShare` };
@@ -21,7 +20,6 @@ export default async function InstitutionLayout({
   params: Promise<{ institution: string }>;
 }) {
   const { institution } = await params;
-  // @ts-expect-error — dynamic string index on inferred JSON type
   const institutionName = pqa[institution]["name"];
 
   return (

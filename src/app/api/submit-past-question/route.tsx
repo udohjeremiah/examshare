@@ -1,11 +1,12 @@
-import { env } from "@/env/server";
-import { env as publicEnv } from "@/env/client";
-import { NextRequest, NextResponse } from "next/server";
 import { render } from "@react-email/components";
-import SubmitPastQuestionEmail from "@/emails/submit-past-question-email";
-import nodemailer from "nodemailer";
-import { join } from "path";
-import { writeFile } from "fs/promises";
+import { NextRequest, NextResponse } from "next/server";
+import { writeFile } from "node:fs/promises";
+import nodePath from "node:path";
+import * as nodemailer from "nodemailer";
+
+import { SubmitPastQuestionEmail } from "@/emails/submit-past-question-email";
+import { env as publicEnv } from "@/env/client";
+import { env } from "@/env/server";
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,7 +37,7 @@ export async function POST(request: NextRequest) {
       !pastQuestion
     ) {
       return NextResponse.json(
-        { success: false, message: "Bad request" },
+        { message: "Bad request", success: false },
         { status: 400 },
       );
     }
@@ -47,26 +48,29 @@ export async function POST(request: NextRequest) {
 
     const bytes = await pastQuestion.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    const path = join("/", "tmp", pastQuestion.name);
-    await writeFile(path, buffer);
+    const filePath = nodePath.join("/", "tmp", pastQuestion.name);
+    // eslint-disable-next-line security/detect-non-literal-fs-filename
+    await writeFile(filePath, buffer);
 
     // https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json
     const transport = nodemailer.createTransport({
+      auth: {
+        pass: env.PROJECT_EMAIL_PASSWORD,
+        user: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
+      },
       host: "smtp.zoho.com",
       port: 465,
       secure: true,
-      auth: {
-        user: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
-        pass: env.PROJECT_EMAIL_PASSWORD,
-      },
     });
 
     const mailOptionsAdmin = {
+      attachments: [
+        {
+          filename: pastQuestion.name,
+          path: `/tmp/${pastQuestion.name}`,
+        },
+      ],
       from: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
-      to: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
-      // cc: email, (uncomment this line if you want to send a copy to the sender)
-      subject: String(nameOfInstitution),
-      text: `${firstName} ${lastName}`,
       html: `
     <h2>Sender</h2>
     <p>Name: ${firstName} ${lastName}<p>
@@ -80,19 +84,17 @@ export async function POST(request: NextRequest) {
     <p>Session: ${session}</p>
     <p>Semester: ${semester}</p>
     `,
-      attachments: [
-        {
-          filename: pastQuestion.name,
-          path: `/tmp/${pastQuestion.name}`,
-        },
-      ],
+      // cc: email, (uncomment this line if you want to send a copy to the sender)
+      subject: String(nameOfInstitution),
+      text: `${firstName} ${lastName}`,
+      to: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
     };
 
     const mailOptionsUser = {
       from: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
-      to: email,
-      subject: "Past Question Submitted Successfully",
       html: SubmitPastQuestionEmailHtml,
+      subject: "Past Question Submitted Successfully",
+      to: email,
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -101,7 +103,7 @@ export async function POST(request: NextRequest) {
     await transport.sendMail(mailOptionsUser as any);
 
     return NextResponse.json(
-      { success: true, message: "Email sent" },
+      { message: "Email sent", success: true },
       { status: 200 },
     );
   } catch (error) {

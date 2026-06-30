@@ -1,31 +1,35 @@
 import {
-  QueryClient,
   defaultShouldDehydrateQuery,
   environmentManager,
+  QueryClient,
 } from "@tanstack/react-query";
-
-function makeQueryClient() {
-  return new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 60 * 1000,
-      },
-      dehydrate: {
-        shouldDehydrateQuery: (query) =>
-          defaultShouldDehydrateQuery(query) ||
-          query.state.status === "pending",
-      },
-    },
-  });
-}
-
-let browserQueryClient: QueryClient | undefined;
 
 export function queryClient() {
   if (environmentManager.isServer()) {
     return makeQueryClient();
   }
 
-  if (!browserQueryClient) browserQueryClient = makeQueryClient();
-  return browserQueryClient;
+  const globalWithQueryClient = globalThis as typeof globalThis & {
+    _browserQueryClient?: QueryClient;
+  };
+
+  if (!globalWithQueryClient._browserQueryClient) {
+    globalWithQueryClient._browserQueryClient = makeQueryClient();
+  }
+  return globalWithQueryClient._browserQueryClient;
+}
+
+function makeQueryClient() {
+  return new QueryClient({
+    defaultOptions: {
+      dehydrate: {
+        shouldDehydrateQuery: (query) =>
+          defaultShouldDehydrateQuery(query) ||
+          query.state.status === "pending",
+      },
+      queries: {
+        staleTime: 60 * 1000,
+      },
+    },
+  });
 }

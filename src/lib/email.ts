@@ -1,30 +1,31 @@
-import { env } from "@/env/server";
+import * as nodemailer from "nodemailer";
+
 import { env as publicEnv } from "@/env/client";
-import nodemailer from "nodemailer";
+import { env } from "@/env/server";
 
 const transport = nodemailer.createTransport({
+  auth: {
+    pass: env.PROJECT_EMAIL_PASSWORD,
+    user: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
+  },
   host: "smtp.zoho.com",
   port: 465,
   secure: true,
-  auth: {
-    user: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
-    pass: env.PROJECT_EMAIL_PASSWORD,
-  },
 });
 
 export async function sendEmail({
-  to,
-  subject,
   html,
+  subject,
+  to,
 }: {
-  to: string;
-  subject: string;
   html: string;
+  subject: string;
+  to: string;
 }) {
   await transport.sendMail({
     from: publicEnv.NEXT_PUBLIC_PROJECT_EMAIL,
-    to,
-    subject,
     html,
+    subject,
+    to,
   });
 }

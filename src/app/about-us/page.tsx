@@ -1,5 +1,6 @@
-import BreadCrumb from "@/components/bread-crumb";
 import Link from "next/link";
+
+import { BreadCrumb } from "@/components/bread-crumb";
 
 export const metadata = {
   title: "About Us | ExamShare",
@@ -25,8 +26,8 @@ export default function AboutUs() {
             Our commitment extends beyond personal success; we are ardent
             advocates of{" "}
             <Link
-              href="https://opensource.com/resources/what-open-education"
               className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+              href="https://opensource.com/resources/what-open-education"
             >
               open-source education
             </Link>
@@ -51,13 +52,13 @@ export default function AboutUs() {
             Our inspiration stems from the famous Winston Churchill quote:
           </p>
           <blockquote className="mb-2">
-            <p className="rounded-md border bg-sky-50 p-4 before:content-['\201C'] after:content-['\201D'] dark:bg-sky-900">
+            <p className="rounded-md border bg-sky-50 p-4 before:content-['\u{81}C'] after:content-['\u{81}D'] dark:bg-sky-900">
               Those who fail to learn from history are doomed to repeat it.
             </p>
           </blockquote>
           <p className="mb-2">And the accompanying irony:</p>
           <blockquote className="mb-2">
-            <p className="rounded-md border bg-sky-50 p-4 before:content-['\201C'] after:content-['\201D'] dark:bg-sky-900">
+            <p className="rounded-md border bg-sky-50 p-4 before:content-['\u{81}C'] after:content-['\u{81}D'] dark:bg-sky-900">
               Those who study history are doomed to stand by while everyone else
               repeats it.
             </p>

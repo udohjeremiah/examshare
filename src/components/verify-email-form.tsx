@@ -1,17 +1,18 @@
 "use client";
 
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
+
 import { authClient } from "@/lib/auth-client";
 
-export default function VerifyEmailForm() {
+export function VerifyEmailForm() {
   const [isFormSubmitting, setIsFormSubmitting] = useState(false);
   const [showFailureMessage, setShowFailureMessage] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token");
+  const searchParameters = useSearchParams();
+  const token = searchParameters.get("token");
   const router = useRouter();
 
   const showSuccessMessageWithTimeout = () => {
@@ -22,8 +23,8 @@ export default function VerifyEmailForm() {
     }, 5000);
   };
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleFormSubmit = async (event_: React.FormEvent<HTMLFormElement>) => {
+    event_.preventDefault();
 
     try {
       setShowFailureMessage(false);
@@ -49,19 +50,19 @@ export default function VerifyEmailForm() {
 
   return (
     <form
-      onSubmit={handleFormSubmit}
       className="flex flex-col gap-6 rounded-md border px-5 py-10 shadow-md sm:px-10"
+      onSubmit={handleFormSubmit}
     >
       {isFormSubmitting ? (
         <button
-          disabled
           className="flex cursor-not-allowed items-center justify-center rounded-xl bg-sky-200 p-3 text-center font-semibold text-sky-500 dark:bg-sky-800 dark:text-sky-100"
+          disabled
         >
           <svg
             className="mr-3 -ml-1 h-5 w-5 animate-spin text-white"
-            xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <circle
               className="opacity-25"
@@ -73,8 +74,8 @@ export default function VerifyEmailForm() {
             ></circle>
             <path
               className="opacity-75"
-              fill="currentColor"
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              fill="currentColor"
             ></path>
           </svg>
           Verify Email Address
@@ -92,7 +93,7 @@ export default function VerifyEmailForm() {
             apologize for the inconvenience. Please try again.
           </p>
           <button onClick={() => setShowFailureMessage(false)}>
-            <IoClose size={25} className="text-red-400 dark:text-red-600" />
+            <IoClose className="text-red-400 dark:text-red-600" size={25} />
           </button>
         </div>
       )}
@@ -103,7 +104,7 @@ export default function VerifyEmailForm() {
             to the sign-in page automatically.
           </p>
           <button onClick={() => setShowSuccessMessage(false)}>
-            <IoClose size={25} className="text-green-400 dark:text-green-600" />
+            <IoClose className="text-green-400 dark:text-green-600" size={25} />
           </button>
         </div>
       )}

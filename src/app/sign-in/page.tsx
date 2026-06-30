@@ -1,7 +1,8 @@
-import { Suspense } from "react";
-import BreadCrumb from "@/components/bread-crumb";
-import SignInForm from "@/components/sign-in-form";
 import Link from "next/link";
+import { Suspense } from "react";
+
+import { BreadCrumb } from "@/components/bread-crumb";
+import { SignInForm } from "@/components/sign-in-form";
 
 export const metadata = {
   title: "Sign In | ExamShare",
@@ -18,15 +19,15 @@ export default function SignIn() {
         Welcome back to ExamShare! Sign in to access the collaborative community
         advocating{" "}
         <Link
-          href="https://opensource.com/resources/what-open-education"
           className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          href="https://opensource.com/resources/what-open-education"
         >
           open-source education
         </Link>{" "}
         and shaping the future of education for generations to come.
       </p>
       <div className="flex w-full max-w-prose flex-col">
-        <Suspense fallback={null}>
+        <Suspense fallback={undefined}>
           <SignInForm />
         </Suspense>
       </div>

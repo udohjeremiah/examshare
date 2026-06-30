@@ -1,11 +1,12 @@
 "use client";
-import { useState, useRef, useEffect, useMemo } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { IoClose } from "react-icons/io5";
+
 import { authClient } from "@/lib/auth-client";
 
-export default function ResetPasswordForm() {
-  const [form, setForm] = useState({ newPassword: "", confirmPassword: "" });
+export function ResetPasswordForm() {
+  const [form, setForm] = useState({ confirmPassword: "", newPassword: "" });
   const [formError, setFormError] = useState<Record<string, boolean>>({});
   const newPasswordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
@@ -14,8 +15,8 @@ export default function ResetPasswordForm() {
     React.RefObject<HTMLInputElement | null>
   > = useMemo(
     () => ({
-      newPassword: newPasswordRef,
       confirmPassword: confirmPasswordRef,
+      newPassword: newPasswordRef,
     }),
     [],
   );
@@ -24,15 +25,15 @@ export default function ResetPasswordForm() {
   const [showFailureMessage, setShowFailureMessage] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token");
+  const searchParameters = useSearchParams();
+  const token = searchParameters.get("token");
   const router = useRouter();
 
   useEffect(() => {
     for (const fieldName in formError) {
       if (
-        formError[fieldName] &&
-        formRef[fieldName] &&
+        Object.hasOwn(formError, fieldName) &&
+        Object.hasOwn(formRef, fieldName) &&
         formRef[fieldName].current
       ) {
         formRef[fieldName].current.focus();
@@ -50,30 +51,30 @@ export default function ResetPasswordForm() {
   };
 
   const handleValidation = () => {
-    const tempErrors: Record<string, boolean> = {};
+    const temporaryErrors: Record<string, boolean> = {};
     let isValid = true;
 
-    if (form.newPassword.trim().length <= 0) {
-      tempErrors["newPassword"] = true;
+    if (form.newPassword.trim().length === 0) {
+      temporaryErrors["newPassword"] = true;
       isValid = false;
     }
 
-    if (form.confirmPassword.trim().length <= 0) {
-      tempErrors["confirmPassword"] = true;
+    if (form.confirmPassword.trim().length === 0) {
+      temporaryErrors["confirmPassword"] = true;
       isValid = false;
     }
 
     if (form.newPassword !== form.confirmPassword) {
-      tempErrors["differentPasswords"] = true;
+      temporaryErrors["differentPasswords"] = true;
       isValid = false;
     }
 
-    setFormError({ ...tempErrors });
+    setFormError({ ...temporaryErrors });
     return isValid;
   };
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleFormSubmit = async (event_: React.FormEvent<HTMLFormElement>) => {
+    event_.preventDefault();
 
     try {
       setShowFailureMessage(false);
@@ -98,7 +99,7 @@ export default function ResetPasswordForm() {
         return;
       }
 
-      setForm({ newPassword: "", confirmPassword: "" });
+      setForm({ confirmPassword: "", newPassword: "" });
       setIsFormSubmitting(false);
       showSuccessMessageWithTimeout();
     } catch (error) {
@@ -108,8 +109,8 @@ export default function ResetPasswordForm() {
 
   return (
     <form
-      onSubmit={handleFormSubmit}
       className="flex flex-col gap-6 rounded-md border px-5 py-10 shadow-md sm:px-10"
+      onSubmit={handleFormSubmit}
     >
       {showSuccessMessage && (
         <div className="flex items-start justify-between gap-2 rounded-lg border border-green-400 bg-green-50 p-5 dark:border-green-600 dark:bg-green-950">
@@ -118,26 +119,28 @@ export default function ResetPasswordForm() {
             redirected to the sign-in page automatically.
           </p>
           <button onClick={() => setShowSuccessMessage(false)}>
-            <IoClose size={25} className="text-green-400 dark:text-green-600" />
+            <IoClose className="text-green-400 dark:text-green-600" size={25} />
           </button>
         </div>
       )}
       <div>
         <label
-          htmlFor="newPassword"
           className="block max-w-max leading-6 font-medium"
+          htmlFor="newPassword"
         >
           New Password
         </label>
         <input
-          ref={formRef.newPassword}
+          className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
           id="newPassword"
           name="newPassword"
-          type="password"
+          onChange={(event_) =>
+            setForm({ ...form, newPassword: event_.target.value })
+          }
+          ref={formRef.newPassword}
           required
+          type="password"
           value={form.newPassword}
-          onChange={(e) => setForm({ ...form, newPassword: e.target.value })}
-          className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
         />
         {formError.newPassword && (
           <span className="text-xs text-red-500">Password cannot be empty</span>
@@ -145,22 +148,22 @@ export default function ResetPasswordForm() {
       </div>
       <div>
         <label
-          htmlFor="confirmPassword"
           className="block max-w-max leading-6 font-medium"
+          htmlFor="confirmPassword"
         >
           Confirm Password
         </label>
         <input
-          ref={formRef.confirmPassword}
+          className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
           id="confirmPassword"
           name="confirmPassword"
-          type="password"
-          required
-          value={form.confirmPassword}
-          onChange={(e) =>
-            setForm({ ...form, confirmPassword: e.target.value })
+          onChange={(event_) =>
+            setForm({ ...form, confirmPassword: event_.target.value })
           }
-          className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+          ref={formRef.confirmPassword}
+          required
+          type="password"
+          value={form.confirmPassword}
         />
         {formError.confirmPassword && (
           <span className="block text-xs text-red-500">
@@ -175,14 +178,14 @@ export default function ResetPasswordForm() {
       </div>
       {isFormSubmitting ? (
         <button
-          disabled
           className="flex cursor-not-allowed items-center justify-center rounded-xl bg-sky-200 p-3 text-center font-semibold text-sky-500 dark:bg-sky-800 dark:text-sky-100"
+          disabled
         >
           <svg
             className="mr-3 -ml-1 h-5 w-5 animate-spin text-white"
-            xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <circle
               className="opacity-25"
@@ -194,8 +197,8 @@ export default function ResetPasswordForm() {
             ></circle>
             <path
               className="opacity-75"
-              fill="currentColor"
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              fill="currentColor"
             ></path>
           </svg>
           Change Password
@@ -213,7 +216,7 @@ export default function ResetPasswordForm() {
             apologize for the inconvenience. Please try again.
           </p>
           <button onClick={() => setShowFailureMessage(false)}>
-            <IoClose size={25} className="text-red-400 dark:text-red-600" />
+            <IoClose className="text-red-400 dark:text-red-600" size={25} />
           </button>
         </div>
       )}

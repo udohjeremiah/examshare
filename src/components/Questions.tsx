@@ -1,35 +1,36 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import QuestionsIdProvider from "@/providers/questions-id-provider";
 
-interface QuestionsProps {
-  school: string;
+import { QuestionsIdProvider } from "@/providers/questions-id-provider";
+
+interface QuestionsProperties {
+  allowedTime: string;
+  children: React.ReactNode;
   college: string;
-  department: string;
-  session: string;
-  semester: string;
   courseCode: string;
   courseTitle: string;
-  allowedTime: string;
+  department: string;
   instruction: string;
-  children: React.ReactNode;
+  school: string;
+  semester: string;
+  session: string;
 }
 
-export default function Questions({
-  school,
+export function Questions({
+  allowedTime,
+  children,
   college,
-  department,
-  session,
-  semester,
   courseCode,
   courseTitle,
-  allowedTime,
+  department,
   instruction,
-  children,
-}: QuestionsProps) {
+  school,
+  semester,
+  session,
+}: QuestionsProperties) {
   const paths = usePathname();
-  const pathNames = paths.split("/").filter((path) => path);
+  const pathNames = paths.split("/").filter(Boolean);
   const id = pathNames.slice(1).join("_");
 
   return (

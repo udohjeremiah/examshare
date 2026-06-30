@@ -1,6 +1,7 @@
-import BreadCrumb from "@/components/bread-crumb";
 import Link from "next/link";
-import SubmitForm from "@/components/submit-form";
+
+import { BreadCrumb } from "@/components/bread-crumb";
+import { SubmitForm } from "@/components/submit-form";
 
 export const metadata = {
   title: "Submit Past Question | ExamShare",
@@ -16,8 +17,8 @@ export default function SubmitPastQuestion() {
       <p className="max-w-prose text-center">
         You are just one step away from becoming one of the early pioneers of{" "}
         <Link
-          href="https://opensource.com/resources/what-open-education"
           className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          href="https://opensource.com/resources/what-open-education"
         >
           open-source education
         </Link>{" "}

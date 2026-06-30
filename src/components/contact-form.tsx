@@ -1,17 +1,18 @@
 "use client";
 
-import { apiClient } from "@/lib/api-client";
-import React, { useState, useRef, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { IoClose } from "react-icons/io5";
 
-export default function ContactUsForm() {
+import { apiClient } from "@/lib/api-client";
+
+export function ContactForm() {
   const [form, setForm] = useState({
+    email: "",
     firstName: "",
     lastName: "",
-    email: "",
+    message: "",
     phoneNumber: "",
     subject: "",
-    message: "",
   });
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
@@ -23,12 +24,12 @@ export default function ContactUsForm() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const formRef: any = useMemo(
     () => ({
+      email: emailRef,
       firstName: firstNameRef,
       lastName: lastNameRef,
-      email: emailRef,
+      message: messageRef,
       phoneNumber: phoneNumberRef,
       subject: subjectRef,
-      message: messageRef,
     }),
     [],
   );
@@ -41,7 +42,7 @@ export default function ContactUsForm() {
   useEffect(() => {
     // Find the first input field with an error and focus on it
     for (const fieldName in formError) {
-      if (formError[fieldName] && formRef[fieldName]?.current) {
+      if (Object.hasOwn(formError, fieldName) && formRef[fieldName]?.current) {
         formRef[fieldName]?.current?.focus();
         break; // Focus the first input with an error and exit the loop
       }
@@ -49,43 +50,43 @@ export default function ContactUsForm() {
   }, [formError, formRef]);
 
   const handleValidation = () => {
-    const tempErrors: Record<string, boolean> = {};
+    const temporaryErrors: Record<string, boolean> = {};
     let isValid = true;
 
-    if (form.firstName.trim().length <= 0) {
-      tempErrors["firstName"] = true;
+    if (form.firstName.trim().length === 0) {
+      temporaryErrors["firstName"] = true;
       isValid = false;
       return isValid;
     }
 
-    if (form.lastName.trim().length <= 0) {
-      tempErrors["lastName"] = true;
+    if (form.lastName.trim().length === 0) {
+      temporaryErrors["lastName"] = true;
       isValid = false;
       return isValid;
     }
 
-    if (form.email.trim().length <= 0) {
-      tempErrors["email"] = true;
+    if (form.email.trim().length === 0) {
+      temporaryErrors["email"] = true;
       isValid = false;
       return isValid;
     }
 
-    if (form.subject.trim().length <= 0) {
-      tempErrors["subject"] = true;
+    if (form.subject.trim().length === 0) {
+      temporaryErrors["subject"] = true;
       isValid = false;
     }
 
-    if (form.message.trim().length <= 0) {
-      tempErrors["message"] = true;
+    if (form.message.trim().length === 0) {
+      temporaryErrors["message"] = true;
       isValid = false;
     }
 
-    setFormError({ ...tempErrors });
+    setFormError({ ...temporaryErrors });
     return isValid;
   };
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleFormSubmit = async (event_: React.FormEvent<HTMLFormElement>) => {
+    event_.preventDefault();
 
     try {
       setShowFailureMessage(false);
@@ -110,12 +111,12 @@ export default function ContactUsForm() {
       }
 
       setForm({
+        email: "",
         firstName: "",
         lastName: "",
-        email: "",
+        message: "",
         phoneNumber: "",
         subject: "",
-        message: "",
       });
       setIsFormSubmitting(false);
       setShowSuccessMessage(true);
@@ -126,8 +127,8 @@ export default function ContactUsForm() {
 
   return (
     <form
-      onSubmit={handleFormSubmit}
       className="flex flex-col gap-6 rounded-md border px-5 py-10 shadow-md sm:px-10"
+      onSubmit={handleFormSubmit}
     >
       <h3 className="mb-2 text-2xl font-medium">Talk with our team</h3>
       <div className="flex flex-col gap-4">
@@ -138,21 +139,23 @@ export default function ContactUsForm() {
         <div className="flex flex-col gap-4 lg:flex-row">
           <div className="w-full">
             <label
-              htmlFor="first-name"
               className="block max-w-max leading-6 font-medium"
+              htmlFor="first-name"
             >
               First Name <span className="text-red-500">*</span>
             </label>
             <input
-              ref={formRef.firstName}
+              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               id="first-name"
               name="first-name"
-              type="text"
-              required
+              onChange={(event_) =>
+                setForm({ ...form, firstName: event_.target.value })
+              }
               placeholder="e.g., Ozakpolor"
+              ref={formRef.firstName}
+              required
+              type="text"
               value={form.firstName}
-              onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             />
             {formError.firstName && (
               <span className="text-xs text-red-500">
@@ -162,21 +165,23 @@ export default function ContactUsForm() {
           </div>
           <div className="w-full">
             <label
-              htmlFor="last-name"
               className="block max-w-max leading-6 font-medium"
+              htmlFor="last-name"
             >
               Last Name <span className="text-red-500">*</span>
             </label>
             <input
-              ref={formRef.lastName}
+              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               id="last-name"
               name="last-name"
-              type="text"
-              required
+              onChange={(event_) =>
+                setForm({ ...form, lastName: event_.target.value })
+              }
               placeholder="Emmanuel"
+              ref={formRef.lastName}
+              required
+              type="text"
               value={form.lastName}
-              onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             />
             {formError.lastName && (
               <span className="text-xs text-red-500">
@@ -188,22 +193,24 @@ export default function ContactUsForm() {
         <div className="flex flex-col gap-4 lg:flex-row">
           <div className="w-full">
             <label
-              htmlFor="email"
               className="block max-w-max leading-6 font-medium"
+              htmlFor="email"
             >
               Email <span className="text-red-500">*</span>
             </label>
             <input
-              ref={formRef.email}
+              autoComplete="email"
+              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               id="email"
               name="email"
-              type="email"
-              autoComplete="email"
-              required
+              onChange={(event_) =>
+                setForm({ ...form, email: event_.target.value })
+              }
               placeholder="name@domain.com"
+              ref={formRef.email}
+              required
+              type="email"
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             />
             {formError.email && (
               <span className="text-xs text-red-500">
@@ -213,44 +220,46 @@ export default function ContactUsForm() {
           </div>
           <div className="w-full">
             <label
-              htmlFor="phone-number"
               className="block max-w-max leading-6 font-medium"
+              htmlFor="phone-number"
             >
               Phone Number
             </label>
             <input
-              ref={formRef.phoneNumber}
+              autoComplete="tel"
+              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               id="phone-number"
               name="phone-number"
-              type="tel"
-              autoComplete="tel"
-              placeholder="+234 500 600 7000"
-              value={form.phoneNumber}
-              onChange={(e) =>
-                setForm({ ...form, phoneNumber: e.target.value })
+              onChange={(event_) =>
+                setForm({ ...form, phoneNumber: event_.target.value })
               }
-              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
+              placeholder="+234 500 600 7000"
+              ref={formRef.phoneNumber}
+              type="tel"
+              value={form.phoneNumber}
             />
           </div>
         </div>
         <div>
           <div className="mb-4">
             <label
-              htmlFor="subject"
               className="block max-w-max leading-6 font-medium"
+              htmlFor="subject"
             >
               Subject <span className="text-red-500">*</span>
             </label>
             <input
-              ref={formRef.subject}
+              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
               id="subject"
               name="subject"
-              type="text"
-              required
+              onChange={(event_) =>
+                setForm({ ...form, subject: event_.target.value })
+              }
               placeholder="e.g., I want more information about you"
+              ref={formRef.subject}
+              required
+              type="text"
               value={form.subject}
-              onChange={(e) => setForm({ ...form, subject: e.target.value })}
-              className="mt-2 block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
             />
             {formError.subject && (
               <span className="text-xs text-red-500">
@@ -260,19 +269,21 @@ export default function ContactUsForm() {
           </div>
           <div>
             <label
-              htmlFor="message"
               className="block max-w-max leading-6 font-medium"
+              htmlFor="message"
             >
               Message <span className="text-red-500">*</span>
             </label>
             <textarea
-              ref={formRef.message}
-              id="message"
-              rows={10}
-              placeholder="Describe your message here..."
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
               className="mt-2 block w-full resize-none rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-slate-300 ring-inset focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6 dark:text-slate-900"
+              id="message"
+              onChange={(event_) =>
+                setForm({ ...form, message: event_.target.value })
+              }
+              placeholder="Describe your message here..."
+              ref={formRef.message}
+              rows={10}
+              value={form.message}
             ></textarea>
             {formError.message && (
               <span className="text-xs text-red-500">
@@ -283,8 +294,8 @@ export default function ContactUsForm() {
         </div>
         {isFormSubmitting ? (
           <button
-            disabled
             className="cursor-not-allowed rounded-xl bg-sky-200 p-3 text-center font-semibold text-sky-500 dark:bg-sky-800 dark:text-sky-100"
+            disabled
           >
             Sending
             <span className="animate-blink">.</span>
@@ -305,7 +316,7 @@ export default function ContactUsForm() {
             apologize for the inconvenience. Please try again.
           </p>
           <button onClick={() => setShowFailureMessage(false)}>
-            <IoClose size={25} className="text-red-400 dark:text-red-600" />
+            <IoClose className="text-red-400 dark:text-red-600" size={25} />
           </button>
         </div>
       )}
@@ -313,7 +324,7 @@ export default function ContactUsForm() {
         <div className="flex items-start justify-between gap-2 rounded-lg border border-green-400 bg-green-50 p-5 dark:border-green-600 dark:bg-green-950">
           <p>Your information has been submitted successfully.</p>
           <button onClick={() => setShowSuccessMessage(false)}>
-            <IoClose size={25} className="text-green-400 dark:text-green-600" />
+            <IoClose className="text-green-400 dark:text-green-600" size={25} />
           </button>
         </div>
       )}

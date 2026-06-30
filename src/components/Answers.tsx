@@ -1,23 +1,26 @@
 "use client";
 
-import type { AnswerData } from "./answer";
-import { apiClient } from "@/lib/api-client";
-import { useQuestionsId } from "@/providers/questions-id-provider";
-import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import Answer from "./answer";
-import RichTextEditor from "./rich-text-editor";
-import { authClient } from "@/lib/auth-client";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
-interface AnswersProps {
+import { apiClient } from "@/lib/api-client";
+import { authClient } from "@/lib/auth-client";
+import { useQuestionsId } from "@/providers/questions-id-provider";
+
+import type { AnswerData } from "./answer";
+
+import { Answer } from "./answer";
+import { RichTextEditor } from "./rich-text-editor";
+
+interface AnswersProperties {
   questionNumber: string;
 }
 
-export default function Answers({ questionNumber }: AnswersProps) {
+export function Answers({ questionNumber }: AnswersProperties) {
   const { data: session } = authClient.useSession();
   const paths = usePathname();
-  const [showAnswerBtn, setShowAnswerBtn] = useState(true);
+  const [showAnswerButton, setShowAnswerButton] = useState(true);
   const [showAnswers, setShowAnswers] = useState(false);
   const [addAnswer, setAddAnswer] = useState(false);
   const [htmlContent, setHtmlContent] = useState("");
@@ -33,43 +36,43 @@ export default function Answers({ questionNumber }: AnswersProps) {
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["answers", questionId],
     queryFn: async () => {
       const response = await apiClient.get(`answers/${questionId}`);
       const result: { answers: AnswerData[] } = await response.json();
       return result.answers;
     },
+    queryKey: ["answers", questionId],
   });
 
   const handleShowButton = async () => {
     if (!session) {
-      window.location.href = `/sign-in?callbackUrl=${encodeURIComponent(paths)}`;
+      location.assign(`/sign-in?callbackUrl=${encodeURIComponent(paths)}`);
       return;
     }
 
-    setShowAnswerBtn(false);
+    setShowAnswerButton(false);
     setShowAnswers(true);
   };
 
   const handleHideButton = () => {
-    setShowAnswerBtn(true);
+    setShowAnswerButton(true);
     setShowAnswers(false);
     setAddAnswer(false);
   };
 
   const handleAddAnswer = async (
     content: string,
-    setIsSubmitting: (value: boolean) => void,
+    setIsSubmitting: (isSubmitting: boolean) => void,
   ) => {
     try {
       setIsSubmitting(true);
 
       const response = await apiClient.post(`answers/${questionId}`, {
         json: {
-          userId: session?.user?.id,
-          userName: session?.user?.name,
-          userImage: session?.user?.image,
           htmlContent: content,
+          userId: session?.user?.id,
+          userImage: session?.user?.image,
+          userName: session?.user?.name,
         },
       });
 
@@ -86,17 +89,17 @@ export default function Answers({ questionNumber }: AnswersProps) {
       await queryClient.invalidateQueries({
         queryKey: ["answers", questionId],
       });
-    } catch (e) {
-      console.error(e);
+    } catch (error_) {
+      console.error(error_);
     }
   };
 
   return (
     <div className="my-2 space-y-4">
-      {showAnswerBtn && (
+      {showAnswerButton && (
         <button
-          onClick={handleShowButton}
           className="rounded-md border border-sky-700 p-2 text-center text-xs text-sky-700 hover:bg-sky-100 active:bg-sky-200 dark:border-sky-300 dark:text-sky-300 dark:hover:bg-sky-950 dark:active:bg-sky-900"
+          onClick={handleShowButton}
         >
           Show Answers
         </button>
@@ -110,8 +113,8 @@ export default function Answers({ questionNumber }: AnswersProps) {
             {answers && answers.length > 0 && (
               <ol>
                 {answers.map((answer: AnswerData) => (
-                  <li key={answer._id} className="mb-4 flex gap-2 py-2">
-                    <Answer questionId={questionId} answer={answer} />
+                  <li className="mb-4 flex gap-2 py-2" key={answer._id}>
+                    <Answer answer={answer} questionId={questionId} />
                   </li>
                 ))}
               </ol>
@@ -121,13 +124,13 @@ export default function Answers({ questionNumber }: AnswersProps) {
               <div className="flex flex-col gap-2">
                 <RichTextEditor
                   content={htmlContent}
-                  setContent={setHtmlContent}
-                  mode="add"
                   isSubmitting={isSubmitting}
-                  setIsSubmitting={setIsSubmitting}
+                  mode="add"
                   onAddOrSaveClick={() =>
                     handleAddAnswer(htmlContent, setIsSubmitting)
                   }
+                  setContent={setHtmlContent}
+                  setIsSubmitting={setIsSubmitting}
                 />
               </div>
             )}
@@ -136,15 +139,15 @@ export default function Answers({ questionNumber }: AnswersProps) {
           <div className="flex flex-wrap gap-2">
             {!addAnswer && (
               <button
-                onClick={() => setAddAnswer(true)}
                 className="rounded-md border border-sky-700 p-2 text-center text-xs text-sky-700 hover:bg-sky-100 active:bg-sky-200 dark:border-sky-300 dark:text-sky-300 dark:hover:bg-sky-950 dark:active:bg-sky-900"
+                onClick={() => setAddAnswer(true)}
               >
                 Add an answer
               </button>
             )}
             <button
-              onClick={handleHideButton}
               className="rounded-md border border-sky-700 p-2 text-center text-xs text-sky-700 hover:bg-sky-100 active:bg-sky-200 dark:border-sky-300 dark:text-sky-300 dark:hover:bg-sky-950 dark:active:bg-sky-900"
+              onClick={handleHideButton}
             >
               Hide Answers
             </button>

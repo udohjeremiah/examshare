@@ -17,12 +17,12 @@
                       {
                         "href": "acc102",
                         "name": "ACC 102 - Introduction to Financial Accounting II",
-                        "question": "wdu-acc-22_23-1lvl-2nd-acc102"
+                        "question": "wdu-accumulator-22-23-1lvl-2nd-accumulator102"
                       },
                       {
                         "href": "bfn102",
                         "name": "BFN 102 - Element of Banking II",
-                        "question": "wdu-acc-22_23-1lvl-2nd-bfn102"
+                        "question": "wdu-accumulator-22-23-1lvl-2nd-bfn102"
                       }
                     ]
                   }
@@ -42,12 +42,12 @@
                       {
                         "href": "acc201",
                         "name": "ACC 201 - Financial Accounting I",
-                        "question": "wdu-acc-23_24-2lvl-1st-acc201"
+                        "question": "wdu-accumulator-23-24-2lvl-1st-accumulator201"
                       },
                       {
                         "href": "acc203",
                         "name": "ACC 203 - Introduction to Business Finance",
-                        "question": "wdu-acc-23_24-2lvl-1st-acc203"
+                        "question": "wdu-accumulator-23-24-2lvl-1st-accumulator203"
                       }
                     ]
                   }
@@ -72,7 +72,7 @@
                       {
                         "href": "chm101",
                         "name": "CHM 101 - General Chemistry I",
-                        "question": "wdu-basicinduschem-22_23-1lvl-1st-chm101"
+                        "question": "wdu-basicinduschem-22-23-1lvl-1st-chm101"
                       }
                     ]
                   },
@@ -82,7 +82,7 @@
                       {
                         "href": "chm102",
                         "name": "CHM 102 - General Chemistry II",
-                        "question": "wdu-basicinduschem-22_23-1lvl-2nd-chm102"
+                        "question": "wdu-basicinduschem-22-23-1lvl-2nd-chm102"
                       }
                     ]
                   }
@@ -97,7 +97,7 @@
                       {
                         "href": "chm303",
                         "name": "CHM 303 - Inorganic Chemistry",
-                        "question": "wdu-basicinduschem-22_23-3lvl-1st-chm303"
+                        "question": "wdu-basicinduschem-22-23-3lvl-1st-chm303"
                       }
                     ]
                   }
@@ -122,22 +122,22 @@
                       {
                         "href": "bch203",
                         "name": "BCH 203 - Analytical Biochemistry",
-                        "question": "wdu-biochem-23_24-2lvl-1st-bch203"
+                        "question": "wdu-biochem-23-24-2lvl-1st-bch203"
                       },
                       {
                         "href": "bch205",
                         "name": "BCH 205 - Introduction to Enzymology",
-                        "question": "wdu-biochem-23_24-2lvl-1st-bch205"
+                        "question": "wdu-biochem-23-24-2lvl-1st-bch205"
                       },
                       {
                         "href": "bch207",
                         "name": "BCH 207 - Mineral Metabolism",
-                        "question": "wdu-biochem-23_24-2lvl-1st-bch207"
+                        "question": "wdu-biochem-23-24-2lvl-1st-bch207"
                       },
                       {
                         "href": "bch209",
                         "name": "BCH 209 - Practical Biochemistry",
-                        "question": "wdu-biochem-23_24-2lvl-1st-bch209"
+                        "question": "wdu-biochem-23-24-2lvl-1st-bch209"
                       }
                     ]
                   }
@@ -162,12 +162,12 @@
                       {
                         "href": "csc101-law-mgmsci",
                         "name": "CSC 101 - Introduction to Computers and Spreadsheet Analysis (FOR LAW AND MANAGEMENT SCIENCES)",
-                        "question": "wdu-compsci-22_23-1lvl-1st-csc101-law-mgmsci"
+                        "question": "wdu-compsci-22-23-1lvl-1st-csc101-law-mgmsci"
                       },
                       {
                         "href": "csc101-sci",
                         "name": "CSC 101 - Introduction to Computers and Spreadsheet Analysis (FOR SCIENCES)",
-                        "question": "wdu-compsci-22_23-1lvl-1st-csc101-sci"
+                        "question": "wdu-compsci-22-23-1lvl-1st-csc101-sci"
                       }
                     ]
                   }
@@ -182,17 +182,17 @@
                       {
                         "href": "csc201",
                         "name": "CSC 201 - Computer Programming I (Java)",
-                        "question": "wdu-compsci-22_23-2lvl-1st-csc201"
+                        "question": "wdu-compsci-22-23-2lvl-1st-csc201"
                       },
                       {
                         "href": "csc203",
                         "name": "CSC 203 - Computer Programming II",
-                        "question": "wdu-compsci-22_23-2lvl-1st-csc203"
+                        "question": "wdu-compsci-22-23-2lvl-1st-csc203"
                       },
                       {
                         "href": "csc209",
                         "name": "CSC 209 - Foundations of Sequential Programming",
-                        "question": "wdu-compsci-22_23-2lvl-1st-csc209"
+                        "question": "wdu-compsci-22-23-2lvl-1st-csc209"
                       }
                     ]
                   },
@@ -202,17 +202,17 @@
                       {
                         "href": "csc202",
                         "name": "CSC 202 - Assembly Language Processing",
-                        "question": "wdu-compsci-22_23-2lvl-2nd-csc202"
+                        "question": "wdu-compsci-22-23-2lvl-2nd-csc202"
                       },
                       {
                         "href": "csc204",
                         "name": "CSC 204 - File Processing",
-                        "question": "wdu-compsci-22_23-2lvl-2nd-csc204"
+                        "question": "wdu-compsci-22-23-2lvl-2nd-csc204"
                       },
                       {
                         "href": "csc206",
                         "name": "CSC 206 - Computer Hardware",
-                        "question": "wdu-compsci-22_23-2lvl-2nd-csc206"
+                        "question": "wdu-compsci-22-23-2lvl-2nd-csc206"
                       }
                     ]
                   }
@@ -232,22 +232,22 @@
                       {
                         "href": "csc201",
                         "name": "CSC 201 - Computer Programming I (Java)",
-                        "question": "wdu-compsci-23_24-2lvl-1st-csc201"
+                        "question": "wdu-compsci-23-24-2lvl-1st-csc201"
                       },
                       {
                         "href": "csc203",
                         "name": "CSC 203 - Computer Programming II (C++)",
-                        "question": "wdu-compsci-23_24-2lvl-1st-csc203"
+                        "question": "wdu-compsci-23-24-2lvl-1st-csc203"
                       },
                       {
                         "href": "csc205",
                         "name": "CSC 205 - Discrete Structures",
-                        "question": "wdu-compsci-23_24-2lvl-1st-csc205"
+                        "question": "wdu-compsci-23-24-2lvl-1st-csc205"
                       },
                       {
                         "href": "csc209",
                         "name": "CSC 209 - Foundations of Sequential Programming",
-                        "question": "wdu-compsci-23_24-2lvl-1st-csc209"
+                        "question": "wdu-compsci-23-24-2lvl-1st-csc209"
                       }
                     ]
                   }
@@ -262,32 +262,32 @@
                       {
                         "href": "csc301",
                         "name": "CSC 301 - Digitial Design",
-                        "question": "wdu-compsci-23_24-3lvl-1st-csc301"
+                        "question": "wdu-compsci-23-24-3lvl-1st-csc301"
                       },
                       {
                         "href": "csc303",
                         "name": "CSC 303 - Operating Systems",
-                        "question": "wdu-compsci-23_24-3lvl-1st-csc303"
+                        "question": "wdu-compsci-23-24-3lvl-1st-csc303"
                       },
                       {
                         "href": "csc305",
                         "name": "CSC 305 - Computer Architecture",
-                        "question": "wdu-compsci-23_24-3lvl-1st-csc305"
+                        "question": "wdu-compsci-23-24-3lvl-1st-csc305"
                       },
                       {
                         "href": "csc307",
                         "name": "CSC 307 - Formal Language & Automata Theory",
-                        "question": "wdu-compsci-23_24-3lvl-1st-csc307"
+                        "question": "wdu-compsci-23-24-3lvl-1st-csc307"
                       },
                       {
                         "href": "csc309",
                         "name": "CSC 309 - Advanced Computer Programming (Java)",
-                        "question": "wdu-compsci-23_24-3lvl-1st-csc309"
+                        "question": "wdu-compsci-23-24-3lvl-1st-csc309"
                       },
                       {
                         "href": "csc311",
                         "name": "CSC 311 - Database Design and Management",
-                        "question": "wdu-compsci-23_24-3lvl-1st-csc311"
+                        "question": "wdu-compsci-23-24-3lvl-1st-csc311"
                       }
                     ]
                   }
@@ -312,7 +312,7 @@
                       {
                         "href": "eco101",
                         "name": "ECO 101 - Principles of Economics I",
-                        "question": "wdu-eco-22_23-1lvl-1st-eco101"
+                        "question": "wdu-eco-22-23-1lvl-1st-eco101"
                       }
                     ]
                   },
@@ -322,7 +322,7 @@
                       {
                         "href": "eco102",
                         "name": "ECO 102 - Principles of Economics II",
-                        "question": "wdu-eco-22_23-1lvl-2nd-eco102"
+                        "question": "wdu-eco-22-23-1lvl-2nd-eco102"
                       }
                     ]
                   }
@@ -337,7 +337,7 @@
                       {
                         "href": "eco201",
                         "name": "ECO 201 - Introductory Microeconomics I",
-                        "question": "wdu-eco-22_23-2lvl-1st-eco201"
+                        "question": "wdu-eco-22-23-2lvl-1st-eco201"
                       }
                     ]
                   }
@@ -357,12 +357,12 @@
                       {
                         "href": "eco201",
                         "name": "ECO 201 - Introduction to Microeconomics I",
-                        "question": "wdu-eco-23_24-2lvl-1st-eco201"
+                        "question": "wdu-eco-23-24-2lvl-1st-eco201"
                       },
                       {
                         "href": "eco205",
                         "name": "ECO 205 - Statistics I",
-                        "question": "wdu-eco-23_24-2lvl-1st-eco205"
+                        "question": "wdu-eco-23-24-2lvl-1st-eco205"
                       }
                     ]
                   }
@@ -387,12 +387,12 @@
                       {
                         "href": "emt101",
                         "name": "EMT 101 - General Biology I",
-                        "question": "wdu-emt-22_23-1lvl-1st-emt101"
+                        "question": "wdu-emt-22-23-1lvl-1st-emt101"
                       },
                       {
                         "href": "emt103",
                         "name": "EMT 103 - Practical Biology I",
-                        "question": "wdu-emt-22_23-1lvl-1st-emt103"
+                        "question": "wdu-emt-22-23-1lvl-1st-emt103"
                       }
                     ]
                   },
@@ -402,7 +402,7 @@
                       {
                         "href": "emt104",
                         "name": "EMT 104 - Practical Biology II",
-                        "question": "wdu-emt-22_23-1lvl-2nd-emt104"
+                        "question": "wdu-emt-22-23-1lvl-2nd-emt104"
                       }
                     ]
                   }
@@ -427,12 +427,12 @@
                       {
                         "href": "gst101",
                         "name": "GST 101 - Use of English and Library",
-                        "question": "wdu-gst-22_23-1lvl-1st-gst101"
+                        "question": "wdu-gst-22-23-1lvl-1st-gst101"
                       },
                       {
                         "href": "gst103",
                         "name": "GST 103 - Philosophy and Logic",
-                        "question": "wdu-gst-22_23-1lvl-1st-gst103"
+                        "question": "wdu-gst-22-23-1lvl-1st-gst103"
                       }
                     ]
                   },
@@ -442,17 +442,17 @@
                       {
                         "href": "gst102",
                         "name": "GST 102 - Use of English",
-                        "question": "wdu-gst-22_23-1lvl-2nd-gst102"
+                        "question": "wdu-gst-22-23-1lvl-2nd-gst102"
                       },
                       {
                         "href": "gst104",
                         "name": "GST 104 - Nigerian Peoples and Culture",
-                        "question": "wdu-gst-22_23-1lvl-2nd-gst104"
+                        "question": "wdu-gst-22-23-1lvl-2nd-gst104"
                       },
                       {
                         "href": "gst106",
                         "name": "GST 106 - History and Philosophy of Science",
-                        "question": "wdu-gst-22_23-1lvl-2nd-gst106"
+                        "question": "wdu-gst-22-23-1lvl-2nd-gst106"
                       }
                     ]
                   }
@@ -467,7 +467,7 @@
                       {
                         "href": "gst201",
                         "name": "GST 201 - Communication in French",
-                        "question": "wdu-gst-22_23-2lvl-1st-gst201"
+                        "question": "wdu-gst-22-23-2lvl-1st-gst201"
                       }
                     ]
                   },
@@ -477,7 +477,7 @@
                       {
                         "href": "gst202",
                         "name": "GST 202 - Communication in French",
-                        "question": "wdu-gst-22_23-2lvl-2nd1st-gst202"
+                        "question": "wdu-gst-22-23-2lvl-2nd1st-gst202"
                       }
                     ]
                   }
@@ -502,7 +502,7 @@
                       {
                         "href": "bus101",
                         "name": "BUS 101 - Introduction to Business",
-                        "question": "wdu-mgmsci-22_23-1lvl-1st-bus101"
+                        "question": "wdu-mgmsci-22-23-1lvl-1st-bus101"
                       }
                     ]
                   },
@@ -512,7 +512,7 @@
                       {
                         "href": "bus102",
                         "name": "BUS 102 - Introduction to Business II",
-                        "question": "wdu-mgmsci-22_23-1lvl-2nd-bus102"
+                        "question": "wdu-mgmsci-22-23-1lvl-2nd-bus102"
                       }
                     ]
                   }
@@ -527,12 +527,12 @@
                       {
                         "href": "bus202",
                         "name": "BUS 202 - Principles of Management II",
-                        "question": "wdu-mgmsci-22_23-2lvl-2nd-bus202"
+                        "question": "wdu-mgmsci-22-23-2lvl-2nd-bus202"
                       },
                       {
                         "href": "mkt202",
                         "name": "MKT 202 - Principles of Marketing",
-                        "question": "wdu-mgmsci-22_23-2lvl-2nd-mkt202"
+                        "question": "wdu-mgmsci-22-23-2lvl-2nd-mkt202"
                       }
                     ]
                   }
@@ -552,7 +552,7 @@
                       {
                         "href": "ams101",
                         "name": "AMS 101 - Principles of Management",
-                        "question": "wdu-mgmsci-23_24-1lvl-1st-ams101"
+                        "question": "wdu-mgmsci-23-24-1lvl-1st-ams101"
                       }
                     ]
                   }
@@ -567,7 +567,7 @@
                       {
                         "href": "bus201",
                         "name": "BUS 201 - Principles of Management",
-                        "question": "wdu-mgmsci-23_24-2lvl-1st-bus201"
+                        "question": "wdu-mgmsci-23-24-2lvl-1st-bus201"
                       }
                     ]
                   }
@@ -582,7 +582,7 @@
                       {
                         "href": "bus409",
                         "name": "BUS 409 - Business Ethics and Corporate Social Responsibility",
-                        "question": "wdu-mgmsci-23_24-4lvl-1st-bus409"
+                        "question": "wdu-mgmsci-23-24-4lvl-1st-bus409"
                       }
                     ]
                   }
@@ -607,12 +607,12 @@
                       {
                         "href": "mth203",
                         "name": "MTH 203 - Linear Algebra I",
-                        "question": "wdu-mth-22_23-2lvl-1st-mth203"
+                        "question": "wdu-mth-22-23-2lvl-1st-mth203"
                       },
                       {
                         "href": "mth211",
                         "name": "MTH 211 - Statistics",
-                        "question": "wdu-mth-22_23-2lvl-1st-mth211"
+                        "question": "wdu-mth-22-23-2lvl-1st-mth211"
                       }
                     ]
                   },
@@ -622,12 +622,12 @@
                       {
                         "href": "mth202",
                         "name": "MTH 202 - Linear Algebra II",
-                        "question": "wdu-mth-22_23-2lvl-2nd-mth202"
+                        "question": "wdu-mth-22-23-2lvl-2nd-mth202"
                       },
                       {
                         "href": "mth206",
                         "name": "MTH 206 - Mathematical Method I",
-                        "question": "wdu-mth-22_23-2lvl-2nd-mth206"
+                        "question": "wdu-mth-22-23-2lvl-2nd-mth206"
                       }
                     ]
                   }
@@ -652,12 +652,12 @@
                       {
                         "href": "phy102",
                         "name": "PHY 102 - Waves and Thermal Physics",
-                        "question": "wdu-phywithelect-22_23-1lvl-2nd-phy102"
+                        "question": "wdu-phywithelect-22-23-1lvl-2nd-phy102"
                       },
                       {
                         "href": "phy104",
                         "name": "PHY 104 - General Modern Physics",
-                        "question": "wdu-phywithelect-22_23-1lvl-2nd-phy104"
+                        "question": "wdu-phywithelect-22-23-1lvl-2nd-phy104"
                       }
                     ]
                   }
@@ -682,7 +682,7 @@
                       {
                         "href": "pol102",
                         "name": "POL 102 - Forms and Organs of Government",
-                        "question": "wdu-pol-22_23-1lvl-2nd-pol102"
+                        "question": "wdu-pol-22-23-1lvl-2nd-pol102"
                       }
                     ]
                   }
@@ -697,17 +697,17 @@
                       {
                         "href": "pol201",
                         "name": "POL 201 - Nigerian Politics and Government",
-                        "question": "wdu-pol-22_23-2lvl-1st-pol201"
+                        "question": "wdu-pol-22-23-2lvl-1st-pol201"
                       },
                       {
                         "href": "pol205",
                         "name": "POL 205 - Introduction to Political Analysis",
-                        "question": "wdu-pol-22_23-2lvl-1st-pol205"
+                        "question": "wdu-pol-22-23-2lvl-1st-pol205"
                       },
                       {
                         "href": "pol207",
                         "name": "POL 207 - Introduction to Public Administration",
-                        "question": "wdu-pol-22_23-2lvl-1st-pol207"
+                        "question": "wdu-pol-22-23-2lvl-1st-pol207"
                       }
                     ]
                   },
@@ -717,22 +717,22 @@
                       {
                         "href": "pol202",
                         "name": "POL 202 - Nigerian Government and Politics II",
-                        "question": "wdu-pol-22_23-2lvl-2nd-pol202"
+                        "question": "wdu-pol-22-23-2lvl-2nd-pol202"
                       },
                       {
                         "href": "pol204",
                         "name": "POL 204 - Foundation of Political Economy",
-                        "question": "wdu-pol-22_23-2lvl-2nd-pol204"
+                        "question": "wdu-pol-22-23-2lvl-2nd-pol204"
                       },
                       {
                         "href": "pol205",
                         "name": "POL 205 - Introduction to International Relations",
-                        "question": "wdu-pol-22_23-2lvl-2nd-pol205"
+                        "question": "wdu-pol-22-23-2lvl-2nd-pol205"
                       },
                       {
                         "href": "pol206",
                         "name": "POL 206 - Theories and Practice of Administration",
-                        "question": "wdu-pol-22_23-2lvl-2nd-pol206"
+                        "question": "wdu-pol-22-23-2lvl-2nd-pol206"
                       }
                     ]
                   }
@@ -752,17 +752,17 @@
                       {
                         "href": "pol203",
                         "name": "POL 203 - Economic and Social Development",
-                        "question": "wdu-pol-23_24-2lvl-1st-pol203"
+                        "question": "wdu-pol-23-24-2lvl-1st-pol203"
                       },
                       {
                         "href": "pol209",
                         "name": "POL 209 - Comparative Political Science",
-                        "question": "wdu-pol-23_24-2lvl-1st-pol209"
+                        "question": "wdu-pol-23-24-2lvl-1st-pol209"
                       },
                       {
                         "href": "pol213",
                         "name": "POL 213 - Introduction of Local Government Administration",
-                        "question": "wdu-pol-23_24-2lvl-1st-pol213"
+                        "question": "wdu-pol-23-24-2lvl-1st-pol213"
                       }
                     ]
                   },
@@ -772,7 +772,7 @@
                       {
                         "href": "pol205",
                         "name": "POL 205 - Introduction to International Relations",
-                        "question": "wdu-pol-23_24-2lvl-2nd-pol205"
+                        "question": "wdu-pol-23-24-2lvl-2nd-pol205"
                       }
                     ]
                   }
@@ -787,32 +787,32 @@
                       {
                         "href": "pol301",
                         "name": "POL 301 - History of Political Thought I",
-                        "question": "wdu-pol-23_24-3lvl-1st-pol301"
+                        "question": "wdu-pol-23-24-3lvl-1st-pol301"
                       },
                       {
                         "href": "pol303",
                         "name": "POL 303 - Logic and Methods of Political Inquiry",
-                        "question": "wdu-pol-23_24-3lvl-1st-pol303"
+                        "question": "wdu-pol-23-24-3lvl-1st-pol303"
                       },
                       {
                         "href": "pol305",
                         "name": "POL 305 - Public Policy Analysis",
-                        "question": "wdu-pol-23_24-3lvl-1st-pol305"
+                        "question": "wdu-pol-23-24-3lvl-1st-pol305"
                       },
                       {
                         "href": "pol307",
                         "name": "POL 307 - Public Administration in Nigeria",
-                        "question": "wdu-pol-23_24-3lvl-1st-pol307"
+                        "question": "wdu-pol-23-24-3lvl-1st-pol307"
                       },
                       {
                         "href": "pol309",
                         "name": "POL 309 - Politics of Development and Underdevelopment",
-                        "question": "wdu-pol-23_24-3lvl-1st-pol309"
+                        "question": "wdu-pol-23-24-3lvl-1st-pol309"
                       },
                       {
                         "href": "pol311",
                         "name": "POL 311 - Theory and Practice of Administration",
-                        "question": "wdu-pol-23_24-3lvl-1st-pol311"
+                        "question": "wdu-pol-23-24-3lvl-1st-pol311"
                       }
                     ]
                   },
@@ -822,12 +822,12 @@
                       {
                         "href": "pol311",
                         "name": "POL 311 - Theories of International Relations",
-                        "question": "wdu-pol-23_24-3lvl-2nd-pol311"
+                        "question": "wdu-pol-23-24-3lvl-2nd-pol311"
                       },
                       {
                         "href": "pol313",
                         "name": "POL 313 - Rural and Community Development",
-                        "question": "wdu-pol-23_24-3lvl-2nd-pol313"
+                        "question": "wdu-pol-23-24-3lvl-2nd-pol313"
                       }
                     ]
                   }

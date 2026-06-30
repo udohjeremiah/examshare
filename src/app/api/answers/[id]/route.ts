@@ -1,6 +1,54 @@
-import { env } from "@/env/server";
-import { dbClient } from "@/lib/db-client";
 import { NextRequest, NextResponse } from "next/server";
+
+import { env } from "@/env/server";
+import { databaseClient } from "@/lib/database-client";
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  try {
+    const { id } = await params;
+    const { userId } = await request.json();
+
+    if (!id || !userId) {
+      return NextResponse.json(
+        { message: "Bad request", success: false },
+        { status: 400 },
+      );
+    }
+
+    const answersCollection = databaseClient
+      .db(env.MONGODB_DATABASE)
+      .collection(env.MONGODB_COLLECTION_ANSWERS);
+
+    const result = await answersCollection.deleteOne({
+      questionId: id,
+      userId,
+    });
+
+    return result.deletedCount === 1
+      ? NextResponse.json(
+          {
+            message: `Answer with id ${id} from user with id ${userId} has been successfully deleted`,
+            success: true,
+          },
+          { status: 200, statusText: "OK" },
+        )
+      : NextResponse.json(
+          {
+            message: `No answer was found for the question with id ${id} provided by the user with id ${userId}`,
+            success: false,
+          },
+          { status: 404, statusText: "Not Found" },
+        );
+  } catch (error) {
+    return NextResponse.json(
+      { error: error, success: false },
+      { status: 500, statusText: "Internal Server Error" },
+    );
+  }
+}
 
 export async function GET(
   request: NextRequest,
@@ -11,12 +59,12 @@ export async function GET(
 
     if (!id) {
       return NextResponse.json(
-        { success: false, message: "Bad request" },
+        { message: "Bad request", success: false },
         { status: 400 },
       );
     }
 
-    const collection = dbClient
+    const collection = databaseClient
       .db(env.MONGODB_DATABASE)
       .collection(env.MONGODB_COLLECTION_ANSWERS);
 
@@ -24,79 +72,16 @@ export async function GET(
 
     return NextResponse.json(
       {
-        success: true,
-        message: "Answers have been successfully fetched",
         answers,
+        message: "Answers have been successfully fetched",
+        success: true,
       },
       { status: 200, statusText: "OK" },
     );
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
     return NextResponse.json(
-      { success: false, error: e },
-      { status: 500, statusText: "Internal Server Error" },
-    );
-  }
-}
-
-export async function POST(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  try {
-    const { id } = await params;
-    const { userId, userName, userImage, htmlContent } = await request.json();
-
-    if (!id || !userId || !userName || !userImage || !htmlContent) {
-      return NextResponse.json(
-        { success: false, message: "Bad request" },
-        { status: 400 },
-      );
-    }
-
-    const answersCollection = dbClient
-      .db(env.MONGODB_DATABASE)
-      .collection(env.MONGODB_COLLECTION_ANSWERS);
-
-    // Check if the user has already answered this question
-    if (
-      await answersCollection.findOne({
-        questionId: id,
-        userId,
-      })
-    ) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "User has already answered this question",
-        },
-        { status: 409, statusText: "Conflict" },
-      );
-    }
-
-    const result = await answersCollection.insertOne({
-      questionId: id,
-      userId,
-      userName,
-      userImage,
-      createdAt: new Date().toUTCString(),
-      answer: htmlContent,
-      edited: false,
-      upvotes: 0,
-      upvotesHistory: [],
-    });
-
-    return NextResponse.json(
-      {
-        success: true,
-        message: `Answer with id ${result.insertedId} has been successfully created`,
-      },
-      { status: 201, statusText: "Created" },
-    );
-  } catch (e) {
-    console.error(e);
-    return NextResponse.json(
-      { success: false, error: e },
+      { error: error, success: false },
       { status: 500, statusText: "Internal Server Error" },
     );
   }
@@ -111,20 +96,20 @@ export async function PATCH(
 
     if (!id) {
       return NextResponse.json(
-        { success: false, message: "Bad request" },
+        { message: "Bad request", success: false },
         { status: 400 },
       );
     }
 
-    const answersCollection = dbClient
+    const answersCollection = databaseClient
       .db(env.MONGODB_DATABASE)
       .collection(env.MONGODB_COLLECTION_ANSWERS);
 
-    const { userId, htmlContent } = await request.json();
+    const { htmlContent, userId } = await request.json();
 
     if (!userId) {
       return NextResponse.json(
-        { success: false, message: "Bad request" },
+        { message: "Bad request", success: false },
         { status: 400 },
       );
     }
@@ -132,8 +117,8 @@ export async function PATCH(
     if (htmlContent === undefined) {
       return NextResponse.json(
         {
-          success: false,
           message: "No valid fields provided for update",
+          success: false,
         },
         { status: 400, statusText: "Bad Request" },
       );
@@ -143,76 +128,88 @@ export async function PATCH(
       { questionId: id, userId },
       { $set: { answer: htmlContent, edited: true } },
     );
-    if (result.modifiedCount === 1) {
-      return NextResponse.json(
-        {
-          success: true,
-          message: `Answer with id: ${id} successfully updated`,
-        },
-        { status: 200, statusText: "OK" },
-      );
-    } else {
-      return NextResponse.json(
-        {
-          success: false,
-          message: `No answer found for this question with id: ${id} provided by user with id: ${userId}`,
-        },
-        { status: 404, statusText: "Not Found" },
-      );
-    }
-  } catch (e) {
-    console.error(e);
+    return result.modifiedCount === 1
+      ? NextResponse.json(
+          {
+            message: `Answer with id: ${id} successfully updated`,
+            success: true,
+          },
+          { status: 200, statusText: "OK" },
+        )
+      : NextResponse.json(
+          {
+            message: `No answer found for this question with id: ${id} provided by user with id: ${userId}`,
+            success: false,
+          },
+          { status: 404, statusText: "Not Found" },
+        );
+  } catch (error) {
+    console.error(error);
     return NextResponse.json(
-      { success: false, error: e },
+      { error: error, success: false },
       { status: 500, statusText: "Internal Server Error" },
     );
   }
 }
 
-export async function DELETE(
+export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
-    const { userId } = await request.json();
+    const { htmlContent, userId, userImage, userName } = await request.json();
 
-    if (!id || !userId) {
+    if (!id || !userId || !userName || !userImage || !htmlContent) {
       return NextResponse.json(
-        { success: false, message: "Bad request" },
+        { message: "Bad request", success: false },
         { status: 400 },
       );
     }
 
-    const answersCollection = dbClient
+    const answersCollection = databaseClient
       .db(env.MONGODB_DATABASE)
       .collection(env.MONGODB_COLLECTION_ANSWERS);
 
-    const result = await answersCollection.deleteOne({
-      questionId: id,
-      userId,
-    });
-
-    if (result.deletedCount === 1) {
+    // Check if the user has already answered this question
+    if (
+      await answersCollection.findOne({
+        questionId: id,
+        userId,
+      })
+    ) {
       return NextResponse.json(
         {
-          success: true,
-          message: `Answer with id ${id} from user with id ${userId} has been successfully deleted`,
-        },
-        { status: 200, statusText: "OK" },
-      );
-    } else {
-      return NextResponse.json(
-        {
+          message: "User has already answered this question",
           success: false,
-          message: `No answer was found for the question with id ${id} provided by the user with id ${userId}`,
         },
-        { status: 404, statusText: "Not Found" },
+        { status: 409, statusText: "Conflict" },
       );
     }
-  } catch (e) {
+
+    const result = await answersCollection.insertOne({
+      answer: htmlContent,
+      createdAt: new Date().toUTCString(),
+      edited: false,
+      questionId: id,
+      upvotes: 0,
+      upvotesHistory: [],
+      userId,
+      userImage,
+      userName,
+    });
+
     return NextResponse.json(
-      { success: false, error: e },
+      {
+        message: `Answer with id ${result.insertedId} has been successfully created`,
+        success: true,
+      },
+      { status: 201, statusText: "Created" },
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: error, success: false },
       { status: 500, statusText: "Internal Server Error" },
     );
   }

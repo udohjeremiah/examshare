@@ -1,20 +1,19 @@
-import pqa from "@/utils/past-questions-archive";
-import LinkList from "@/components/link-list";
+import { LinkList } from "@/components/link-list";
+import { pqa } from "@/utils/past-questions-archive";
 
 export default async function Course({
   params,
 }: {
   params: Promise<{
-    institution: string;
     department: string;
-    session: string;
+    institution: string;
     level: string;
     semester: string;
+    session: string;
   }>;
 }) {
-  const { institution, department, session, level, semester } = await params;
+  const { department, institution, level, semester, session } = await params;
 
-  // @ts-expect-error — dynamic string index on inferred JSON type
   const courses = pqa[institution]["departments"][department]["sessions"][
     session
   ]["levels"][level]["semesters"][semester]["courses"].map(
@@ -24,5 +23,5 @@ export default async function Course({
     }),
   );
 
-  return <LinkList items={courses} isOrdered={true} />;
+  return <LinkList isOrdered={true} items={courses} />;
 }

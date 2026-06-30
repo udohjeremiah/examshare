@@ -1,17 +1,17 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { LiaAngleRightSolid } from "react-icons/lia";
+import { usePathname } from "next/navigation";
 import React from "react";
+import { LiaAngleRightSolid } from "react-icons/lia";
 
-const capitalizeFirstLetter = (str: string) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+const capitalizeFirstLetter = (string_: string) => {
+  return string_.charAt(0).toUpperCase() + string_.slice(1);
 };
 
-export default function BreadCrumb() {
+export function BreadCrumb() {
   const paths = usePathname();
-  const pathNames = paths.split("/").filter((path) => path);
+  const pathNames = paths.split("/").filter(Boolean);
 
   return (
     <div className="flex flex-wrap items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
@@ -23,7 +23,10 @@ export default function BreadCrumb() {
         {pathNames.map((path, index) => {
           const href = `/${pathNames.slice(0, index + 1).join("/")}`;
           const isActivePath = paths === href;
-          const link = path.split("-").map(capitalizeFirstLetter).join(" ");
+          const link = path
+            .split("-")
+            .map((part) => capitalizeFirstLetter(part))
+            .join(" ");
           return (
             <React.Fragment key={index}>
               {isActivePath ? (

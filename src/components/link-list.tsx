@@ -5,25 +5,25 @@ interface LinkItem {
   name: string;
 }
 
-export default function LinkList({
-  items,
+export function LinkList({
   isOrdered,
+  items,
 }: {
-  items: LinkItem[];
   isOrdered: boolean;
+  items: LinkItem[];
 }) {
   return (
     <>
       {isOrdered ? (
         <ol className="mb-4 list-inside list-[square] flex-col text-sky-500 marker:text-sky-500">
           {items.map((item: LinkItem, index: number) => (
-            <ListItem key={index} item={item} />
+            <ListItem item={item} key={index} />
           ))}
         </ol>
       ) : (
         <ul className="mb-4 list-inside list-[square] flex-col text-sky-500 marker:text-sky-500">
           {items.map((item: LinkItem, index: number) => (
-            <ListItem key={index} item={item} />
+            <ListItem item={item} key={index} />
           ))}
         </ul>
       )}
@@ -35,14 +35,14 @@ function ListItem({
   item,
   ...properties
 }: {
-  item: LinkItem;
   [key: string]: unknown;
+  item: LinkItem;
 }) {
   return (
     <li className="list-[square]" {...properties}>
       <Link
-        href={item?.href}
         className="hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+        href={item?.href}
       >
         {item?.name}
       </Link>

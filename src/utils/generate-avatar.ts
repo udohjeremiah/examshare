@@ -1,6 +1,6 @@
-import generateColor from "./generate-color";
+import { generateColor } from "./generate-color";
 
-export default function generateAvatar(fullName: string) {
+export function generateAvatar(fullName: string) {
   const initials = fullName
     .split(" ")
     .map((name) => name.charAt(0))

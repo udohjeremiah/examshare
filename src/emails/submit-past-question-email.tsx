@@ -12,13 +12,13 @@ import {
   Text,
 } from "@react-email/components";
 
-interface SubmitPastQuestionEmailProps {
+interface SubmitPastQuestionEmailProperties {
   fullName: string;
 }
 
-export default function SubmitPastQuestionEmail({
+export function SubmitPastQuestionEmail({
   fullName,
-}: SubmitPastQuestionEmailProps) {
+}: SubmitPastQuestionEmailProperties) {
   const previewText =
     "Thanks for reaching out. Your question is received. We're reviewing the details and will respond soon.";
 

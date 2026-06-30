@@ -1,17 +1,18 @@
-import { useEffect, RefObject } from "react";
+import { RefObject, useEffect } from "react";
 
-export default function useClickOutside(
+export function useClickOutside(
   ref: RefObject<HTMLElement | null>,
   triggerRef: RefObject<HTMLElement | null>,
   handler: () => void,
 ) {
   useEffect(() => {
-    const listener = (e: MouseEvent | TouchEvent) => {
+    const listener = (event_: MouseEvent | TouchEvent) => {
       // Check if clicking ref's element or descendant elements, or the element that triggered it
       if (
         !ref?.current ||
-        ref.current.contains(e.target as Node) ||
-        (triggerRef?.current && triggerRef.current.contains(e.target as Node))
+        ref.current.contains(event_.target as Node) ||
+        (triggerRef?.current &&
+          triggerRef.current.contains(event_.target as Node))
       ) {
         return;
       }

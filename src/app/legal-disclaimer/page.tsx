@@ -1,6 +1,7 @@
-import { env } from "@/env/client";
-import BreadCrumb from "@/components/bread-crumb";
 import Link from "next/link";
+
+import { BreadCrumb } from "@/components/bread-crumb";
+import { env } from "@/env/client";
 
 export default function LegalDisclaimer() {
   return (
@@ -45,10 +46,10 @@ export default function LegalDisclaimer() {
           <li>
             <strong>Website</strong> refers to ExamShare, accessible from{" "}
             <a
+              className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
               href="https://examshare.vercel.app"
               rel="external nofollow noopener noreferrer"
               target="_blank"
-              className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
             >
               https://examshare.vercel.app
             </a>
@@ -75,9 +76,9 @@ export default function LegalDisclaimer() {
           at any time without prior notice. This Disclaimer has been created
           with the help of the{" "}
           <Link
+            className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
             href="https://www.freeprivacypolicy.com/free-disclaimer-generator/"
             target="_blank"
-            className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
           >
             Free Disclaimer Generator
           </Link>
@@ -193,8 +194,8 @@ export default function LegalDisclaimer() {
             <p>
               By email:{" "}
               <Link
-                href={`mailto:${env.NEXT_PUBLIC_PROJECT_EMAIL}`}
                 className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+                href={`mailto:${env.NEXT_PUBLIC_PROJECT_EMAIL}`}
               >
                 {env.NEXT_PUBLIC_PROJECT_EMAIL}
               </Link>
@@ -204,10 +205,10 @@ export default function LegalDisclaimer() {
             <p>
               By visiting this page on our website:{" "}
               <Link
+                className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
                 href="https://examshare.vercel.app/contact-us"
                 rel="external nofollow noopener"
                 target="_blank"
-                className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
               >
                 https://examshare.vercel.app/contact-us
               </Link>

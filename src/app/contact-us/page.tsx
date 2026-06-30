@@ -1,6 +1,7 @@
-import BreadCrumb from "@/components/bread-crumb";
 import Link from "next/link";
-import ContactForm from "@/components/contact-form";
+
+import { BreadCrumb } from "@/components/bread-crumb";
+import { ContactForm } from "@/components/contact-form";
 
 export const metadata = {
   title: "Contact Us | ExamShare",
@@ -18,36 +19,36 @@ export default function ContactUs() {
         with your details, and an ExamShare representative will promptly get in
         touch with you. If you have a simple question, check out our{" "}
         <Link
-          href="/#faqs"
           className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          href="/#faqs"
         >
           FAQ section
         </Link>
         . To connect with our community, you can find us on{" "}
         <Link
-          href="https://github.com/udohjeremiah/examshare"
           className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          href="https://github.com/udohjeremiah/examshare"
         >
           GitHub
         </Link>
         ,{" "}
         <Link
-          href=""
           className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          href=""
         >
           Twitter
         </Link>
         ,{" "}
         <Link
-          href=""
           className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          href=""
         >
           Facebook
         </Link>
         , and{" "}
         <Link
-          href=""
           className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+          href=""
         >
           Instagram
         </Link>

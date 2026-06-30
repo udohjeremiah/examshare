@@ -1,31 +1,32 @@
 "use client";
 
-import { apiClient } from "@/lib/api-client";
-import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-
-import RichTextEditor from "./rich-text-editor";
-import { authClient } from "@/lib/auth-client";
 import HTMLReactParser from "html-react-parser";
 import Image from "next/image";
+import { useState } from "react";
 import InlineSVG from "react-inlinesvg";
+
+import { apiClient } from "@/lib/api-client";
+import { authClient } from "@/lib/auth-client";
+
+import { RichTextEditor } from "./rich-text-editor";
 
 export interface AnswerData {
   _id: string;
+  answer: string;
+  createdAt: string;
+  edited: boolean;
   userId: string;
   userImage: string;
   userName: string;
-  createdAt: string;
-  edited: boolean;
-  answer: string;
 }
 
-interface AnswerProps {
-  questionId: string;
+interface AnswerProperties {
   answer: AnswerData;
+  questionId: string;
 }
 
-export default function Answer({ questionId, answer }: AnswerProps) {
+export function Answer({ answer, questionId }: AnswerProperties) {
   const { data: session } = authClient.useSession();
   const queryClient = useQueryClient();
   const [htmlContent, setHtmlContent] = useState("");
@@ -39,9 +40,9 @@ export default function Answer({ questionId, answer }: AnswerProps) {
 
       const response = await apiClient.patch(`answers/${questionId}`, {
         json: {
+          htmlContent: content,
           questionUserId: answer.userId,
           userId: session?.user?.id,
-          htmlContent: content,
         },
       });
 
@@ -56,8 +57,8 @@ export default function Answer({ questionId, answer }: AnswerProps) {
       await queryClient.invalidateQueries({
         queryKey: ["answers", questionId],
       });
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -86,8 +87,8 @@ export default function Answer({ questionId, answer }: AnswerProps) {
       await queryClient.invalidateQueries({
         queryKey: ["answers", questionId],
       });
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -97,13 +98,13 @@ export default function Answer({ questionId, answer }: AnswerProps) {
         <div className="flex flex-wrap items-center gap-2">
           <div className="relative h-8 w-8">
             {answer.userImage.startsWith("<svg") ? (
-              <InlineSVG src={answer.userImage} width={30} height={30} />
+              <InlineSVG height={30} src={answer.userImage} width={30} />
             ) : (
               <Image
-                src={answer.userImage}
                 alt={answer.userName}
-                fill
                 className="inline-block rounded-full"
+                fill
+                src={answer.userImage}
               />
             )}
           </div>
@@ -126,11 +127,11 @@ export default function Answer({ questionId, answer }: AnswerProps) {
           {isEditing ? (
             <RichTextEditor
               content={htmlContent}
-              setContent={setHtmlContent}
-              mode="save"
               isSubmitting={isSaving}
-              setIsSubmitting={setIsSaving}
+              mode="save"
               onAddOrSaveClick={() => handleEditAnswer(htmlContent)}
+              setContent={setHtmlContent}
+              setIsSubmitting={setIsSaving}
             />
           ) : (
             <div className="prose prose-sm prose-slate dark:prose-invert">
@@ -142,25 +143,25 @@ export default function Answer({ questionId, answer }: AnswerProps) {
               <div className="flex gap-2">
                 {!isEditing && (
                   <button
+                    className="rounded-md border border-cyan-700 p-2 text-center text-xs text-cyan-700 hover:bg-blue-100 active:bg-cyan-200 dark:border-cyan-300 dark:text-cyan-300 dark:hover:bg-cyan-950 dark:active:bg-cyan-900"
                     onClick={() => {
                       setIsEditing(true);
                       setHtmlContent(answer.answer);
                     }}
-                    className="rounded-md border border-cyan-700 p-2 text-center text-xs text-cyan-700 hover:bg-blue-100 active:bg-cyan-200 dark:border-cyan-300 dark:text-cyan-300 dark:hover:bg-cyan-950 dark:active:bg-cyan-900"
                   >
                     Edit
                   </button>
                 )}
                 <button
-                  onClick={handleDeleteAnswer}
                   className="flex rounded-md border border-red-700 p-2 text-center text-xs text-red-700 hover:bg-red-100 active:bg-red-200 dark:border-red-300 dark:text-red-300 dark:hover:bg-red-950 dark:active:bg-red-900"
+                  onClick={handleDeleteAnswer}
                 >
                   {isDeleting && (
                     <svg
                       className="mr-3 -ml-1 h-5 w-5 animate-spin"
-                      xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
                       <circle
                         className="opacity-25"
@@ -172,8 +173,8 @@ export default function Answer({ questionId, answer }: AnswerProps) {
                       ></circle>
                       <path
                         className="opacity-75"
-                        fill="currentColor"
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        fill="currentColor"
                       ></path>
                     </svg>
                   )}
