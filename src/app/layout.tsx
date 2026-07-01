@@ -2,6 +2,7 @@ import "./globals.css";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { AuthProvider } from "@/providers/auth-provider";
+import { DevtoolsProvider } from "@/providers/devtools-provider";
 import { QueryProvider } from "@/providers/query-client-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
             </ThemeProvider>
           </AuthProvider>
         </QueryProvider>
+        <DevtoolsProvider />
       </body>
     </html>
   );
