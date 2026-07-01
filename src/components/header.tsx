@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "@teispace/next-themes";
 import { cn } from "cnfast";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -12,7 +13,6 @@ import { WiMoonAltThirdQuarter } from "react-icons/wi";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
 import { authClient } from "@/lib/auth-client";
-import { useTheme } from "@/providers/theme-provider";
 
 import { ProfileMenu } from "./profile-menu";
 
@@ -130,7 +130,7 @@ export function Header() {
             ref={showThemeNavRef}
             type="button"
           >
-            {theme === "os" && <WiMoonAltThirdQuarter size={25} />}
+            {theme === "system" && <WiMoonAltThirdQuarter size={25} />}
             {theme === "light" && <FiSun size={25} />}
             {theme === "dark" && <PiMoonStarsBold size={25} />}
           </button>
@@ -148,7 +148,6 @@ export function Header() {
                   theme === "light" && "font-extrabold text-sky-400",
                 )}
                 onClick={() => {
-                  localStorage.setItem("theme", "light");
                   setTheme("light");
                   setShowThemeNav(false);
                 }}
@@ -157,7 +156,6 @@ export function Header() {
                     return;
                   }
 
-                  localStorage.setItem("theme", "light");
                   setTheme("light");
                   setShowThemeNav(false);
                 }}
@@ -174,7 +172,6 @@ export function Header() {
                   theme === "dark" && "font-extrabold text-sky-400",
                 )}
                 onClick={() => {
-                  localStorage.setItem("theme", "dark");
                   setTheme("dark");
                   setShowThemeNav(false);
                 }}
@@ -183,7 +180,6 @@ export function Header() {
                     return;
                   }
 
-                  localStorage.setItem("theme", "dark");
                   setTheme("dark");
                   setShowThemeNav(false);
                 }}
@@ -194,14 +190,13 @@ export function Header() {
                 <span>Dark</span>
               </li>
               <li
-                aria-selected={theme === "os" ? true : false}
+                aria-selected={theme === "system" ? true : false}
                 className={cn(
                   "mb-1 flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1 hover:bg-sky-100 dark:hover:bg-sky-800",
-                  theme === "os" && "font-extrabold text-sky-400",
+                  theme === "system" && "font-extrabold text-sky-400",
                 )}
                 onClick={() => {
-                  localStorage.setItem("theme", "os");
-                  setTheme("os");
+                  setTheme("system");
                   setShowThemeNav(false);
                 }}
                 onKeyDown={(event_) => {
@@ -209,8 +204,7 @@ export function Header() {
                     return;
                   }
 
-                  localStorage.setItem("theme", "os");
-                  setTheme("os");
+                  setTheme("system");
                   setShowThemeNav(false);
                 }}
                 role="option"

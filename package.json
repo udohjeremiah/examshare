@@ -34,6 +34,7 @@
     "@t3-oss/env-nextjs": "^0.13.11",
     "@tanstack/react-form": "^1.33.0",
     "@tanstack/react-query": "^5.101.2",
+    "@teispace/next-themes": "^2.0.4",
     "better-auth": "^1.6.23",
     "cnfast": "^0.0.8",
     "ky": "^2.0.2",
