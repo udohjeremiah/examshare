@@ -3,12 +3,11 @@
 import { cn } from "cnfast";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { BiAddToQueue, BiBookAlt } from "react-icons/bi";
+import { BiBookAlt } from "react-icons/bi";
 import { FiSun } from "react-icons/fi";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdClose, MdLogin } from "react-icons/md";
 import { PiChatsBold, PiMoonStarsBold } from "react-icons/pi";
-import { TbBuildingBank } from "react-icons/tb";
 import { WiMoonAltThirdQuarter } from "react-icons/wi";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
@@ -89,26 +88,7 @@ export function Header() {
                     <span>Contact Us</span>
                   </Link>
                 </li>
-                <li className="max-w-max">
-                  <Link
-                    className="flex items-center gap-2"
-                    href="/past-questions-archive"
-                    onClick={() => setShowMobileNav(false)}
-                  >
-                    <TbBuildingBank size={25} />
-                    <span>Past Questions Archive</span>
-                  </Link>
-                </li>
-                <li className="max-w-max">
-                  <Link
-                    className="flex items-center gap-2"
-                    href="/submit-past-question"
-                    onClick={() => setShowMobileNav(false)}
-                  >
-                    <BiAddToQueue size={25} />
-                    <span>Submit Past Question</span>
-                  </Link>
-                </li>
+
                 {!session && (
                   <li className="max-w-max">
                     <Link
@@ -134,14 +114,7 @@ export function Header() {
               <li className="hover:text-sky-500 dark:hover:text-sky-600">
                 <Link href="/contact-us">Contact Us</Link>
               </li>
-              <li className="hover:text-sky-500 dark:hover:text-sky-600">
-                <Link href="/past-questions-archive">
-                  Past Questions Archive
-                </Link>
-              </li>
-              <li className="hover:text-sky-500 dark:hover:text-sky-600">
-                <Link href="/submit-past-question">Submit Past Question</Link>
-              </li>
+
               {!session && (
                 <li className="hover:text-sky-500 dark:hover:text-sky-600">
                   <Link href="/sign-in">Log In</Link>

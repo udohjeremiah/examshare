@@ -1,8 +1,6 @@
-import { render } from "@react-email/components";
 import { NextRequest, NextResponse } from "next/server";
 import * as nodemailer from "nodemailer";
 
-import { ContactUsEmail } from "@/emails/contact-us-email";
 import { env as publicEnv } from "@/env/client";
 import { env } from "@/env/server";
 
@@ -18,13 +16,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const contactUsEmailHtml = render(
-      <ContactUsEmail
-        fullName={`${firstName} ${lastName}`}
-        message={message}
-        subject={subject}
-      />,
-    );
+    const contactUsEmailHtml = `
+      <h2>Message Received</h2>
+      <p>Hello ${firstName} ${lastName},</p>
+      <p>Thank you for reaching out to us. Your message has been received successfully. Our team is currently reviewing the details you provided, and we will get back to you as soon as possible.</p>
+      <p>Please note that this email is an automated acknowledgment and does not require a reply. However, rest assured that we will continue to communicate with you within this same email thread when we are ready to respond to your message.</p>
+      <p>We appreciate your patience and look forward to assisting you.</p>
+    `;
 
     // https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json
     const transport = nodemailer.createTransport({

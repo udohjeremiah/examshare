@@ -22,20 +22,7 @@ export default async function Home() {
             for sharing past examination questions in higher education. Conquer
             those exams and help others do the same!
           </p>
-          <div className="flex w-full flex-col gap-4">
-            <Link
-              className="rounded-xl bg-sky-500 p-3 text-center font-semibold text-white hover:bg-sky-600 active:bg-sky-700 dark:bg-sky-400 dark:text-sky-950 dark:hover:bg-sky-300 dark:active:bg-sky-500"
-              href="/past-questions-archive"
-            >
-              Explore Past Questions
-            </Link>
-            <Link
-              className="rounded-xl border border-sky-700 p-3 text-center font-semibold text-sky-700 hover:bg-sky-100 active:bg-sky-200 dark:border-sky-300 dark:text-sky-300 dark:hover:bg-sky-950 dark:active:bg-sky-900"
-              href="/submit-past-question"
-            >
-              Submit a Past Question
-            </Link>
-          </div>
+          <div className="flex w-full flex-col gap-4" />
         </div>
         <Image
           alt="A girl holding a book in her hands while surrounded by other books, looking at a spaceship flying into the air"
@@ -134,27 +121,6 @@ export default async function Home() {
             Frequently Asked Questions
           </h2>
           <div className="flex flex-col gap-4">
-            <div>
-              <h3 className="mb-2 max-w-prose font-medium text-slate-900 dark:text-white">
-                How can I view the past exam questions for my school?
-              </h3>
-              <p className="max-w-prose text-sm">
-                To access past exam questions for your school, go to the{" "}
-                <Link
-                  className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
-                  href="/past-questions-archive"
-                >
-                  past questions archive page
-                </Link>{" "}
-                and locate your school listed alphabetically. Click on your
-                school, and you will be directed to a dedicated section
-                displaying the <strong>available</strong> past questions for
-                your school. From there, select the department, followed by the
-                session, level, semester, and course to view the past questions.
-                If there are no past questions available for your school, you
-                will be redirected to a 404 error page.
-              </p>
-            </div>
             <div>
               <h3 className="mb-2 max-w-prose font-medium text-slate-900 dark:text-white">
                 How can I view and add my own answers to these past exam
