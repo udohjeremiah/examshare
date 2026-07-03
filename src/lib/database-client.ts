@@ -49,9 +49,7 @@ if (process.env.NODE_ENV === "development") {
     _mongoClientPromise?: Promise<MongoClient>;
   };
 
-  if (!globalWithMongo._mongoClientPromise) {
-    globalWithMongo._mongoClientPromise = connectWithRetry(client);
-  }
+  globalWithMongo._mongoClientPromise ??= connectWithRetry(client);
 
   clientPromise = globalWithMongo._mongoClientPromise;
 } else {
