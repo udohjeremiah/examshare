@@ -4,11 +4,10 @@ import { useTheme } from "@teispace/next-themes";
 import { cn } from "cnfast";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { BiBookAlt } from "react-icons/bi";
 import { FiSun } from "react-icons/fi";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdClose, MdLogin } from "react-icons/md";
-import { PiChatsBold, PiMoonStarsBold } from "react-icons/pi";
+import { PiMoonStarsBold } from "react-icons/pi";
 import { WiMoonAltThirdQuarter } from "react-icons/wi";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
@@ -68,27 +67,6 @@ export function Header() {
                 <MdClose size={25} />
               </button>
               <ul className="flex flex-col gap-6">
-                <li className="max-w-max">
-                  <Link
-                    className="flex items-center gap-2"
-                    href="/about-us"
-                    onClick={() => setShowMobileNav(false)}
-                  >
-                    <BiBookAlt size={25} />
-                    <span>About Us</span>
-                  </Link>
-                </li>
-                <li className="max-w-max">
-                  <Link
-                    className="flex items-center gap-2"
-                    href="/contact-us"
-                    onClick={() => setShowMobileNav(false)}
-                  >
-                    <PiChatsBold size={25} />
-                    <span>Contact Us</span>
-                  </Link>
-                </li>
-
                 {!session && (
                   <li className="max-w-max">
                     <Link
@@ -108,13 +86,6 @@ export function Header() {
         <div className="flex grow items-center font-medium text-slate-600 max-lg:hidden dark:text-slate-300">
           <nav className="grow">
             <ul className="flex items-center justify-evenly text-center text-sm">
-              <li className="hover:text-sky-500 dark:hover:text-sky-600">
-                <Link href="/about-us">About Us</Link>
-              </li>
-              <li className="hover:text-sky-500 dark:hover:text-sky-600">
-                <Link href="/contact-us">Contact Us</Link>
-              </li>
-
               {!session && (
                 <li className="hover:text-sky-500 dark:hover:text-sky-600">
                   <Link href="/sign-in">Log In</Link>

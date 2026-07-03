@@ -5,6 +5,7 @@ import { BsGlobe } from "react-icons/bs";
 import { FaRegCompass } from "react-icons/fa";
 import { LiaUsersSolid } from "react-icons/lia";
 
+import { ContactForm } from "@/components/contact-form";
 import { auth } from "@/lib/auth";
 
 export default async function Home() {
@@ -102,6 +103,146 @@ export default async function Home() {
         <div className="flex flex-col items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-sky-400 to-sky-600 p-12 text-white dark:from-sky-300 dark:to-sky-500 dark:text-sky-950">
           <h3 className="text-4xl font-extrabold">10,000+</h3>
           <p className="text-3xl font-medium">Users</p>
+        </div>
+      </section>
+
+      <section
+        className="flex flex-col items-center gap-6 px-4 py-14 md:px-10"
+        id="about-us"
+      >
+        <div className="flex max-w-prose flex-col gap-6">
+          <h2 className="text-center text-3xl font-extrabold text-slate-900 dark:text-white">
+            About Us
+          </h2>
+          <div>
+            <p className="mb-2">
+              Welcome to ExamShare, a platform meticulously crafted to enhance
+              your exam preparation journey. Our team comprises dedicated
+              individuals, primarily students, who have united with a shared
+              mission: to provide a robust repository of past examination
+              questions.
+            </p>
+            <p>
+              Our commitment extends beyond personal success; we are ardent
+              advocates of{" "}
+              <Link
+                className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+                href="https://opensource.com/resources/what-open-education"
+              >
+                open-source education
+              </Link>
+              , contributing to the global educational community.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="mb-2 text-xl font-semibold">Why ExamShare?</h3>
+            <p>
+              In a world increasingly reliant on information and technology, we
+              recognized the need for a reliable resource dedicated to sharing
+              past examination questions and solutions. We identified common
+              challenges in the way students prepare for exams and resolved to
+              offer an innovative solution.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="mb-2 text-xl font-semibold">Our Inspiration</h3>
+            <p className="mb-2">
+              Our inspiration stems from the famous Winston Churchill quote:
+            </p>
+            <blockquote className="mb-2">
+              <p className="rounded-md border bg-sky-50 p-4 dark:bg-sky-900">
+                Those who fail to learn from history are doomed to repeat it.
+              </p>
+            </blockquote>
+            <p className="mb-2">And the accompanying irony:</p>
+            <blockquote className="mb-2">
+              <p className="rounded-md border bg-sky-50 p-4 dark:bg-sky-900">
+                Those who study history are doomed to stand by while everyone
+                else repeats it.
+              </p>
+            </blockquote>
+            <p className="mb-2">
+              The first quote underscores the importance of learning from the
+              past, emphasizing that understanding the format and content of
+              previous exams can significantly improve your preparation.
+            </p>
+            <p>
+              The second quote highlights the risk of assuming that past
+              examination questions mirror those you will face. We encourage
+              using these questions solely for preparatory purposes, avoiding
+              any expectation of encountering the exact same questions in your
+              exams.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="mb-2 text-xl font-semibold">What We Offer</h3>
+            <p className="mb-2">
+              At ExamShare, we aim to provide you with the tools you need to
+              excel in your exams. Our platform allows you to access a wealth of
+              past examination questions and their solutions, enabling you to
+              prepare comprehensively and with confidence.
+            </p>
+            <p>
+              Join us in revolutionizing the way students approach their exams.
+              Explore the world of ExamShare and unlock the keys to successful
+              examination preparation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="flex flex-col items-center gap-6 px-4 py-14 md:px-10"
+        id="contact-us"
+      >
+        <h2 className="text-center text-3xl font-extrabold text-slate-900 dark:text-white">
+          Contact Us
+        </h2>
+        <p className="max-w-prose text-center">
+          Looking for more information? Please fill out the contact form below
+          with your details, and an ExamShare representative will promptly get
+          in touch with you. If you have a simple question, check out our{" "}
+          <Link
+            className="font-bold text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+            href="/#faqs"
+          >
+            FAQ section
+          </Link>
+          . To connect with our community, you can find us on{" "}
+          <Link
+            className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+            href="https://github.com/udohjeremiah/examshare"
+          >
+            GitHub
+          </Link>
+          ,{" "}
+          <Link
+            className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+            href=""
+          >
+            Twitter
+          </Link>
+          ,{" "}
+          <Link
+            className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+            href=""
+          >
+            Facebook
+          </Link>
+          , and{" "}
+          <Link
+            className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
+            href=""
+          >
+            Instagram
+          </Link>
+          .
+        </p>
+        <div className="flex w-full max-w-prose flex-col">
+          <ContactForm />
         </div>
       </section>
 

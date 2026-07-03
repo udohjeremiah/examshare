@@ -57,12 +57,6 @@ export function Footer() {
           >
             Terms of Use
           </Link>
-          <Link
-            className="text-sky-500 hover:text-slate-400 hover:underline hover:decoration-sky-500 hover:underline-offset-4"
-            href="/legal-disclaimer"
-          >
-            Disclaimer
-          </Link>
         </div>
       </div>
     </footer>
